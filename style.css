@@ -39,7 +39,7 @@ header {
 }
 
 header h1 {
-  font-family: 'Pinyon Script', cursive;
+  font-family: 'Snell Roundhand', cursive;
   font-size: 6em; /* ca. 60px */
   margin: 0;
 }
@@ -153,7 +153,7 @@ footer {
 
 footer a {
   margin-right: 10px;
-  font-size: 0.875em;
+  font-size: 0.8em;
   color: #000;
   text-decoration: none;
 }
@@ -170,5 +170,14 @@ footer a:hover {
   
   header h1 {
     font-size: 4em;
+  }    
+  .item a {
+  font-size: 0.8em; /* No italic by default */
+  }  
+  .contact-form input, .contact-form textarea {
+  display: block;
+  width: 100%;
+
+}
   }
 }
