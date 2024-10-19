@@ -11,5 +11,6 @@ This project is licensed under the MIT License. Unauthorized distribution or mod
 If you discover any security vulnerabilities or have concerns about the integrity of the project, please contact me directly. Do not open public issues regarding security matters.
 
 *Contact Information*
+
 Email: moritzgg99@gmail.com
 Please reach out for any inquiries related to the website or my freelance services. Unauthorized use or duplication of this code will be treated as a breach of the license terms.
