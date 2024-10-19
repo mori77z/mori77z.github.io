@@ -19,7 +19,7 @@ body::before {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: rgba(255, 255, 255, 0.4);
   z-index: -10; /* This puts the overlay behind the content */
 }
@@ -32,6 +32,7 @@ header {
 header h1 {
   font-family: 'Snell Roundhand', cursive;
   font-size: 6em; /* ca. 60px */
+  line-height: 0.8em;
   margin: 0;
 }
 
