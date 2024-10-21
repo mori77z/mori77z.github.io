@@ -106,5 +106,6 @@ nav a {
     }
     .scroll-box {
         width: 600px;
+        height: auto;
     }
 }
