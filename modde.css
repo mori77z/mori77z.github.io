@@ -18,6 +18,7 @@ h1 {
     font-weight: normal;
     line-height: 36px;
     color: black;
+    text-decoration: underline;
     margin: 0;
 }
 nav {
