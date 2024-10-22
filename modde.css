@@ -18,9 +18,13 @@ h1 {
     font-weight: normal;
     line-height: 36px;
     color: black;
-    text-decoration: underline;
     margin: 0;
 }
+h1 a {
+    text-decoration: none;
+    color: black;
+}
+
 nav {
     padding: 10px;
     display: flex;
