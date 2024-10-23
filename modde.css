@@ -21,7 +21,7 @@ h1 {
     margin: 0;
 }
 h1 a {
-    text-decoration: none;
+    text-decoration: underline;
     color: black;
 }
 
