@@ -21,8 +21,14 @@ h1 {
     margin: 0;
 }
 h1 a {
-    text-decoration: underline;
+    text-decoration: none;
     color: black;
+    font-style: normal;
+}
+
+h1 a:hover {
+    text-decoration: underline;
+    font-style: italic; 
 }
 
 nav {
