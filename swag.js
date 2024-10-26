@@ -60,20 +60,3 @@ arrowRight.forEach(arrow => {
         }
     });
 });
-
-// Event listener for resizing text if there's overflow
-const resizeText = () => {
-    const infoElements = document.querySelectorAll('.info');
-    infoElements.forEach(info => {
-        const originalFontSize = 12;
-        const currentFontSize = parseInt(window.getComputedStyle(info).fontSize);
-        if (info.scrollHeight > info.clientHeight || info.scrollWidth > info.clientWidth) {
-            info.style.fontSize = `${currentFontSize - 1}px`;
-        } else {
-            info.style.fontSize = `${originalFontSize}px`;
-        }
-    });
-};
-
-window.onload = resizeText; 
-window.onresize = resizeText;
