@@ -97,23 +97,16 @@ nav a.active {
 
 .info {
     height: 100px;
-    max-width: 400px;
 }
 
 .info h2 {
-    font-size: clamp(18px, 20px, 24px);
+    font-size: 24px;
     font-weight: normal;
     margin: 0;
 }
 
 .info p {
-    font-size: clamp(12px, 14px, 16px);
-    line-height: 1;
-}
-
-.info a {
-    font-size: clamp(12px, 14px, 16px);
-    line-height: 1;
+    margin: 5px 0;
 }
 
 .img-container {
@@ -164,10 +157,10 @@ nav a.active {
 }
 
 .discr-container {
-    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
     font-style: italic;
     padding-left: 10px;
-    padding-right: 10px;
 }
     
 .zoomed-container {
@@ -198,21 +191,18 @@ nav a.active {
 /* @media (prefers-color-scheme: dark) {
     body {
         background-color: #fc4022;
+    }
 } */
 
 @media (min-width: 768px) {
-    
     h1 {
         font-size: 48px;
-    }
-    .scroll-box {
-    width: 600px;
-    height: auto;
-    } 
-    .discr-container {
-    font-size: 14px;
     }
     .zoomed-image {
     max-width: 70vw;
     max-height: 70vw;
     }
+    .scroll-box {
+        width: 600px;
+        height: auto;
+    } 
