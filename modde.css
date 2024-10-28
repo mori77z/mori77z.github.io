@@ -188,11 +188,11 @@ nav a.active {
     transition: transform 0.3s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     body {
         background-color: #fc4022;
     }
-}
+} */
 
 @media (min-width: 768px) {
     h1 {
