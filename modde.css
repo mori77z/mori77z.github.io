@@ -107,6 +107,21 @@ nav a.active {
 
 .info p {
     font-size: 14px;
+    line-height: 0.8;
+}
+.info a {
+    font-size: 14px;
+    line-height: 0.8;
+    text-decoration: underline;
+    color: #fc4022;
+}
+
+.info a:hover {
+  color: darkblue;
+}
+
+a:visited {
+  color: purple;
 }
 
 .img-container {
@@ -191,6 +206,8 @@ nav a.active {
     body {
         background-color: #fc4022;
     }
+    .info a {
+    color: #39ff14;
 } */
 
 @media (min-width: 768px) {
@@ -203,6 +220,7 @@ nav a.active {
     } 
     .info p {
     font-size: 16px;
+    line-height: 1;
     }
     .discr-container {
     font-size: 14px;
@@ -211,4 +229,7 @@ nav a.active {
     max-width: 70vw;
     max-height: 70vw;
     }
-
+    .info a {
+    font-size: 16px;
+    line-height: 1;
+    }
