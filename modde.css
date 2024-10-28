@@ -111,6 +111,11 @@ nav a.active {
     line-height: 1;
 }
 
+.info a {
+    font-size: clamp(12px, 14px, 16px);
+    line-height: 1;
+}
+
 .img-container {
     width: 100%;
     height: auto;
