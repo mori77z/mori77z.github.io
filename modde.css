@@ -106,7 +106,7 @@ nav a.active {
 }
 
 .info p {
-    margin: 5px 0;
+    font-size: 14px;
 }
 
 .img-container {
@@ -157,8 +157,7 @@ nav a.active {
 }
 
 .discr-container {
-    font-family: Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-style: italic;
     padding-left: 10px;
 }
@@ -198,11 +197,18 @@ nav a.active {
     h1 {
         font-size: 48px;
     }
+    .scroll-box {
+    width: 600px;
+    height: auto;
+    } 
+    .info p {
+    font-size: 16px;
+    }
+    .discr-container {
+    font-size: 14px;
+    }
     .zoomed-image {
     max-width: 70vw;
     max-height: 70vw;
     }
-    .scroll-box {
-        width: 600px;
-        height: auto;
-    } 
+
