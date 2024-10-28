@@ -97,31 +97,18 @@ nav a.active {
 
 .info {
     height: 100px;
+    max-width: 400px;
 }
 
 .info h2 {
-    font-size: 24px;
+    font-size: clamp(18px, 20px, 24px);
     font-weight: normal;
     margin: 0;
 }
 
 .info p {
-    font-size: 14px;
+    font-size: clamp(12px, 14px, 16px);
     line-height: 0.8;
-}
-.info a {
-    font-size: 14px;
-    line-height: 0.8;
-    text-decoration: underline;
-    color: #fc4022;
-}
-
-.info a:hover {
-  color: darkblue;
-}
-
-a:visited {
-  color: purple;
 }
 
 .img-container {
@@ -206,12 +193,10 @@ a:visited {
 /* @media (prefers-color-scheme: dark) {
     body {
         background-color: #fc4022;
-    }
-    .info a {
-    color: #39ff14;
 } */
 
 @media (min-width: 768px) {
+    
     h1 {
         font-size: 48px;
     }
@@ -219,18 +204,10 @@ a:visited {
     width: 600px;
     height: auto;
     } 
-    .info p {
-    font-size: 16px;
-    line-height: 1;
-    }
     .discr-container {
     font-size: 14px;
     }
     .zoomed-image {
     max-width: 70vw;
     max-height: 70vw;
-    }
-    .info a {
-    font-size: 16px;
-    line-height: 1;
     }
