@@ -108,7 +108,7 @@ nav a.active {
 
 .info p {
     font-size: clamp(12px, 14px, 16px);
-    line-height: 0.8;
+    line-height: 1;
 }
 
 .img-container {
