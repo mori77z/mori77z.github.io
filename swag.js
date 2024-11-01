@@ -1,3 +1,5 @@
+// Bild-Zoom-Funktionalität
+
 // Wähle die Bilder und erstelle den Zoom-Container
 const images = document.querySelectorAll(".img-container img");
 const zoomedContainer = document.createElement("div");
@@ -35,13 +37,44 @@ zoomedContainer.addEventListener("click", (e) => {
     }
 });
 
-// Scroll-Funktionalität für Pfeile
+// Binärcode und entschlüsselter Text
+const binaryText = "0101010001110101011101000111010001101111011000010111001001100101";
+const decodedText = "binary for Tuttofare";  // Der Text, der bei Klick angezeigt wird
 
-// Pfeile auswählen
+// Anzeigetafel für den Binärcode erstellen
+const board = document.createElement("div");
+board.classList.add("board");
+document.body.appendChild(board);
+
+// Funktion zum Umschalten der Klappenanimation für den Binärcode
+function flipFlaps(text) {
+    // Vorhandene Inhalte entfernen
+    board.innerHTML = '';
+    
+    text.split("").forEach((char) => {
+        const flap = document.createElement("div");
+        flap.classList.add("flap");
+        flap.dataset.char = char;
+        flap.innerText = char; // Text auf dem Flap setzen
+        board.appendChild(flap);
+        
+        // Animation hinzufügen
+        setTimeout(() => {
+            flap.classList.add("flip");
+            setTimeout(() => flap.classList.remove("flip"), 300);
+        }, 100); // Verzögerung für die Animation
+    });
+}
+
+// Event Listener für das Zoom-Bild
+zoomedImage.addEventListener("click", () => {
+    flipFlaps(decodedText); // Hier den Text umschalten, wenn auf das Zoom-Bild geklickt wird
+});
+
+// Arrow scroll functionality for left/right arrows outside the carousel
 const arrowLeft = document.querySelectorAll(".arrow_left");
 const arrowRight = document.querySelectorAll(".arrow_right");
 
-// Event Listener für linken Pfeil
 arrowLeft.forEach(arrow => {
     arrow.addEventListener("click", function () {
         const scrollAmount = 300;
@@ -53,7 +86,6 @@ arrowLeft.forEach(arrow => {
     });
 });
 
-// Event Listener für rechten Pfeil
 arrowRight.forEach(arrow => {
     arrow.addEventListener("click", function () {
         const scrollAmount = 300;
