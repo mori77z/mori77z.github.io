@@ -194,6 +194,7 @@ nav a.active {
     align-items: center;
     justify-content: center;
     height: 15em; 
+    background: black;
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
