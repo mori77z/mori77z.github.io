@@ -188,11 +188,81 @@ nav a.active {
     transition: transform 0.3s ease-in-out;
 }
 
-/* @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #fc4022;
-    }
-} */
+#board {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 3em; 
+    max-width: 40em; 
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em; 
+}
+
+.flap {
+    position: relative;
+    display: inline-block;
+    width: 1em; 
+    height: 1.5em; 
+    overflow: hidden;
+    background: #111; /* Background color */
+    border: 1px solid #333; /* Border color */
+    margin: 0 0.05em; 
+    text-align: center;
+    perspective: 1000px;
+    font-family: Helvetica, DM-Sans, sans-serif;
+    color: #fff; /* Set flap text color to green */
+}
+
+.flap::before,
+.flap::after {
+    content: attr(data-char);
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    left: 0;
+    background: #111; /* Keep the same background color */
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backface-visibility: hidden;
+    border: 1px solid #333;
+    color: inherit; /* Inherit text color from .flap */
+}
+
+.flap::before {
+    top: 0;
+    border-bottom: 1px solid #333;
+    transform-origin: bottom;
+}
+
+.flap::after {
+    top: 50%;
+    border-top: 1px solid #333;
+    transform-origin: top;
+    transform: rotateX(90deg);
+}
+
+.flap.flip::before {
+    transform: rotateX(-90deg);
+}
+
+.flap.flip::after {
+    transform: rotateX(0);
+}
+
+#explanationText {
+    font-family: Helvetica, DM-Sans, sans-serif;
+    font-size: 1.5em; 
+    color: #000000;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5em 0; 
+    width: 100%;
+    max-width: 40em; 
+    box-sizing: border-box;
+    min-height: 5em; 
+    display: none; 
+}
+
 
 @media (min-width: 768px) {
     h1 {
@@ -205,4 +275,21 @@ nav a.active {
     .scroll-box {
         width: 600px;
         height: auto;
-    } 
+    }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #fc4022;
+    }
+    .arrow_left, .arrow_right {
+    color: #00FF00;
+}
+    #explanationText {
+    color: #00ff00;
+
+}
+    .flap { 
+    color: #00ff00;
+        }
+
+}
