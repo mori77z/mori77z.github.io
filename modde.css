@@ -273,14 +273,13 @@ nav a.active {
     display: none; 
 }
 
-
 @media (min-width: 768px) {
     h1 {
         font-size: 48px;
     }
     .zoomed-image {
-    max-width: 70vw;
-    max-height: 70vw;
+        max-width: 70vw;
+        max-height: 70vw;
     }
     .scroll-box {
         width: 600px;
@@ -288,31 +287,32 @@ nav a.active {
     }
     
     #anim-container {
-    height: 25em;
+        height: 25em;
     }
     #board {
-    font-size: 3em; 
+        font-size: 3em; 
     }
     .flap {
-    width: 1em; 
-    height: 1.5em; 
+        width: 1em; 
+        height: 1.5em; 
+    } 
     
     #explanationText {
-    font-size: 1.5em; 
+        font-size: 1.5em; 
     }
 }
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #fc4022;
     }
     .arrow_left, .arrow_right {
-    color: #00FF00;
-}
+        color: #00FF00;
+    }
     #explanationText {
-    color: #00ff00;
-
-}
+        color: #00ff00;
+    }
     .flap { 
-    color: #00ff00;
-}
+        color: #00ff00;
+    }
 }
