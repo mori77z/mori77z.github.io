@@ -60,3 +60,64 @@ arrowRight.forEach(arrow => {
         }
     });
 });
+// JavaScript für die Animationslogik
+const binaryString = "01010101 01101110 01100101 01101100 01101100 01100001 01101101";
+const explanationText = "Binary for Tuttofare (ital. Jack of all Trades)";
+
+const board = document.getElementById("board");
+const explanation = document.getElementById("explanationText");
+
+// Funktion zum Erstellen der Flaps mit Binärzeichen
+function createFlaps(text) {
+    if (!board) return; // Sicherstellen, dass das Board existiert
+    board.innerHTML = ""; // Das Board leeren
+    text.split("").forEach(char => {
+        const flap = document.createElement("span");
+        flap.classList.add("flap");
+        flap.setAttribute("data-char", char);
+        flap.textContent = ""; // Zunächst keinen Text für die Animation
+        board.appendChild(flap);
+    });
+}
+
+// Funktion zum Starten der Flip-Animation
+function startFlipAnimation() {
+    if (!board || !explanation) return; // Sicherstellen, dass die Elemente existieren
+    createFlaps(binaryString);
+
+    [...board.children].forEach((flap, index) => {
+        setTimeout(() => {
+            flap.classList.add("flip"); // Flip-Klasse hinzufügen
+            setTimeout(() => {
+                // Zeige das Zeichen nach der Flip-Animation an
+                flap.textContent = flap.getAttribute("data-char");
+                // Erklärungstext nach allen Flips anzeigen
+                if (index === board.children.length - 1) {
+                    board.style.display = "none"; // Board ausblenden
+                    explanation.style.display = "block"; // Erklärungstext anzeigen
+
+                    // Nach 6 Sekunden zurücksetzen
+                    setTimeout(() => {
+                        explanation.style.display = "none"; // Erklärung ausblenden
+                        board.style.display = "flex"; // Board wieder anzeigen
+                        createFlaps(binaryString); // Flaps erneut erstellen
+                    }, 6000);
+                }
+            }, 100); // Verzögerung für die Anzeige des Textes
+        }, index * 60); // Timing für jedes Flap steuern
+    });
+}
+
+// Restart animation on scrolling down from top
+let isScrolling = false; // Debounce scrolling to prevent repeated calls
+
+window.addEventListener("scroll", () => {
+    if (!isScrolling && window.scrollY === 0) {
+        isScrolling = true;
+        startFlipAnimation();
+        setTimeout(() => { isScrolling = false; }, 500); // Verzögerung erlauben, bevor erneut ausgelöst wird
+    }
+});
+
+// Initial load animation
+startFlipAnimation();
