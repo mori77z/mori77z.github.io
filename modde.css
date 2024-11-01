@@ -188,59 +188,6 @@ nav a.active {
     transition: transform 0.3s ease-in-out;
 }
 
-#board {
-    display: flex;
-    font-size: 2rem;
-    color: #00ff00;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-}
-
-.flap {
-    position: relative;
-    display: inline-block;
-    width: 1em;
-    height: 1.2em;
-    overflow: hidden;
-    background: #222;
-    border: 2px solid #555;
-    margin: 0 0.05em;
-    color: #00ff00;
-    text-align: center;
-}
-
-.flap::before, .flap::after {
-    content: attr(data-char);
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    left: 0;
-    background: #111;
-    overflow: hidden;
-    transition: transform 0.2s;
-}
-
-.flap::before {
-    top: 0;
-    border-bottom: 1px solid #555;
-    transform-origin: bottom;
-}
-
-.flap::after {
-    bottom: 0;
-    border-top: 1px solid #555;
-    transform-origin: top;
-    transform: rotateX(90deg);
-}
-
-.flap.flip::before {
-    transform: rotateX(90deg);
-}
-
-.flap.flip::after {
-    transform: rotateX(0);
-}
-
 /* @media (prefers-color-scheme: dark) {
     body {
         background-color: #fc4022;
