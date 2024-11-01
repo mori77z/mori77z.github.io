@@ -1,4 +1,4 @@
-// Select images and create a zoom container
+// Wähle die Bilder und erstelle den Zoom-Container
 const images = document.querySelectorAll(".img-container img");
 const zoomedContainer = document.createElement("div");
 const zoomedImage = document.createElement("img");
@@ -8,37 +8,40 @@ zoomedImage.classList.add("zoomed-image");
 zoomedContainer.appendChild(zoomedImage);
 document.body.appendChild(zoomedContainer);
 
-// Function to open zoomed image
+// Funktion zum Öffnen des Zoom-Bildes
 function openZoomedImage(src) {
     zoomedImage.src = src;
-    zoomedImage.classList.add("active"); // Hinzufügen der aktiven Klasse für Animation
+    zoomedImage.classList.add("active"); // Aktiv-Klasse für Animation hinzufügen
     zoomedContainer.classList.add("active");
 }
 
-// Function to close zoomed image
+// Funktion zum Schließen des Zoom-Bildes
 function closeZoomedImage() {
-    zoomedImage.classList.remove("active"); // Entfernen der aktiven Klasse
+    zoomedImage.classList.remove("active"); // Aktiv-Klasse entfernen
     zoomedContainer.classList.remove("active");
 }
 
-// Add event listeners to images to open in zoom
+// Event Listener hinzufügen, um Bilder im Zoom anzuzeigen
 images.forEach((img) => {
     img.addEventListener("click", () => {
         openZoomedImage(img.src);
     });
 });
 
-// Close zoomed image when clicking outside the image
+// Zoom-Bild schließen, wenn außerhalb des Bildes geklickt wird
 zoomedContainer.addEventListener("click", (e) => {
     if (e.target === zoomedContainer || e.target === zoomedImage) {
         closeZoomedImage();
     }
 });
 
-// Arrow scroll functionality for left/right arrows outside the carousel
+// Scroll-Funktionalität für Pfeile
+
+// Pfeile auswählen
 const arrowLeft = document.querySelectorAll(".arrow_left");
 const arrowRight = document.querySelectorAll(".arrow_right");
 
+// Event Listener für linken Pfeil
 arrowLeft.forEach(arrow => {
     arrow.addEventListener("click", function () {
         const scrollAmount = 300;
@@ -50,6 +53,7 @@ arrowLeft.forEach(arrow => {
     });
 });
 
+// Event Listener für rechten Pfeil
 arrowRight.forEach(arrow => {
     arrow.addEventListener("click", function () {
         const scrollAmount = 300;
