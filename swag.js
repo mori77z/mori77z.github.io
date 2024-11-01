@@ -62,7 +62,7 @@ arrowRight.forEach(arrow => {
 });
 // JavaScript für die Animationslogik
 const binaryString = "01010101 01101110 01100101 01101100 01101100 01100001 01101101";
-const explanationText = "Binary for Tuttofare (ital. Jack of all Trades)";
+const explanationText = "01010101 01101110 01100101 01101100 01101100 01100001 01101101 = Binary for Tuttofare (ital. Jack of all Trades)";
 
 const board = document.getElementById("board");
 const explanation = document.getElementById("explanationText");
