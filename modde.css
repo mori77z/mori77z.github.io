@@ -193,7 +193,7 @@ nav a.active {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 25em; 
+    height: 15em; 
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
@@ -201,7 +201,7 @@ nav a.active {
 #board {
     display: flex;
     flex-wrap: wrap;
-    font-size: 1em; 
+    font-size: 0.5em; 
     max-width: 40em; 
     justify-content: center;
     align-items: center;
@@ -286,6 +286,10 @@ nav a.active {
         width: 600px;
         height: auto;
     }
+    
+    #anim-container {
+    height: 25em;
+    }
     #board {
     font-size: 3em; 
     }
@@ -293,11 +297,10 @@ nav a.active {
     width: 1em; 
     height: 1.5em; 
     
-#explanationText {
+    #explanationText {
     font-size: 1.5em; 
-
+    }
 }
-
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #fc4022;
