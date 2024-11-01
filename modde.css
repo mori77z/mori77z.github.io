@@ -272,6 +272,7 @@ nav a.active {
     min-height: 5em; 
     display: none; 
     text-decoration: none; 
+    pointer-events: none;
 }
 
 @media (min-width: 768px) {
