@@ -194,23 +194,25 @@ nav a.active {
     align-items: center;
     justify-content: center;
     height: 25em; 
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 #board {
     display: flex;
     flex-wrap: wrap;
-    font-size: 3em; 
+    font-size: 1em; 
     max-width: 40em; 
     justify-content: center;
     align-items: center;
-    margin-bottom: 1em; 
+    margin-bottom: 0.5em; 
 }
 
 .flap {
     position: relative;
     display: inline-block;
-    width: 1em; 
-    height: 1.5em; 
+    width: 0.8em; 
+    height: 1em; 
     overflow: hidden;
     background: #111; /* Background color */
     border: 1px solid #333; /* Border color */
@@ -259,10 +261,10 @@ nav a.active {
 
 #explanationText {
     font-family: Helvetica, DM-Sans, sans-serif;
-    font-size: 1.5em; 
+    font-size: 1em; 
     color: #000000;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1;
     padding: 0.5em 0; 
     width: 100%;
     max-width: 40em; 
@@ -284,6 +286,17 @@ nav a.active {
         width: 600px;
         height: auto;
     }
+    #board {
+    font-size: 3em; 
+    }
+    .flap {
+    width: 1em; 
+    height: 1.5em; 
+    
+#explanationText {
+    font-size: 1.5em; 
+
+}
 
 @media (prefers-color-scheme: dark) {
     body {
@@ -298,6 +311,5 @@ nav a.active {
 }
     .flap { 
     color: #00ff00;
-        }
-
+}
 }
