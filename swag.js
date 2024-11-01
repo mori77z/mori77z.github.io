@@ -1,6 +1,4 @@
-// Bild-Zoom-Funktionalität
-
-// Wähle die Bilder und erstelle den Zoom-Container
+// Select images and create a zoom container
 const images = document.querySelectorAll(".img-container img");
 const zoomedContainer = document.createElement("div");
 const zoomedImage = document.createElement("img");
@@ -10,65 +8,31 @@ zoomedImage.classList.add("zoomed-image");
 zoomedContainer.appendChild(zoomedImage);
 document.body.appendChild(zoomedContainer);
 
-// Funktion zum Öffnen des Zoom-Bildes
+// Function to open zoomed image
 function openZoomedImage(src) {
     zoomedImage.src = src;
-    zoomedImage.classList.add("active"); // Aktiv-Klasse für Animation hinzufügen
+    zoomedImage.classList.add("active"); // Hinzufügen der aktiven Klasse für Animation
     zoomedContainer.classList.add("active");
 }
 
-// Funktion zum Schließen des Zoom-Bildes
+// Function to close zoomed image
 function closeZoomedImage() {
-    zoomedImage.classList.remove("active"); // Aktiv-Klasse entfernen
+    zoomedImage.classList.remove("active"); // Entfernen der aktiven Klasse
     zoomedContainer.classList.remove("active");
 }
 
-// Event Listener hinzufügen, um Bilder im Zoom anzuzeigen
+// Add event listeners to images to open in zoom
 images.forEach((img) => {
     img.addEventListener("click", () => {
         openZoomedImage(img.src);
     });
 });
 
-// Zoom-Bild schließen, wenn außerhalb des Bildes geklickt wird
+// Close zoomed image when clicking outside the image
 zoomedContainer.addEventListener("click", (e) => {
     if (e.target === zoomedContainer || e.target === zoomedImage) {
         closeZoomedImage();
     }
-});
-
-// Binärcode und entschlüsselter Text
-const binaryText = "0101010001110101011101000111010001101111011000010111001001100101";
-const decodedText = "binary for Tuttofare";  // Der Text, der bei Klick angezeigt wird
-
-// Anzeigetafel für den Binärcode erstellen
-const board = document.createElement("div");
-board.classList.add("board");
-document.body.appendChild(board);
-
-// Funktion zum Umschalten der Klappenanimation für den Binärcode
-function flipFlaps(text) {
-    // Vorhandene Inhalte entfernen
-    board.innerHTML = '';
-    
-    text.split("").forEach((char) => {
-        const flap = document.createElement("div");
-        flap.classList.add("flap");
-        flap.dataset.char = char;
-        flap.innerText = char; // Text auf dem Flap setzen
-        board.appendChild(flap);
-        
-        // Animation hinzufügen
-        setTimeout(() => {
-            flap.classList.add("flip");
-            setTimeout(() => flap.classList.remove("flip"), 300);
-        }, 100); // Verzögerung für die Animation
-    });
-}
-
-// Event Listener für das Zoom-Bild
-zoomedImage.addEventListener("click", () => {
-    flipFlaps(decodedText); // Hier den Text umschalten, wenn auf das Zoom-Bild geklickt wird
 });
 
 // Arrow scroll functionality for left/right arrows outside the carousel
