@@ -211,8 +211,8 @@ nav a.active {
 .flap {
     position: relative;
     display: inline-block;
-    width: 0.8em; 
-    height: 1em; 
+    width: 1em; 
+    height: 1.5em; 
     overflow: hidden;
     background: #111; /* Background color */
     border: 1px solid #333; /* Border color */
