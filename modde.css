@@ -22,27 +22,28 @@ body {
 
 .logo {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
 }
 
-.logo h1 {
+.logo a {
     font-size: 30px;
     font-weight: normal;
     line-height: 36px;
     color: black;
     font-family: 'Helvetica', 'DM Sans', sans-serif;
-    margin: 0;
+    margin-top: 10px;
     white-space: nowrap;
     box-sizing: border-box; 
 }
 
-.logo h1 a {
+.logo a {
     text-decoration: none;
     color: black;
 }
 
-.logo h1 a:hover {
+.logo a:hover {
     font-family: Georgia, serif;
     text-decoration: underline;
     font-style: italic;
@@ -288,7 +289,7 @@ nav a.active {
 }
 
 @media (min-width: 768px) {
-    h1 {
+    .logo a {
         font-size: 48px;
     }
     .zoomed-image {
