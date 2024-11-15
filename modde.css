@@ -116,7 +116,7 @@ nav a.active {
 }
 
 .info h2 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: normal;
     font-family: Funnel Display, sans;
     margin-bottom: 6px;
@@ -125,7 +125,6 @@ nav a.active {
 .info p {
     font-family: Instrument Sans, sans;
     line-height: 1.2;
-    font-size: 16px;
     margin: 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -382,9 +381,6 @@ nav a.active {
     .info h2 {
         font-size: 26px;
     }
-    .info p {
-        font-size: 18px;
-    }   
     .zoomed-image {
         max-width: 70vw;
         max-height: 70vw;
