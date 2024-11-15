@@ -13,6 +13,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
+    gap: 10px;
     overflow: visible;
     position: sticky;
     top: 0;
@@ -94,7 +95,6 @@ nav a.active {
     gap: 10px; 
     margin-left: 10px;
     overflow-x: auto; 
-    white-space: nowrap; 
     max-width: 100%;
     height: auto;
 }
@@ -111,6 +111,8 @@ nav a.active {
     height: 120px;
     overflow: hidden;
     width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .info h2 {
@@ -122,7 +124,8 @@ nav a.active {
 
 .info p {
     font-family: Instrument Sans, sans;
-    line-height: 1;
+    line-height: 1.2;
+    font-size: 16px;
     margin: 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -132,7 +135,6 @@ nav a.active {
     color: black;
     font-family: Instrument Serif, serif;
     text-decoration: underline;
-    line-height: 1;
     margin: 0;
 }
 
@@ -246,9 +248,9 @@ nav a.active {
 }
 
 .discr-container {
-    font-family: Instrument Sans, serif;
+    font-family: Funnel Sans, serif;
     font-size: 14px;
-    font-style: italic;
+    font-weight: 300;
     padding-left: 10px;
 }
     
@@ -378,8 +380,11 @@ nav a.active {
         font-size: 48px;
     }
     .info h2 {
-        font-size: 24px;
+        font-size: 26px;
     }
+    .info p {
+        font-size: 18px;
+    }   
     .zoomed-image {
         max-width: 70vw;
         max-height: 70vw;
@@ -388,7 +393,9 @@ nav a.active {
         width: 600px;
         height: auto;
     }
-    
+    .discr-container {
+        font-size: 16px;
+    }
     #anim-container {
         height: 25em;
     }
