@@ -114,6 +114,7 @@ nav a.active {
 
 .info {
     height: 100px;
+    box-sizing: border-box;
 }
 
 .info h2 {
