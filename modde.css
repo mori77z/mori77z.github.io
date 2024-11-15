@@ -123,7 +123,7 @@ nav a.active {
 }
 
 .info p {
-    font-family: Instrument Sans, sans;
+    font-family: Funnel Sans, serif;
     line-height: 1.2;
     margin: 0;
     word-wrap: break-word;
@@ -247,7 +247,6 @@ nav a.active {
 }
 
 .discr-container {
-    font-family: Funnel Sans, serif;
     font-size: 14px;
     font-weight: 300;
     padding-left: 10px;
