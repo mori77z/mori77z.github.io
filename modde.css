@@ -16,7 +16,7 @@ body {
     overflow: visible;
     position: sticky;
     top: 0;
-    background-color: inherit;
+    background-color: white;
     z-index: 10;
 }
 
@@ -46,7 +46,6 @@ body {
 .logo a:hover {
     font-family: Trocchi, serif;
     text-decoration: underline;
-    font-size: 30px;
     font-style: italic;
     padding-right: 4px;
 }
@@ -120,7 +119,7 @@ nav a.active {
     font-size: 24px;
     font-weight: normal;
     font-family: Instrument Sans, sans;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 .info p {
     font-family: Instrument Sans, sans;
