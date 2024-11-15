@@ -114,22 +114,21 @@ nav a.active {
 .info {
     height: 100px;
     overflow: auto;
-}
-
-.info h2, .info p, .info a {
-    margin: 0;
-    line-height: 1; 
 
 }
 .info h2 {
     font-size: 24px;
     font-weight: normal;
     font-family: 'Funnel Display', serif;
+    margin-bottom: 6px;
 }
 .info h2:hover {
     font-family: Trocchi, serif;
 }
 
+.info p, .info a {
+    margin: 0;
+    line-height: 1; 
 .info p {
     font-family: Instrument Sans, sans;
 }
