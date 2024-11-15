@@ -36,17 +36,11 @@ body {
     margin-top: 10px;
     white-space: nowrap;
     box-sizing: border-box; 
-}
-
-.logo a {
     text-decoration: none;
-    color: black;
 }
 
 .logo a:hover {
     font-family: Trocchi, serif;
-    text-decoration: underline;
-    font-size: 30px;
     font-style: italic;
     padding-right: 4px;
 }
@@ -72,15 +66,15 @@ nav a {
 
 nav a:hover {
     font-family: Trocchi, serif;
-    font-size: 20px;
     font-style: italic;
+    padding-right: 4px;
 }
 
 nav a.active {
     font-family: Trocchi, serif;
     font-style: italic;
-    font-size: 20px;
     text-decoration: underline; 
+    padding-right: 4px;
 }
 
 .main-container {
@@ -114,7 +108,7 @@ nav a.active {
 
 .info {
     height: 100px;
-    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .info h2 {
@@ -163,10 +157,28 @@ nav a.active {
     z-index: 10;
 }
 
-@media (max-width: 700px) {
-    .img-container .icon {
-        display: block;
-    }
+.iframe-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; 
+  position: relative;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none; 
+}
+
+.img-container .icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    opacity: 0.7;
+    font-size: 24px;
+    z-index: 10;
 }
 
 .iframe-container {
@@ -181,6 +193,29 @@ nav a.active {
   width: 100%;
   height: 100%;
   border: none; 
+}
+
+.iframe-container .icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: black;
+    opacity: 0.7;
+    font-size: 48px;
+    z-index: 10;
+    text-decoration: none; 
+}
+.iframe-container .icon a{
+    color: black;
+    opacity: 0.7;
+}
+.iframe-container .icon:hover{
+    color: black;
+    opacity: 1;
+}
+.iframe-container .icon:visited{
+    color: black;
+    opacity: 0.7;
 }
 
 .arrows-wrapper {
@@ -232,6 +267,15 @@ nav a.active {
     object-fit: contain;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+}
+
+@media (min-width: 701px) {
+    .img-container .icon {
+        display: none;
+    }
+    .iframe-container .icon {
+        display: block; 
+    }
 }
 
 #anim-container {
