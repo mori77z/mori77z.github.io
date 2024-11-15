@@ -16,7 +16,7 @@ body {
     overflow: visible;
     position: sticky;
     top: 0;
-    background-color: white;
+    background-color: inherit;
     z-index: 10;
 }
 
@@ -46,6 +46,7 @@ body {
 .logo a:hover {
     font-family: Trocchi, serif;
     text-decoration: underline;
+    font-size: 30px;
     font-style: italic;
     padding-right: 4px;
 }
@@ -113,22 +114,14 @@ nav a.active {
 
 .info {
     height: 100px;
-    overflow: hidden;
-
 }
+
 .info h2 {
     font-size: 24px;
     font-weight: normal;
-    font-family: 'Funnel Display', serif;
-    margin-bottom: 6px;
-}
-.info h2:hover {
-    font-family: Trocchi, serif;
-}
-
-.info p, .info a {
+    font-family: Funnel Display, sans;
     margin: 0;
-    line-height: 1; 
+}
 .info p {
     font-family: Instrument Sans, sans;
 }
@@ -136,10 +129,9 @@ nav a.active {
     color: black;
     font-family: Instrument Serif, serif;
     text-decoration: underline;
-    margin: 0;
 }
-a:visited {
-    color: black;
+.info a:visited {
+        color: black;
 }
 .img-container {
     width: 100%;
