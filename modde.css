@@ -108,12 +108,13 @@ nav a.active {
 }
 
 .info {
-    height: 150px;
+    height: 100px;
     overflow: hidden;
+    width: 100%;
 }
 
 .info h2 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: normal;
     font-family: Funnel Display, sans;
     margin-bottom: 6px;
@@ -124,6 +125,7 @@ nav a.active {
     line-height: 1;
     margin: 0;
     word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .info a:link {
@@ -374,6 +376,9 @@ nav a.active {
 @media (min-width: 768px) {
     .logo a {
         font-size: 48px;
+    }
+    .info h2 {
+        font-size: 24px;
     }
     .zoomed-image {
         max-width: 70vw;
