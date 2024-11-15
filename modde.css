@@ -120,15 +120,18 @@ nav a.active {
     font-size: 24px;
     font-weight: normal;
     font-family: Instrument Sans, sans;
-    margin: 0;
+    margin-bottom: 10px;
 }
 .info p {
     font-family: Instrument Sans, sans;
+    margin: 0;
+
 }
 .info a:link {
     color: black;
     font-family: Instrument Serif, serif;
     text-decoration: underline;
+    margin: 0;
 }
 a:visited {
     color: black;
