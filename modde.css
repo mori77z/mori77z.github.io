@@ -112,19 +112,20 @@ nav a.active {
 }
 
 .info {
-    height: 100px;
+    min-height: 100px;
 }
+.info h2, .info p, .info a {
+    margin: 0;
+    line-height: 1; 
 
+}
 .info h2 {
     font-size: 24px;
     font-weight: normal;
     font-family: Instrument Sans, sans;
-    margin-bottom: 4px;
 }
 .info p {
     font-family: Instrument Sans, sans;
-    margin: 0;
-
 }
 .info a:link {
     color: black;
