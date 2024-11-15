@@ -44,9 +44,9 @@ body {
 }
 
 .logo a:hover {
-    font-family: Pinyon Script, cursive;
+    font-family: Trocchi, serif;
     text-decoration: underline;
-    font-size: 34px;
+    font-size: 30px;
     font-style: italic;
     padding-right: 4px;
 }
@@ -71,15 +71,15 @@ nav a {
 }
 
 nav a:hover {
-    font-family: Pinyon Script, cursive;
-    font-size: 22px;
+    font-family: Trocchi, serif;
+    font-size: 20px;
     font-style: italic;
 }
 
 nav a.active {
-    font-family: Pinyon Script, cursive;
+    font-family: Trocchi, serif;
     font-style: italic;
-    font-size: 22px;
+    font-size: 20px;
     text-decoration: underline; 
 }
 
@@ -119,11 +119,16 @@ nav a.active {
 .info h2 {
     font-size: 24px;
     font-weight: normal;
+    font-family: Instrument Sans, sans;
     margin: 0;
 }
-
 .info p {
-    margin: 5px 0;
+    font-family: Instrument Sans, sans;
+}
+.info a:link {
+    color: black;
+    font-family: Instrument Serif, serif;
+    text-decoration: underline;
 }
 
 .img-container {
