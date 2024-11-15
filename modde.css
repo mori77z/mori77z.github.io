@@ -113,7 +113,7 @@ nav a.active {
 
 .info {
     height: 100px;
-    overflow: auto;
+    overflow: hidden;
 
 }
 .info h2 {
