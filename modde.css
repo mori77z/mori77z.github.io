@@ -130,7 +130,9 @@ nav a.active {
     font-family: Instrument Serif, serif;
     text-decoration: underline;
 }
-
+a:visited {
+    color: black;
+}
 .img-container {
     width: 100%;
     height: auto;
