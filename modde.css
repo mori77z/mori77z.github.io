@@ -3,7 +3,7 @@ body {
     background: white;
     display: flex;
     flex-direction: column;
-    font-family: 'Instrument Sans', serif;
+    font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -33,7 +33,6 @@ body {
     font-weight: normal;
     line-height: 36px;
     color: black;
-    font-family: 'Funnel Display', serif;
     margin-top: 10px;
     white-space: nowrap;
     box-sizing: border-box; 
@@ -41,7 +40,7 @@ body {
 }
 
 .logo a:hover {
-    font-family: Trocchi, serif;
+    font-family: Times New Roman, serif;
     font-style: italic;
     padding-right: 4px;
 }
@@ -58,7 +57,6 @@ nav {
 
 nav a {
     font-size: 20px;
-    font-family: 'Funnel Display', serif;
     line-height: 22px;
     text-decoration: underline;
     color: black;
@@ -66,13 +64,13 @@ nav a {
 }
 
 nav a:hover {
-    font-family: Trocchi, serif;
+    font-family: Times New Roman, serif;
     font-style: italic;
     padding-right: 4px;
 }
 
 nav a.active {
-    font-family: Trocchi, serif;
+    font-family: Times New Roman, serif;
     font-style: italic;
     text-decoration: underline; 
     padding-right: 4px;
@@ -118,12 +116,10 @@ nav a.active {
 .info h2 {
     font-size: 24px;
     font-weight: normal;
-    font-family: Funnel Display, sans;
     margin-bottom: 6px;
 }
 
 .info p {
-    font-family: Instrument Sans, serif;
     line-height: 1.2;
     margin: 0;
     word-wrap: break-word;
@@ -132,7 +128,7 @@ nav a.active {
 
 .info a:link {
     color: black;
-    font-family: Instrument Serif, serif;
+    font-family: Times New Roman, serif;
     text-decoration: underline;
     margin: 0;
 }
@@ -317,7 +313,6 @@ nav a.active {
     margin: 0 0.05em; 
     text-align: center;
     perspective: 1000px;
-    font-family: Instrument Sans, serif;
     color: #fff; 
 }
 
