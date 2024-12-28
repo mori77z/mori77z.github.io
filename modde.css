@@ -25,29 +25,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    padding-top: 10px;
     width: 100%;
 }
 
 .logo-link {
-    font-family: Instrument Serif, Times, serif;
-    font-size: 48px;
-    font-weight: normal;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -2px;
     line-height: 1;
     color: black;
-    margin-top: 10px;
     white-space: nowrap;
     box-sizing: border-box; 
     text-decoration: none;
 }
 
 .logo-link:hover {
-    font-family: Times New Roman, serif;
+    font-family: Times, serif;
+    font-weight: 400;
+    letter-spacing: 0px;
     font-style: italic;
     padding-right: 4px;
 }
+
 .about-link {
-    font-size: 36px;
-    line-height: 1.2;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -2px;
     bottom: 0px;
     color: black;
     text-decoration: none;
@@ -56,6 +60,7 @@ body {
 .about-link:hover {
     font-family: Times New Roman, serif;
     font-style: italic;
+    letter-spacing: 0px;
     padding-right: 4px;
 }
 
@@ -390,7 +395,7 @@ nav a.active {
         font-size: 64px;
     }
     .about-link {
-        font-size: 48px;
+        font-size: 64px;
     }
     .content {
         margin-left: 20px;
@@ -399,6 +404,7 @@ nav a.active {
         padding: 10px 20px 0;
     }
     .discr-container {
+        font-size: 16px;
         padding-left: 20px;
     }
     .info h2 {
@@ -411,9 +417,6 @@ nav a.active {
     .scroll-box {
         width: 600px;
         height: auto;
-    }
-    .discr-container {
-        font-size: 16px;
     }
     #anim-container {
         height: 25em;
