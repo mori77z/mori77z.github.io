@@ -398,6 +398,9 @@ nav a.active {
     .arrows-wrapper {
         padding: 10px 20px 0;
     }
+    .discr-container {
+        padding-left: 20px;
+    }
     .info h2 {
         font-size: 26px;
     }
