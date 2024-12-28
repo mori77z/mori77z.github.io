@@ -392,6 +392,12 @@ nav a.active {
     .about-link {
         font-size: 48px;
     }
+    .content {
+        margin-left: 20px;
+    }
+    .arrows-wrapper {
+        padding: 10px 20px 0;
+    }
     .info h2 {
         font-size: 26px;
     }
