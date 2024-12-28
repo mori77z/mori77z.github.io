@@ -24,14 +24,15 @@ body {
 .logo {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     width: 100%;
 }
 
-.logo a {
-    font-size: 30px;
+.logo-link {
+    font-family: Instrument Serif, Times, serif;
+    font-size: 48px;
     font-weight: normal;
-    line-height: 36px;
+    line-height: 1;
     color: black;
     margin-top: 10px;
     white-space: nowrap;
@@ -39,7 +40,20 @@ body {
     text-decoration: none;
 }
 
-.logo a:hover {
+.logo-link:hover {
+    font-family: Times New Roman, serif;
+    font-style: italic;
+    padding-right: 4px;
+}
+.about-link {
+    font-size: 36px;
+    line-height: 1.2;
+    bottom: 0px;
+    color: black;
+    text-decoration: none;
+}
+
+.about-link:hover {
     font-family: Times New Roman, serif;
     font-style: italic;
     padding-right: 4px;
@@ -369,7 +383,13 @@ nav a.active {
 }
 
 @media (min-width: 768px) {
-    .logo a {
+    .header-container {
+        padding: 20px;
+    }
+    .logo-link {
+        font-size: 64px;
+    }
+    .about-link {
         font-size: 48px;
     }
     .info h2 {
