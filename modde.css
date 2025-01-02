@@ -58,7 +58,7 @@ body {
 }
 
 .about-link:hover {
-    font-family: Times New Roman, serif;
+    font-family: Georgia, serif;
     font-style: italic;
     letter-spacing: 0px;
     padding-right: 4px;
@@ -83,13 +83,13 @@ nav a {
 }
 
 nav a:hover {
-    font-family: Times New Roman, serif;
+    font-family: Georgia, serif;
     font-style: italic;
     padding-right: 4px;
 }
 
 nav a.active {
-    font-family: Times New Roman, serif;
+    font-family: Georgia, serif;
     font-style: italic;
     text-decoration: underline; 
     padding-right: 4px;
@@ -147,7 +147,7 @@ nav a.active {
 
 .info a:link {
     color: black;
-    font-family: Times New Roman, serif;
+    font-family: Times, serif;
     text-decoration: underline;
     margin: 0;
 }
