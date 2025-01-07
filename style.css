@@ -136,6 +136,7 @@ nav a.active {
     font-size: 24px;
     font-weight: normal;
     margin-bottom: 6px;
+    margin-top: 0;
 }
 
 .info p {
