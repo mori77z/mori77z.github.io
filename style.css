@@ -299,6 +299,8 @@ nav a.active {
 h4 {
     font-size: 24px;
     font-weight: normal;
+    padding: 10px;
+    margin: 0px;
     }
 
 @media (min-width: 701px) {
@@ -343,6 +345,7 @@ h4 {
     }
     h4 {
     font-size: 48px;
+    padding: 20px;
     }
 }
 
