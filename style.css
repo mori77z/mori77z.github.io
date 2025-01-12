@@ -296,6 +296,11 @@ nav a.active {
     transition: transform 0.3s ease-in-out;
 }
 
+h4 {
+    font-size: 24px;
+    font-weight: normal;
+    }
+
 @media (min-width: 701px) {
     .img-container .icon {
         display: none;
@@ -335,6 +340,9 @@ nav a.active {
     .scroll-box {
         width: 600px;
         height: auto;
+    }
+    h4 {
+    font-size: 48px;
     }
 }
 
