@@ -299,7 +299,7 @@ nav a.active {
 h3 {
     font-size: 24px;
     font-weight: bold;
-    padding: 10px;
+    padding: 0;
     margin: 0px;
     }
     
@@ -356,7 +356,7 @@ h4 {
     }
     h3 {
     font-size: 48px;
-    padding: 20px;
+    padding: 0;
     }
 }
 
