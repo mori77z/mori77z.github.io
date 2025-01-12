@@ -310,6 +310,14 @@ h4 {
     font-size: 36px;
     font-weight: normal;
 }
+.language-buttons {
+    text-align: left;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto; 
+    display: inline-block;
+}
 
 @media (min-width: 701px) {
     .img-container .icon {
