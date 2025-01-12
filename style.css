@@ -314,7 +314,7 @@ h4 {
     text-align: left;
     font-size: 18px;
     margin-left: 10px;
-    width: 40px; 
+    width: 100px; 
 }
 
 @media (min-width: 701px) {
@@ -370,7 +370,7 @@ h4 {
 .language-buttons {
     font-size: 28px;
     margin-left: 20px;
-    width: 60px;
+    width: 140px;
 }
 }
 
