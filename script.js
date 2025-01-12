@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 👁️‍🗨️Ich bin Moritz, ich gestalte Websites 💻, die herausstechen — benutzerfreundlich, einzigartig und voll responsiv📲. 
                 Ich habe mit Kund*innen aus der Modebranche 👜, der Musikindustrie🎙️ und freischaffenden Künstler*innen aus verschiedenen Bereichen 📸 gearbeitet. 
                 Ich erstelle authentische Seiten📑, die dich wirklich repräsentieren. Bereit, deine Online-Präsenz🤳 neu zu denken? 
-                Lass uns was <span class="bold-h5">großes</span> machen.
+                Lass uns was <span class="bold-h5">Großes</span> machen.
             `;
             translationButton.innerText = "English";
         } else {
