@@ -369,6 +369,11 @@ h4 {
 .bold-h5 {
     font-size: 64px;
 }
+.language-buttons {
+    font-size: 28px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 }
 
 /*@media (prefers-color-scheme: dark) {
