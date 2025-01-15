@@ -61,31 +61,3 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-
-    // Translation functionality
-    const translationButton = document.querySelector("#translation-button"); // Button ID for translation
-    const textElement = document.querySelector("#text-content"); // Text element to translate
-
-    function toggleLanguage() {
-        if (translationButton.innerText.trim() === "Deutsch") {
-            textElement.innerHTML = `
-                👁️‍🗨️Ich bin Moritz, ich gestalte Websites 💻, die herausstechen — benutzerfreundlich, einzigartig und voll responsiv📲. 
-                Ich habe mit Kund*innen aus der Modebranche 👜, der Musikindustrie🎙️ und freischaffenden Künstler*innen aus verschiedenen Bereichen 📸 gearbeitet. 
-                Ich erstelle authentische Seiten📑, die dich wirklich repräsentieren. Bereit, deine Online-Präsenz🤳 neu zu denken? 
-                Lass uns was <span class="bold-h5">Großes</span> machen.
-            `;
-            translationButton.innerText = "English";
-        } else {
-            textElement.innerHTML = `
-                👁️‍🗨️I’m Moritz, I design websites💻 that stand out — user-friendly, unique, and fully responsive📲. 
-                I worked with clients from the fashion 👜, music🎙️ industry, and artists from various fields 📸. 
-                I build authentic pages📑 that truly represent you. Ready to rethink your online presence🤳? 
-                Let’s make it <span class="bold-h3">bold</span>.
-            `;
-            translationButton.innerText = "Deutsch";
-        }
-    }
-
-    // Add event listener to the translation button
-    translationButton.addEventListener("click", toggleLanguage);
-});
