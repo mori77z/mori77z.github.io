@@ -310,12 +310,6 @@ h4 {
     font-size: 36px;
     font-weight: normal;
 }
-.language-buttons {
-    text-align: left;
-    font-size: 18px;
-    margin-left: 10px;
-    width: 100px; 
-}
 
 @media (min-width: 701px) {
     .img-container .icon {
@@ -366,11 +360,6 @@ h4 {
 }
 .bold-h5 {
     font-size: 64px;
-}
-.language-buttons {
-    font-size: 28px;
-    margin-left: 20px;
-    width: 140px;
 }
 }
 
