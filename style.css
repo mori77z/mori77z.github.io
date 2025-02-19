@@ -29,6 +29,11 @@ body {
     width: 100%;
 }
 
+.moritz {
+    font-size: 30px;
+    display: inline-block;
+}
+
 .logo a {
     font-size: 30px;
     font-weight: normal;
