@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isFlipping = false;
 
     function randomChar() {
-        const symbols = "✪✹❦☭★❥✱♫♠♞♥";
+        const symbols = "✪✹❦♬♪♩★❥✱♫♠♞♥";
         return symbols[Math.floor(Math.random() * symbols.length)];
     }
 
