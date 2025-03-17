@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ticking = true;
         }
     });
+});
 
     const images = document.querySelectorAll(".img-container img");
     if (images.length === 0) {
