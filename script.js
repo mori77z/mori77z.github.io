@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isFlipping = false;
 
     function randomChar() {
-        const symbols = "✪✹❦♬♪♩★❥✱♫♠♞♥";
+        const symbols = "✪✹❦☭★❥✱♫♠♞♥";
         return symbols[Math.floor(Math.random() * symbols.length)];
     }
 
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ticking = true;
         }
     });
-});
 
     const images = document.querySelectorAll(".img-container img");
     if (images.length === 0) {
