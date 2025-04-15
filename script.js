@@ -105,3 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+  window.addEventListener('load', function () {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    const isAndroid = /android/i.test(userAgent);
+    const isMobile = /mobile/i.test(userAgent);
+
+    if (isAndroid && isMobile) {
+      document.getElementById('android-overlay').style.display = 'flex';
+    }
+  });
