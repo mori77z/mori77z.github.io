@@ -40,67 +40,96 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Audio Handling ===
-    const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
-    audio.loop = true;
-    audio.volume = 0.5;
+// === Audio Handling ===
+const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
+audio.loop = true;
+audio.volume = 0.5;
 
-    let soundEnabled = false;
-    let interactionReady = false;
+let soundEnabled = false;
+let interactionReady = false;
+let lastTime = 0;
 
-    const lang = navigator.language.startsWith("de") ? "de" : "en";
-    const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
+const lang = navigator.language.startsWith("de") ? "de" : "en";
+const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
 
-    const hint = document.createElement("div");
-    hint.style.position = "fixed";
-    hint.style.top = "50%";
-    hint.style.left = "50%";
-    hint.style.transform = "translate(-50%, -50%)";
-    hint.style.background = "rgba(0, 0, 0, 0.8)";
-    hint.style.color = "#fff";
-    hint.style.padding = "1em 2em";
-    hint.style.fontFamily = "sans-serif";
-    hint.style.fontSize = "1.2em";
-    hint.style.zIndex = "9999";
-    hint.style.borderRadius = "8px";
-    hint.style.textAlign = "center";
-    hint.style.cursor = "pointer";
-    hint.textContent = isMobile
-        ? (lang === "de" ? "Tippe auf den Bildschirm für Sound" : "Tap the screen for sound")
-        : (lang === "de" ? "Drücke die Leertaste für Sound" : "Press spacebar for sound");
+const hint = document.createElement("div");
+hint.style.position = "fixed";
+hint.style.top = "50%";
+hint.style.left = "50%";
+hint.style.transform = "translate(-50%, -50%)";
+hint.style.background = "rgba(0, 0, 0, 0.8)";
+hint.style.color = "#fff";
+hint.style.padding = "1em 2em";
+hint.style.fontFamily = "sans-serif";
+hint.style.fontSize = "1.2em";
+hint.style.zIndex = "9999";
+hint.style.borderRadius = "8px";
+hint.style.textAlign = "center";
+hint.style.cursor = "pointer";
+hint.textContent = isMobile
+    ? (lang === "de" ? "Tippe auf den Bildschirm für Sound" : "Tap the screen for sound")
+    : (lang === "de" ? "Drücke die Leertaste für Sound" : "Press spacebar for sound");
 
-    document.body.appendChild(hint);
+document.body.appendChild(hint);
 
-    function toggleSound() {
-        if (!soundEnabled) {
-            audio.play().catch(e => console.error("Autoplay prevented:", e));
-        } else {
-            audio.pause();
-            audio.currentTime = 0;
-        }
-        soundEnabled = !soundEnabled;
+// === UI Indikator unten links ===
+const indicator = document.createElement("div");
+indicator.style.position = "fixed";
+indicator.style.bottom = "20px";
+indicator.style.left = "20px";
+indicator.style.color = "#fff";
+indicator.style.fontFamily = "Georgia, serif";
+indicator.style.fontSize = "0.9em";
+indicator.style.zIndex = "9999";
+indicator.style.pointerEvents = "none";
+indicator.innerHTML = `
+    <div>felt like we were the last two people on earth</div>
+    <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
+        <div id="progressBar" style="width: 0%; height: 100%; background: #fff;"></div>
+    </div>
+    <div style="opacity: 0.6;">${isMobile ? 'Tap again to mute' : 'Press spacebar again to mute'}</div>
+`;
+document.body.appendChild(indicator);
+
+// === Fortschrittsanzeige aktualisieren ===
+setInterval(() => {
+    if (!audio.duration || isNaN(audio.duration)) return;
+    const percent = (audio.currentTime / audio.duration) * 100;
+    document.getElementById("progressBar").style.width = percent + "%";
+}, 500);
+
+// === Toggle Sound mit Memory ===
+function toggleSound() {
+    if (!soundEnabled) {
+        audio.currentTime = lastTime;
+        audio.play().catch(e => console.error("Autoplay prevented:", e));
+    } else {
+        lastTime = audio.currentTime;
+        audio.pause();
     }
+    soundEnabled = !soundEnabled;
+}
 
-    if (isMobile) {
-        document.addEventListener("click", () => {
+if (isMobile) {
+    document.addEventListener("click", () => {
+        if (!interactionReady) {
+            hint.remove();
+            interactionReady = true;
+        }
+        toggleSound();
+    });
+} else {
+    document.addEventListener("keydown", function (e) {
+        if (e.code === "Space") {
+            e.preventDefault();
             if (!interactionReady) {
                 hint.remove();
                 interactionReady = true;
             }
             toggleSound();
-        });
-    } else {
-        document.addEventListener("keydown", function (e) {
-            if (e.code === "Space") {
-                e.preventDefault();
-                if (!interactionReady) {
-                    hint.remove();
-                    interactionReady = true;
-                }
-                toggleSound();
-            }
-        });
-    }
+        }
+    });
+}
 
     // === Zoom Image ===
     const images = document.querySelectorAll(".img-container img");
