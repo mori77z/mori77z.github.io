@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isFlipping = false;
 
     function randomChar() {
-        const symbols = "✪✹❦♬♪♩★❥✱♫♠♞♥";
+        const symbols = "✹❦♬♪♩★❥✱♫♞";
         return symbols[Math.floor(Math.random() * symbols.length)];
     }
 
@@ -42,6 +42,74 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             ticking = true;
         }
+    });
+    
+    document.addEventListener("DOMContentLoaded", function () {
+    const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
+    audio.loop = true;
+    audio.volume = 0.5;
+
+    let soundEnabled = false;
+    let interactionReady = false;
+
+    // Sprache erkennen
+    const lang = navigator.language.startsWith("de") ? "de" : "en";
+
+    // Hinweistext
+    const hint = document.createElement("div");
+    hint.style.position = "fixed";
+    hint.style.top = "50%";
+    hint.style.left = "50%";
+    hint.style.transform = "translate(-50%, -50%)";
+    hint.style.background = "rgba(0, 0, 0, 0.8)";
+    hint.style.color = "#fff";
+    hint.style.padding = "1em 2em";
+    hint.style.fontFamily = "sans-serif";
+    hint.style.fontSize = "1.2em";
+    hint.style.zIndex = "9999";
+    hint.style.borderRadius = "8px";
+    hint.style.textAlign = "center";
+    hint.style.cursor = "pointer";
+
+    const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
+
+    hint.textContent = isMobile
+        ? (lang === "de" ? "Tippe auf den Bildschirm für Sound" : "Tap the screen for sound")
+        : (lang === "de" ? "Drücke die Leertaste für Sound" : "Press spacebar for sound");
+
+    document.body.appendChild(hint);
+
+    function toggleSound() {
+        if (!soundEnabled) {
+            audio.play().catch(e => console.error("Autoplay prevented:", e));
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+        soundEnabled = !soundEnabled;
+    }
+
+    // Desktop: per Leertaste aktivieren
+    document.addEventListener("keydown", function (e) {
+        if (isMobile) return;
+        if (e.code === "Space") {
+            e.preventDefault();
+            if (!interactionReady) {
+                interactionReady = true;
+                hint.remove();
+            }
+            toggleSound();
+        }
+    });
+
+    // Mobile: per Klick aktivieren
+    document.addEventListener("click", function () {
+        if (!isMobile) return;
+        if (!interactionReady) {
+            interactionReady = true;
+            hint.remove();
+        }
+        toggleSound();
     });
 
 
