@@ -7,20 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isFlipping = false;
 
-    // Die Schriftart auf Helvetica (mit Fallback zu Arial) setzen
-    moritzElement.style.fontFamily = "Helvetica, Arial, sans-serif";
+    function randomChar() {
+        const symbols = "✪✹❦♬♪♩★❥✱♫♠♞♥";
+        return symbols[Math.floor(Math.random() * symbols.length)];
+    }
 
     function glitchText(element, originalText, duration = 300) {
         if (isFlipping) return;
         isFlipping = true;
 
-        // Setze den Text auf "leeren" Text (keine Emojis)
-        let scrambledText = Array.from({ length: 7 }, () => " ").join(""); // Leere Zeichen als Platzhalter
+        // Generate a string with exactly 10 random Unicode symbols
+        let scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
 
-        element.textContent = scrambledText; // Glitch-Effekt mit leeren Zeichen
+        element.textContent = scrambledText; // Apply the 10-symbol glitch effect
 
         setTimeout(() => {
-            element.textContent = originalText; // Setze den Originaltext zurück
+            element.textContent = originalText; // Restore original text after duration
             isFlipping = false;
         }, duration);
     }
