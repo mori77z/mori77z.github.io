@@ -7,22 +7,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isFlipping = false;
 
-    function randomChar() {
-        const symbols = "✪✹❦♬♪♩★❥✱♫♠♞♥";
-        return symbols[Math.floor(Math.random() * symbols.length)];
-    }
+    // Die Schriftart auf Helvetica (mit Fallback zu Arial) setzen
+    moritzElement.style.fontFamily = "Helvetica, Arial, sans-serif";
 
     function glitchText(element, originalText, duration = 300) {
         if (isFlipping) return;
         isFlipping = true;
 
-        // Generate a string with exactly 10 random Unicode symbols
-        let scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
+        // Setze den Text auf "leeren" Text (keine Emojis)
+        let scrambledText = Array.from({ length: 7 }, () => " ").join(""); // Leere Zeichen als Platzhalter
 
-        element.textContent = scrambledText; // Apply the 10-symbol glitch effect
+        element.textContent = scrambledText; // Glitch-Effekt mit leeren Zeichen
 
         setTimeout(() => {
-            element.textContent = originalText; // Restore original text after duration
+            element.textContent = originalText; // Setze den Originaltext zurück
             isFlipping = false;
         }, duration);
     }
@@ -43,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ticking = true;
         }
     });
+
 
     const images = document.querySelectorAll(".img-container img");
     if (images.length === 0) {
