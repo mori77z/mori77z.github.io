@@ -3,10 +3,20 @@ body {
     background: white;
     display: flex;
     flex-direction: column;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Moritz Sans', sans-serif;
     margin: 0;
     padding-bottom: 40px;
-}
+  }
+
+  @font-face {
+    font-family: 'Moritz Sans';
+    src: url('https://moritzgauss.com/assets/moritzsans-condensed-webfont.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Moritz Sans Neue Bold';
+    src: url('https://moritzgauss.com/assets/moritzsans-neue-condensed-bold.woff') format('woff');
+  }
 
 .header-container {
     display: flex;
@@ -37,11 +47,12 @@ body {
 }
 
 .logo a {
+    font-family: 'Moritz Sans Neue Bold', sans-serif;
     font-size: 30px;
     font-weight: normal;
     line-height: 1;
     color: black;
-    letter-spacing: -2px;
+    letter-spacing: -1.2px;
     white-space: nowrap;
     box-sizing: border-box; 
     text-decoration: none;
@@ -225,20 +236,20 @@ background-color: #fff;
 }
 
 #android-overlay {
-    display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.85);
-    color: white;
+    background: rgba(0, 0, 0, 0.6);
     z-index: 9999;
+    display: none;
+    font-size: 1.5em;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem;
-    font-family: sans-serif;
+    text-shadow: -4px -4px 6px white, 4px 4px 6px white, -4px 4px 6px white, 4px -4px 6px white;
   }
+  
 
 @media (min-width: 768px) {
     .header-container {

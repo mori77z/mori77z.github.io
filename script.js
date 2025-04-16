@@ -106,13 +106,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-  window.addEventListener('load', function () {
+window.addEventListener('load', function () {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
     const isAndroid = /android/i.test(userAgent);
     const isMobile = /mobile/i.test(userAgent);
-
+  
+    const overlay = document.getElementById('android-overlay');
+  
     if (isAndroid && isMobile) {
-      document.getElementById('android-overlay').style.display = 'flex';
+      overlay.style.display = 'flex';
+  
+      document.addEventListener('click', function () {
+        overlay.style.display = 'none';
+      }, { once: true });
     }
   });
+  
