@@ -54,7 +54,6 @@ const lang = navigator.language.startsWith("de") ? "de" : "en";
 const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
 const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
 
-// === Styles ===
 const textColor = isLightMode ? "#000" : "#fff";
 const barColor = isLightMode ? "#000" : "#fff";
 const shadowColor = isLightMode ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.4)";
@@ -98,54 +97,66 @@ indicator.style.bottom = "20px";
 indicator.style.left = "20px";
 indicator.style.color = textColor;
 indicator.style.fontFamily = "Georgia, serif";
-indicator.style.fontSize = isMobile ? "12px" : "14px";
+indicator.style.fontSize = isMobile ? "14px" : "16px";
 indicator.style.zIndex = "9999";
 indicator.style.pointerEvents = "auto";
 indicator.style.transition = "opacity 0.6s ease";
-indicator.style.opacity = "0"; // start hidden
+indicator.style.opacity = "0";
 indicator.style.display = "none";
 
-indicator.innerHTML = `
+const indicatorHTML = `
     <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
     <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
         <div id="progressBar" style="width: 0%; height: 100%; background: ${barColor};"></div>
     </div>
-    <div style="opacity: 0.6;">${lang === "de" ? 'Klicke nochmal zum Pausieren' : 'Click again to pause'}</div>
-    <div id="closeAudio" style="position:absolute; top: 5px; right: 10px; cursor: pointer; font-size: 20px;">×</div>
+    <div id="playerStatusText" style="opacity: 0.6;">${lang === "de" ? 'Nochmal klicken zum Pausieren' : 'Click again to pause'}</div>
+    <div id="closeAudio" style="
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        cursor: pointer;
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 0 0 10px ${shadowColor};
+    ">×</div>
 `;
+
+indicator.innerHTML = indicatorHTML;
 document.body.appendChild(indicator);
 
-document.getElementById("closeAudio").addEventListener("click", () => {
-    audio.pause();
-    audioDisabled = true;
-    soundEnabled = false;
-    lastTime = 0;
-    indicator.style.opacity = "0";
-    setTimeout(() => { indicator.style.display = "none"; }, 600);
-    showNote();
-});
-
-// === Note als Ersatz für Player ===
+// === Note als Button zum Wiederherstellen ===
 const note = document.createElement("div");
 note.textContent = "♪";
 note.style.position = "fixed";
 note.style.bottom = "20px";
 note.style.left = "20px";
 note.style.color = textColor;
-note.style.fontSize = isMobile ? "14px" : "20px";
+note.style.fontSize = isMobile ? "20px" : "28px";
 note.style.fontFamily = "Georgia, serif";
 note.style.cursor = "pointer";
 note.style.zIndex = "9999";
 note.style.display = "none";
-note.style.textShadow = `0 0 16px ${shadowColor}`;
+note.style.textShadow = `0 0 20px ${shadowColor}`;
 document.body.appendChild(note);
 
+// === Note Klick: Player wieder anzeigen + Sound starten ===
 note.addEventListener("click", () => {
-    if (!soundEnabled) {
-        audio.currentTime = lastTime;
-        audio.play();
-        soundEnabled = true;
-    }
+    audio.currentTime = lastTime;
+    audio.play();
+    soundEnabled = true;
+    updateStatusText();
+    showPlayer();
+    note.style.display = "none";
+});
+
+// === "X" Button schließt den Player ===
+document.getElementById("closeAudio").addEventListener("click", () => {
+    audio.pause();
+    soundEnabled = false;
+    audioDisabled = true;
+    lastTime = 0;
+    hidePlayer();
+    showNote();
 });
 
 // === Fortschrittsbalken aktualisieren ===
@@ -157,7 +168,7 @@ setInterval(() => {
     if (soundEnabled) lastTime = audio.currentTime;
 }, 500);
 
-// === Scroll-Verhalten
+// === Scroll Hide/Show
 let lastScrollY = window.scrollY;
 window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
@@ -170,6 +181,15 @@ window.addEventListener("scroll", () => {
     lastScrollY = currentScrollY;
 });
 
+// === Status-Text aktualisieren
+function updateStatusText() {
+    const text = document.getElementById("playerStatusText");
+    if (!text) return;
+    text.textContent = soundEnabled
+        ? (lang === "de" ? "Nochmal klicken zum Pausieren" : "Click again to pause")
+        : (lang === "de" ? "Play" : "Play");
+}
+
 // === Funktionen
 function toggleSound() {
     if (audioDisabled) return;
@@ -181,19 +201,27 @@ function toggleSound() {
         audio.pause();
     }
     soundEnabled = !soundEnabled;
+    updateStatusText();
 }
 
 function showPlayer() {
-    note.style.display = "none";
     indicator.style.display = "block";
     requestAnimationFrame(() => {
         indicator.style.opacity = "1";
     });
 }
 
+function hidePlayer() {
+    indicator.style.opacity = "0";
+    setTimeout(() => {
+        indicator.style.display = "none";
+    }, 600);
+}
+
 function showNote() {
     note.style.display = "block";
 }
+   
     // === Zoom Image ===
     const images = document.querySelectorAll(".img-container img");
     if (images.length) {
