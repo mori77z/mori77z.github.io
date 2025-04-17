@@ -56,7 +56,6 @@ const lang = navigator.language.startsWith("de") ? "de" : "en";
 if (localStorage.getItem("audioDisabled") === "true") {
     audioDisabled = true;
 } else {
-    // === Wiederherstellen von Sound-Zustand (falls erlaubt)
     const previousSoundEnabled = localStorage.getItem("soundEnabled") === "true";
     const previousTime = parseFloat(localStorage.getItem("soundTime") || "0");
 
@@ -87,32 +86,8 @@ if (!audioDisabled) {
     hint.style.cursor = "pointer";
     hint.textContent = lang === "de" ? "Klicke irgendwo für Sound" : "Click anywhere for sound";
 
-    // === "X"-Button zum Deaktivieren
-    const closeButton = document.createElement("div");
-    closeButton.textContent = "×";
-    closeButton.style.position = "absolute";
-    closeButton.style.top = "10px";
-    closeButton.style.right = "15px";
-    closeButton.style.fontSize = "24px";
-    closeButton.style.cursor = "pointer";
-    closeButton.style.color = "#fff";
-    closeButton.style.opacity = "0.7";
-    closeButton.style.userSelect = "none";
-
-    closeButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        audio.pause();
-        audioDisabled = true;
-        localStorage.setItem("audioDisabled", "true");
-        localStorage.removeItem("soundEnabled");
-        localStorage.removeItem("soundTime");
-        hint.remove();
-    });
-
-    hint.appendChild(closeButton);
     document.body.appendChild(hint);
 
-    // === Click Listener zur Aktivierung
     document.addEventListener("click", () => {
         if (audioDisabled) return;
 
@@ -138,13 +113,28 @@ indicator.style.transition = "opacity 0.6s ease";
 indicator.style.opacity = "1";
 
 indicator.innerHTML = `
-    <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
+        <div id="closeSound" style="cursor: pointer; font-size: 18px; opacity: 0.6; pointer-events: auto;">×</div>
+    </div>
     <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
         <div id="progressBar" style="width: 0%; height: 100%; background: #fff;"></div>
     </div>
     <div style="opacity: 0.6;">${lang === "de" ? 'Klicke nochmal zum Stummschalten' : 'Click again to mute'}</div>
 `;
 document.body.appendChild(indicator);
+
+// === Close Button Funktion ===
+const closeBtn = document.getElementById("closeSound");
+closeBtn.addEventListener("click", () => {
+    audio.pause();
+    audioDisabled = true;
+    soundEnabled = false;
+    localStorage.setItem("audioDisabled", "true");
+    localStorage.removeItem("soundEnabled");
+    localStorage.removeItem("soundTime");
+    indicator.style.opacity = "0.3";
+});
 
 // === Scroll Hide/Show Indicator ===
 let lastScrollY = window.scrollY;
@@ -153,7 +143,7 @@ window.addEventListener("scroll", () => {
     if (currentScrollY > lastScrollY + 10) {
         indicator.style.opacity = "0";
     } else if (currentScrollY < lastScrollY - 10) {
-        indicator.style.opacity = "1";
+        indicator.style.opacity = audioDisabled ? "0.3" : "1";
     }
     lastScrollY = currentScrollY;
 });
@@ -166,7 +156,7 @@ setInterval(() => {
     if (progress) progress.style.width = percent + "%";
 }, 500);
 
-// === Toggle Sound mit Speicherfunktion
+// === Toggle Sound mit Speicherfunktion ===
 function toggleSound() {
     if (audioDisabled) return;
 
@@ -182,7 +172,7 @@ function toggleSound() {
     localStorage.setItem("soundEnabled", soundEnabled);
     localStorage.setItem("soundTime", audio.currentTime);
 }
-
+    
     // === Zoom Image ===
     const images = document.querySelectorAll(".img-container img");
     if (images.length) {
