@@ -47,26 +47,10 @@ audio.volume = 0.5;
 
 let soundEnabled = false;
 let interactionReady = false;
-let audioDisabled = false;
+let audioDisabled = localStorage.getItem("audioDisabled") === "true";
 let lastTime = 0;
 
 const lang = navigator.language.startsWith("de") ? "de" : "en";
-
-// === Prüfen, ob Audio deaktiviert wurde (per "X")
-if (localStorage.getItem("audioDisabled") === "true") {
-    audioDisabled = true;
-} else {
-    const previousSoundEnabled = localStorage.getItem("soundEnabled") === "true";
-    const previousTime = parseFloat(localStorage.getItem("soundTime") || "0");
-
-    if (previousSoundEnabled) {
-        lastTime = previousTime;
-        interactionReady = true;
-        soundEnabled = true;
-        audio.currentTime = lastTime;
-        audio.play().catch(e => console.error("Autoplay prevented:", e));
-    }
-}
 
 // === Hinweis Overlay ===
 if (!audioDisabled) {
@@ -110,7 +94,7 @@ indicator.style.fontSize = "14px";
 indicator.style.zIndex = "9999";
 indicator.style.pointerEvents = "none";
 indicator.style.transition = "opacity 0.6s ease";
-indicator.style.opacity = "1";
+indicator.style.opacity = audioDisabled ? "0.3" : "1";
 
 indicator.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
@@ -124,16 +108,44 @@ indicator.innerHTML = `
 `;
 document.body.appendChild(indicator);
 
+// === Musiknote zum Reaktivieren ===
+const note = document.createElement("div");
+note.textContent = "♬";
+note.style.position = "fixed";
+note.style.bottom = "22px";
+note.style.left = "12px";
+note.style.fontSize = window.innerWidth < 768 ? "14px" : "16px";
+note.style.color = "#fff";
+note.style.opacity = "0.5";
+note.style.cursor = "pointer";
+note.style.zIndex = "10000";
+note.style.pointerEvents = "auto";
+note.style.transition = "opacity 0.3s ease";
+note.title = lang === "de" ? "Sound aktivieren" : "Enable sound";
+
+note.addEventListener("click", () => {
+    audioDisabled = false;
+    interactionReady = true;
+    note.style.display = "none";
+    indicator.style.opacity = "1";
+    toggleSound();
+});
+document.body.appendChild(note);
+
+// Nur zeigen, wenn deaktiviert
+if (!audioDisabled) {
+    note.style.display = "none";
+}
+
 // === Close Button Funktion ===
 const closeBtn = document.getElementById("closeSound");
 closeBtn.addEventListener("click", () => {
     audio.pause();
-    audioDisabled = true;
     soundEnabled = false;
+    audioDisabled = true;
     localStorage.setItem("audioDisabled", "true");
-    localStorage.removeItem("soundEnabled");
-    localStorage.removeItem("soundTime");
     indicator.style.opacity = "0.3";
+    note.style.display = "block";
 });
 
 // === Scroll Hide/Show Indicator ===
@@ -156,21 +168,17 @@ setInterval(() => {
     if (progress) progress.style.width = percent + "%";
 }, 500);
 
-// === Toggle Sound mit Speicherfunktion ===
+// === Toggle Sound ohne Speicherung
 function toggleSound() {
     if (audioDisabled) return;
 
     if (!soundEnabled) {
-        audio.currentTime = lastTime;
+        audio.currentTime = 0;
         audio.play().catch(e => console.error("Autoplay prevented:", e));
     } else {
-        lastTime = audio.currentTime;
         audio.pause();
     }
     soundEnabled = !soundEnabled;
-
-    localStorage.setItem("soundEnabled", soundEnabled);
-    localStorage.setItem("soundTime", audio.currentTime);
 }
     
     // === Zoom Image ===
