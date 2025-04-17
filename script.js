@@ -46,7 +46,7 @@ audio.loop = true;
 audio.volume = 0.5;
 
 let soundEnabled = false;
-let audioDisabled = false;
+let interactionOccurred = false;
 let lastTime = 0;
 
 const lang = navigator.language.startsWith("de") ? "de" : "en";
@@ -54,8 +54,9 @@ const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
 const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
 
 const textColor = isLightMode ? "#000" : "#fff";
-const barColor = isLightMode ? "#000" : "#fff";
-const shadowColor = isLightMode ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.4)";
+const bgCircle = isLightMode ? "#fff" : "#000";
+const shadowColor = isLightMode ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.5)";
+const barColor = textColor;
 
 // === Player UI ===
 const player = document.createElement("div");
@@ -66,127 +67,122 @@ player.style.color = textColor;
 player.style.fontFamily = "Georgia, serif";
 player.style.fontSize = isMobile ? "16px" : "18px";
 player.style.zIndex = "9999";
-player.style.pointerEvents = "auto";
-player.style.transition = "opacity 0.6s ease";
+player.style.transition = "opacity 0.5s ease";
 player.style.opacity = "0";
 player.style.display = "none";
+player.style.pointerEvents = "auto";
 
 player.innerHTML = `
-    <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
-    <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
-        <div id="progressBar" style="width: 0%; height: 100%; background: ${barColor};"></div>
-    </div>
-    <div id="playerToggle" style="opacity: 0.7; cursor: pointer;">
-        ${lang === "de" ? 'Play' : 'Play'}
-    </div>
-    <div id="closePlayer" style="
-        margin-top: 8px;
-        font-size: ${isMobile ? "20px" : "24px"};
-        cursor: pointer;
-        text-shadow: 0 0 15px ${shadowColor};
-        opacity: 0.8;
-    ">× ${lang === "de" ? 'Player schließen' : 'Close player'}</div>
+  <div style="font-size: ${isMobile ? "16px" : "18px"};"><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
+  <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
+    <div id="progressBar" style="width: 0%; height: 100%; background: ${barColor};"></div>
+  </div>
+  <div id="playPauseBtn" style="cursor: pointer; margin-top: 4px; font-weight: bold; font-size: ${isMobile ? "15px" : "16px"};">
+    ${lang === "de" ? "Play" : "Play"}
+  </div>
+  <div id="closePlayer" style="cursor: pointer; margin-top: 6px; text-decoration: underline; font-size: ${isMobile ? "16px" : "18px"};">
+    ${lang === "de" ? "Player schließen" : "Close player"}
+  </div>
 `;
+
 document.body.appendChild(player);
 
-// === Note Button ===
+// === Musiknote (erscheint nach Schließen) ===
 const note = document.createElement("div");
-note.textContent = "♪";
+note.innerText = "♪";
 note.style.position = "fixed";
 note.style.bottom = "20px";
 note.style.left = "20px";
-note.style.color = textColor;
 note.style.fontSize = isMobile ? "28px" : "32px";
 note.style.fontFamily = "Georgia, serif";
-note.style.cursor = "pointer";
 note.style.zIndex = "9999";
+note.style.cursor = "pointer";
 note.style.display = "none";
-note.style.textShadow = `0 0 20px ${shadowColor}`;
+note.style.padding = "10px";
+note.style.background = bgCircle;
+note.style.borderRadius = "50%";
+note.style.boxShadow = `0 0 16px ${shadowColor}`;
+note.style.color = textColor;
+note.style.userSelect = "none";
 document.body.appendChild(note);
 
-// === Play/Pause toggle
-player.querySelector("#playerToggle").addEventListener("click", () => {
-    if (!soundEnabled) {
-        audio.currentTime = lastTime;
-        audio.play();
-        soundEnabled = true;
-        updateToggleText();
-    } else {
-        lastTime = audio.currentTime;
-        audio.pause();
-        soundEnabled = false;
-        updateToggleText();
-    }
-});
-
-// === Player schließen
-player.querySelector("#closePlayer").addEventListener("click", () => {
-    audio.pause();
-    lastTime = audio.currentTime;
-    soundEnabled = false;
-    hidePlayer();
-    showNote();
-});
-
-// === Note bringt Player zurück
-note.addEventListener("click", () => {
+// === Interaktion
+document.addEventListener("click", () => {
+  if (!interactionOccurred) {
+    interactionOccurred = true;
     audio.currentTime = lastTime;
     audio.play();
     soundEnabled = true;
-    hideNote();
     showPlayer();
-    updateToggleText();
+  }
+});
+
+// === Buttons im Player
+player.querySelector("#playPauseBtn").addEventListener("click", () => {
+  if (!soundEnabled) {
+    audio.currentTime = lastTime;
+    audio.play();
+    soundEnabled = true;
+    updatePlayPauseText();
+  } else {
+    lastTime = audio.currentTime;
+    audio.pause();
+    soundEnabled = false;
+    updatePlayPauseText();
+  }
+});
+
+player.querySelector("#closePlayer").addEventListener("click", () => {
+  lastTime = audio.currentTime;
+  audio.pause();
+  soundEnabled = false;
+  player.style.display = "none";
+  note.style.display = "block";
+});
+
+// === Note wieder aktiviert Player
+note.addEventListener("click", () => {
+  audio.currentTime = lastTime;
+  audio.play();
+  soundEnabled = true;
+  note.style.display = "none";
+  showPlayer();
 });
 
 // === Fortschrittsanzeige
 setInterval(() => {
-    if (!audio.duration || isNaN(audio.duration)) return;
-    const percent = (audio.currentTime / audio.duration) * 100;
-    const progress = document.getElementById("progressBar");
-    if (progress) progress.style.width = percent + "%";
-    if (soundEnabled) lastTime = audio.currentTime;
+  if (!audio.duration || isNaN(audio.duration)) return;
+  const percent = (audio.currentTime / audio.duration) * 100;
+  const progress = document.getElementById("progressBar");
+  if (progress) progress.style.width = percent + "%";
 }, 500);
 
-// === Auto-Start versuchen
-window.addEventListener("load", () => {
-    audio.play().then(() => {
-        soundEnabled = true;
-        showPlayer();
-        updateToggleText();
-    }).catch(() => {
-        // Autoplay blockiert – Note zeigen
-        showNote();
-    });
+// === Scrollverhalten: Player ausblenden beim Runterscrollen
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+  const currentY = window.scrollY;
+  if (currentY > lastScrollY + 10) {
+    player.style.opacity = "0";
+  } else if (currentY < lastScrollY - 10) {
+    player.style.opacity = "1";
+  }
+  lastScrollY = currentY;
 });
 
-// === Helpers
-function updateToggleText() {
-    const toggle = document.getElementById("playerToggle");
-    toggle.textContent = soundEnabled
-        ? (lang === "de" ? "Pause" : "Pause")
-        : (lang === "de" ? "Play" : "Play");
-}
-
+// === Hilfsfunktionen
 function showPlayer() {
-    player.style.display = "block";
-    requestAnimationFrame(() => {
-        player.style.opacity = "1";
-    });
+  player.style.display = "block";
+  setTimeout(() => (player.style.opacity = "1"), 10);
+  updatePlayPauseText();
 }
 
-function hidePlayer() {
-    player.style.opacity = "0";
-    setTimeout(() => {
-        player.style.display = "none";
-    }, 500);
-}
-
-function showNote() {
-    note.style.display = "block";
-}
-
-function hideNote() {
-    note.style.display = "none";
+function updatePlayPauseText() {
+  const btn = document.getElementById("playPauseBtn");
+  if (btn) {
+    btn.textContent = soundEnabled
+      ? (lang === "de" ? "Pause" : "Pause")
+      : (lang === "de" ? "Play" : "Play");
+  }
 }
    
     // === Zoom Image ===
