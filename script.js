@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
+    
 // === Audio Handling ===
 const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
 audio.loop = true;
@@ -50,8 +50,8 @@ let interactionReady = false;
 let lastTime = 0;
 
 const lang = navigator.language.startsWith("de") ? "de" : "en";
-const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
 
+// === Hint Hinweisbox ===
 const hint = document.createElement("div");
 hint.style.position = "fixed";
 hint.style.top = "50%";
@@ -66,9 +66,7 @@ hint.style.zIndex = "9999";
 hint.style.borderRadius = "8px";
 hint.style.textAlign = "center";
 hint.style.cursor = "pointer";
-hint.textContent = isMobile
-    ? (lang === "de" ? "Tippe auf den Bildschirm für Sound" : "Tap the screen for sound")
-    : (lang === "de" ? "Drücke die Leertaste für Sound" : "Press spacebar for sound");
+hint.textContent = lang === "de" ? "Klicke für Sound" : "Click for sound";
 
 document.body.appendChild(hint);
 
@@ -79,7 +77,7 @@ indicator.style.bottom = "20px";
 indicator.style.left = "20px";
 indicator.style.color = "#fff";
 indicator.style.fontFamily = "Georgia, serif";
-indicator.style.fontSize = isMobile ? "12px" : "14px";
+indicator.style.fontSize = "14px";
 indicator.style.zIndex = "9999";
 indicator.style.pointerEvents = "none";
 indicator.style.transition = "opacity 0.6s ease";
@@ -90,11 +88,11 @@ indicator.innerHTML = `
     <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
         <div id="progressBar" style="width: 0%; height: 100%; background: #fff;"></div>
     </div>
-    <div style="opacity: 0.6;">${isMobile ? 'Tap again to mute' : 'Press spacebar again to mute'}</div>
+    <div style="opacity: 0.6;">${lang === "de" ? 'Klicke nochmal zum Stummschalten' : 'Click again to mute'}</div>
 `;
 document.body.appendChild(indicator);
 
-// === Smooth Scroll Visibility Toggle ===
+// === Scroll Hide/Show Indicator ===
 let lastScrollY = window.scrollY;
 
 window.addEventListener("scroll", () => {
@@ -128,27 +126,14 @@ function toggleSound() {
     soundEnabled = !soundEnabled;
 }
 
-// === Interaction Event Listener ===
-if (isMobile) {
-    document.addEventListener("click", () => {
-        if (!interactionReady) {
-            hint.remove();
-            interactionReady = true;
-        }
-        toggleSound();
-    });
-} else {
-    document.addEventListener("keydown", function (e) {
-        if (e.code === "Space") {
-            e.preventDefault();
-            if (!interactionReady) {
-                hint.remove();
-                interactionReady = true;
-            }
-            toggleSound();
-        }
-    });
-}
+// === Interaction Event Listener für alle Devices ===
+document.addEventListener("click", () => {
+    if (!interactionReady) {
+        hint.remove();
+        interactionReady = true;
+    }
+    toggleSound();
+});
 
     // === Zoom Image ===
     const images = document.querySelectorAll(".img-container img");
