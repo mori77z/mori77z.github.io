@@ -47,28 +47,82 @@ audio.volume = 0.5;
 
 let soundEnabled = false;
 let interactionReady = false;
+let audioDisabled = false;
 let lastTime = 0;
 
 const lang = navigator.language.startsWith("de") ? "de" : "en";
 
-// === Hint Hinweisbox ===
-const hint = document.createElement("div");
-hint.style.position = "fixed";
-hint.style.top = "50%";
-hint.style.left = "50%";
-hint.style.transform = "translate(-50%, -50%)";
-hint.style.background = "rgba(0, 0, 0, 0.8)";
-hint.style.color = "#fff";
-hint.style.padding = "1em 2em";
-hint.style.fontFamily = "sans-serif";
-hint.style.fontSize = "1.2em";
-hint.style.zIndex = "9999";
-hint.style.borderRadius = "8px";
-hint.style.textAlign = "center";
-hint.style.cursor = "pointer";
-hint.textContent = lang === "de" ? "Klicke für Sound" : "Click for sound";
+// === Prüfen, ob Audio deaktiviert wurde (per "X")
+if (localStorage.getItem("audioDisabled") === "true") {
+    audioDisabled = true;
+} else {
+    // === Wiederherstellen von Sound-Zustand (falls erlaubt)
+    const previousSoundEnabled = localStorage.getItem("soundEnabled") === "true";
+    const previousTime = parseFloat(localStorage.getItem("soundTime") || "0");
 
-document.body.appendChild(hint);
+    if (previousSoundEnabled) {
+        lastTime = previousTime;
+        interactionReady = true;
+        soundEnabled = true;
+        audio.currentTime = lastTime;
+        audio.play().catch(e => console.error("Autoplay prevented:", e));
+    }
+}
+
+// === Hinweis Overlay ===
+if (!audioDisabled) {
+    const hint = document.createElement("div");
+    hint.style.position = "fixed";
+    hint.style.top = "50%";
+    hint.style.left = "50%";
+    hint.style.transform = "translate(-50%, -50%)";
+    hint.style.background = "rgba(0, 0, 0, 0.8)";
+    hint.style.color = "#fff";
+    hint.style.padding = "1em 2em";
+    hint.style.fontFamily = "sans-serif";
+    hint.style.fontSize = "1.2em";
+    hint.style.zIndex = "9999";
+    hint.style.borderRadius = "8px";
+    hint.style.textAlign = "center";
+    hint.style.cursor = "pointer";
+    hint.textContent = lang === "de" ? "Klicke irgendwo für Sound" : "Click anywhere for sound";
+
+    // === "X"-Button zum Deaktivieren
+    const closeButton = document.createElement("div");
+    closeButton.textContent = "×";
+    closeButton.style.position = "absolute";
+    closeButton.style.top = "10px";
+    closeButton.style.right = "15px";
+    closeButton.style.fontSize = "24px";
+    closeButton.style.cursor = "pointer";
+    closeButton.style.color = "#fff";
+    closeButton.style.opacity = "0.7";
+    closeButton.style.userSelect = "none";
+
+    closeButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        audio.pause();
+        audioDisabled = true;
+        localStorage.setItem("audioDisabled", "true");
+        localStorage.removeItem("soundEnabled");
+        localStorage.removeItem("soundTime");
+        hint.remove();
+    });
+
+    hint.appendChild(closeButton);
+    document.body.appendChild(hint);
+
+    // === Click Listener zur Aktivierung
+    document.addEventListener("click", () => {
+        if (audioDisabled) return;
+
+        if (!interactionReady) {
+            hint.remove();
+            interactionReady = true;
+        }
+        toggleSound();
+    });
+}
 
 // === UI Indikator unten links ===
 const indicator = document.createElement("div");
@@ -94,16 +148,13 @@ document.body.appendChild(indicator);
 
 // === Scroll Hide/Show Indicator ===
 let lastScrollY = window.scrollY;
-
 window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
-
     if (currentScrollY > lastScrollY + 10) {
-        indicator.style.opacity = "0"; // hide on scroll down
+        indicator.style.opacity = "0";
     } else if (currentScrollY < lastScrollY - 10) {
-        indicator.style.opacity = "1"; // show on scroll up
+        indicator.style.opacity = "1";
     }
-
     lastScrollY = currentScrollY;
 });
 
@@ -111,11 +162,14 @@ window.addEventListener("scroll", () => {
 setInterval(() => {
     if (!audio.duration || isNaN(audio.duration)) return;
     const percent = (audio.currentTime / audio.duration) * 100;
-    document.getElementById("progressBar").style.width = percent + "%";
+    const progress = document.getElementById("progressBar");
+    if (progress) progress.style.width = percent + "%";
 }, 500);
 
-// === Toggle Sound mit Memory ===
+// === Toggle Sound mit Speicherfunktion
 function toggleSound() {
+    if (audioDisabled) return;
+
     if (!soundEnabled) {
         audio.currentTime = lastTime;
         audio.play().catch(e => console.error("Autoplay prevented:", e));
@@ -124,16 +178,10 @@ function toggleSound() {
         audio.pause();
     }
     soundEnabled = !soundEnabled;
-}
 
-// === Interaction Event Listener für alle Devices ===
-document.addEventListener("click", () => {
-    if (!interactionReady) {
-        hint.remove();
-        interactionReady = true;
-    }
-    toggleSound();
-});
+    localStorage.setItem("soundEnabled", soundEnabled);
+    localStorage.setItem("soundTime", audio.currentTime);
+}
 
     // === Zoom Image ===
     const images = document.querySelectorAll(".img-container img");
