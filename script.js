@@ -46,7 +46,6 @@ audio.loop = true;
 audio.volume = 0.5;
 
 let soundEnabled = false;
-let interactionReady = false;
 let audioDisabled = false;
 let lastTime = 0;
 
@@ -58,80 +57,46 @@ const textColor = isLightMode ? "#000" : "#fff";
 const barColor = isLightMode ? "#000" : "#fff";
 const shadowColor = isLightMode ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.4)";
 
-// === Hinweis Overlay ===
-if (!audioDisabled) {
-    const hint = document.createElement("div");
-    hint.style.position = "fixed";
-    hint.style.top = "50%";
-    hint.style.left = "50%";
-    hint.style.transform = "translate(-50%, -50%)";
-    hint.style.background = "rgba(0, 0, 0, 0.8)";
-    hint.style.color = "#fff";
-    hint.style.padding = "1em 2em";
-    hint.style.fontFamily = "sans-serif";
-    hint.style.fontSize = isMobile ? "1em" : "1.4em";
-    hint.style.zIndex = "9999";
-    hint.style.borderRadius = "8px";
-    hint.style.textAlign = "center";
-    hint.style.cursor = "pointer";
-    hint.textContent = lang === "de" ? "Klicke irgendwo für Sound" : "Click anywhere for sound";
-    document.body.appendChild(hint);
+// === Player UI ===
+const player = document.createElement("div");
+player.style.position = "fixed";
+player.style.bottom = "20px";
+player.style.left = "20px";
+player.style.color = textColor;
+player.style.fontFamily = "Georgia, serif";
+player.style.fontSize = isMobile ? "16px" : "18px";
+player.style.zIndex = "9999";
+player.style.pointerEvents = "auto";
+player.style.transition = "opacity 0.6s ease";
+player.style.opacity = "0";
+player.style.display = "none";
 
-    document.addEventListener("click", () => {
-        if (audioDisabled) return;
-        if (!interactionReady) {
-            interactionReady = true;
-            hint.remove();
-            toggleSound();
-            showPlayer();
-        } else {
-            toggleSound();
-        }
-    });
-}
-
-// === Player unten links ===
-const indicator = document.createElement("div");
-indicator.style.position = "fixed";
-indicator.style.bottom = "20px";
-indicator.style.left = "20px";
-indicator.style.color = textColor;
-indicator.style.fontFamily = "Georgia, serif";
-indicator.style.fontSize = isMobile ? "14px" : "16px";
-indicator.style.zIndex = "9999";
-indicator.style.pointerEvents = "auto";
-indicator.style.transition = "opacity 0.6s ease";
-indicator.style.opacity = "0";
-indicator.style.display = "none";
-
-const indicatorHTML = `
+player.innerHTML = `
     <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
-    <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
+    <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
         <div id="progressBar" style="width: 0%; height: 100%; background: ${barColor};"></div>
     </div>
-    <div id="playerStatusText" style="opacity: 0.6;">${lang === "de" ? 'Nochmal klicken zum Pausieren' : 'Click again to pause'}</div>
-    <div id="closeAudio" style="
-        position: absolute;
-        top: -10px;
-        left: -10px;
+    <div id="playerToggle" style="opacity: 0.7; cursor: pointer;">
+        ${lang === "de" ? 'Play' : 'Play'}
+    </div>
+    <div id="closePlayer" style="
+        margin-top: 8px;
+        font-size: ${isMobile ? "20px" : "24px"};
         cursor: pointer;
-        font-size: 28px;
-        font-weight: bold;
-        text-shadow: 0 0 10px ${shadowColor};
-    ">×</div>
+        text-shadow: 0 0 15px ${shadowColor};
+        opacity: 0.8;
+    ">× ${lang === "de" ? 'Player schließen' : 'Close player'}</div>
 `;
+document.body.appendChild(player);
 
-indicator.innerHTML = indicatorHTML;
-document.body.appendChild(indicator);
-
-// === Note als Button zum Wiederherstellen ===
+// === Note Button ===
 const note = document.createElement("div");
 note.textContent = "♪";
 note.style.position = "fixed";
 note.style.bottom = "20px";
 note.style.left = "20px";
 note.style.color = textColor;
-note.style.fontSize = isMobile ? "20px" : "28px";
+note.style.fontSize = isMobile ? "28px" : "32px";
 note.style.fontFamily = "Georgia, serif";
 note.style.cursor = "pointer";
 note.style.zIndex = "9999";
@@ -139,27 +104,41 @@ note.style.display = "none";
 note.style.textShadow = `0 0 20px ${shadowColor}`;
 document.body.appendChild(note);
 
-// === Note Klick: Player wieder anzeigen + Sound starten ===
-note.addEventListener("click", () => {
-    audio.currentTime = lastTime;
-    audio.play();
-    soundEnabled = true;
-    updateStatusText();
-    showPlayer();
-    note.style.display = "none";
+// === Play/Pause toggle
+player.querySelector("#playerToggle").addEventListener("click", () => {
+    if (!soundEnabled) {
+        audio.currentTime = lastTime;
+        audio.play();
+        soundEnabled = true;
+        updateToggleText();
+    } else {
+        lastTime = audio.currentTime;
+        audio.pause();
+        soundEnabled = false;
+        updateToggleText();
+    }
 });
 
-// === "X" Button schließt den Player ===
-document.getElementById("closeAudio").addEventListener("click", () => {
+// === Player schließen
+player.querySelector("#closePlayer").addEventListener("click", () => {
     audio.pause();
+    lastTime = audio.currentTime;
     soundEnabled = false;
-    audioDisabled = true;
-    lastTime = 0;
     hidePlayer();
     showNote();
 });
 
-// === Fortschrittsbalken aktualisieren ===
+// === Note bringt Player zurück
+note.addEventListener("click", () => {
+    audio.currentTime = lastTime;
+    audio.play();
+    soundEnabled = true;
+    hideNote();
+    showPlayer();
+    updateToggleText();
+});
+
+// === Fortschrittsanzeige
 setInterval(() => {
     if (!audio.duration || isNaN(audio.duration)) return;
     const percent = (audio.currentTime / audio.duration) * 100;
@@ -168,58 +147,46 @@ setInterval(() => {
     if (soundEnabled) lastTime = audio.currentTime;
 }, 500);
 
-// === Scroll Hide/Show
-let lastScrollY = window.scrollY;
-window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-    if (indicator.style.display === "none") return;
-    if (currentScrollY > lastScrollY + 10) {
-        indicator.style.opacity = "0";
-    } else if (currentScrollY < lastScrollY - 10) {
-        indicator.style.opacity = "1";
-    }
-    lastScrollY = currentScrollY;
+// === Auto-Start versuchen
+window.addEventListener("load", () => {
+    audio.play().then(() => {
+        soundEnabled = true;
+        showPlayer();
+        updateToggleText();
+    }).catch(() => {
+        // Autoplay blockiert – Note zeigen
+        showNote();
+    });
 });
 
-// === Status-Text aktualisieren
-function updateStatusText() {
-    const text = document.getElementById("playerStatusText");
-    if (!text) return;
-    text.textContent = soundEnabled
-        ? (lang === "de" ? "Nochmal klicken zum Pausieren" : "Click again to pause")
+// === Helpers
+function updateToggleText() {
+    const toggle = document.getElementById("playerToggle");
+    toggle.textContent = soundEnabled
+        ? (lang === "de" ? "Pause" : "Pause")
         : (lang === "de" ? "Play" : "Play");
 }
 
-// === Funktionen
-function toggleSound() {
-    if (audioDisabled) return;
-    if (!soundEnabled) {
-        audio.currentTime = lastTime;
-        audio.play();
-    } else {
-        lastTime = audio.currentTime;
-        audio.pause();
-    }
-    soundEnabled = !soundEnabled;
-    updateStatusText();
-}
-
 function showPlayer() {
-    indicator.style.display = "block";
+    player.style.display = "block";
     requestAnimationFrame(() => {
-        indicator.style.opacity = "1";
+        player.style.opacity = "1";
     });
 }
 
 function hidePlayer() {
-    indicator.style.opacity = "0";
+    player.style.opacity = "0";
     setTimeout(() => {
-        indicator.style.display = "none";
-    }, 600);
+        player.style.display = "none";
+    }, 500);
 }
 
 function showNote() {
     note.style.display = "block";
+}
+
+function hideNote() {
+    note.style.display = "none";
 }
    
     // === Zoom Image ===
