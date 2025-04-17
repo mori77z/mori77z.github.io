@@ -79,17 +79,35 @@ indicator.style.bottom = "20px";
 indicator.style.left = "20px";
 indicator.style.color = "#fff";
 indicator.style.fontFamily = "Georgia, serif";
-indicator.style.fontSize = "0.9em";
+indicator.style.fontSize = isMobile ? "12px" : "14px";
 indicator.style.zIndex = "9999";
 indicator.style.pointerEvents = "none";
+indicator.style.transition = "opacity 0.6s ease";
+indicator.style.opacity = "1";
+
 indicator.innerHTML = `
-    <div>felt like we were the last two people on earth</div>
+    <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
     <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
         <div id="progressBar" style="width: 0%; height: 100%; background: #fff;"></div>
     </div>
     <div style="opacity: 0.6;">${isMobile ? 'Tap again to mute' : 'Press spacebar again to mute'}</div>
 `;
 document.body.appendChild(indicator);
+
+// === Smooth Scroll Visibility Toggle ===
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY + 10) {
+        indicator.style.opacity = "0"; // hide on scroll down
+    } else if (currentScrollY < lastScrollY - 10) {
+        indicator.style.opacity = "1"; // show on scroll up
+    }
+
+    lastScrollY = currentScrollY;
+});
 
 // === Fortschrittsanzeige aktualisieren ===
 setInterval(() => {
@@ -110,6 +128,7 @@ function toggleSound() {
     soundEnabled = !soundEnabled;
 }
 
+// === Interaction Event Listener ===
 if (isMobile) {
     document.addEventListener("click", () => {
         if (!interactionReady) {
