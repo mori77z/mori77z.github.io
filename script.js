@@ -40,145 +40,137 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     
-// === Audio Handling ===
+// === Audio Setup ===
 const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
 audio.loop = true;
 audio.volume = 0.5;
 
 let soundEnabled = false;
 let interactionReady = false;
-let audioDisabled = localStorage.getItem("audioDisabled") === "true";
+let audioDisabled = false;
 let lastTime = 0;
+let progressInterval = null;
 
 const lang = navigator.language.startsWith("de") ? "de" : "en";
+const isMobile = /Mobi|Android|iPhone|iPad/.test(navigator.userAgent);
+const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
 
 // === Hinweis Overlay ===
-if (!audioDisabled) {
-    const hint = document.createElement("div");
-    hint.style.position = "fixed";
-    hint.style.top = "50%";
-    hint.style.left = "50%";
-    hint.style.transform = "translate(-50%, -50%)";
-    hint.style.background = "rgba(0, 0, 0, 0.8)";
-    hint.style.color = "#fff";
-    hint.style.padding = "1em 2em";
-    hint.style.fontFamily = "sans-serif";
-    hint.style.fontSize = "1.2em";
-    hint.style.zIndex = "9999";
-    hint.style.borderRadius = "8px";
-    hint.style.textAlign = "center";
-    hint.style.cursor = "pointer";
-    hint.textContent = lang === "de" ? "Klicke irgendwo für Sound" : "Click anywhere for sound";
+const hint = document.createElement("div");
+hint.style.position = "fixed";
+hint.style.top = "50%";
+hint.style.left = "50%";
+hint.style.transform = "translate(-50%, -50%)";
+hint.style.background = "rgba(0, 0, 0, 0.85)";
+hint.style.color = "#fff";
+hint.style.padding = isMobile ? "1em 2em" : "1.5em 3em";
+hint.style.fontFamily = "sans-serif";
+hint.style.fontSize = isMobile ? "1.2em" : "1.6em";
+hint.style.zIndex = "9999";
+hint.style.borderRadius = "8px";
+hint.style.textAlign = "center";
+hint.style.cursor = "pointer";
+hint.textContent = lang === "de" ? "Klicke für Sound" : "Click to enable sound";
+document.body.appendChild(hint);
 
-    document.body.appendChild(hint);
-
-    document.addEventListener("click", () => {
-        if (audioDisabled) return;
-
-        if (!interactionReady) {
-            hint.remove();
-            interactionReady = true;
-        }
-        toggleSound();
-    });
-}
-
-// === UI Indikator unten links ===
+// === UI unten links ===
 const indicator = document.createElement("div");
 indicator.style.position = "fixed";
 indicator.style.bottom = "20px";
 indicator.style.left = "20px";
-indicator.style.color = "#fff";
 indicator.style.fontFamily = "Georgia, serif";
-indicator.style.fontSize = "14px";
+indicator.style.fontSize = isMobile ? "14px" : "16px";
 indicator.style.zIndex = "9999";
-indicator.style.pointerEvents = "none";
 indicator.style.transition = "opacity 0.6s ease";
-indicator.style.opacity = audioDisabled ? "0.3" : "1";
+indicator.style.opacity = "1";
+indicator.style.pointerEvents = "auto";
+indicator.style.color = isLightMode ? "#111" : "#fff";
 
 indicator.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
-        <div id="closeSound" style="cursor: pointer; font-size: 18px; opacity: 0.6; pointer-events: auto;">×</div>
-    </div>
-    <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
-        <div id="progressBar" style="width: 0%; height: 100%; background: #fff;"></div>
-    </div>
-    <div style="opacity: 0.6;">${lang === "de" ? 'Klicke nochmal zum Stummschalten' : 'Click again to mute'}</div>
+  <div><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
+  <div id="progressBarContainer" style="width: 200px; height: 4px; background: rgba(0,0,0,0.2); margin: 6px 0;">
+    <div id="progressBar" style="width: 0%; height: 100%; background: ${isLightMode ? "#111" : "#fff"};"></div>
+  </div>
+  <div style="opacity: 0.6;">${lang === "de" ? 'Klicke nochmal zum Stummschalten' : 'Click again to mute'}</div>
+  <div id="closeAudio"
+       style="margin-top: 4px; cursor: pointer; font-size: 18px; opacity: 0.5;">
+       ${lang === "de" ? 'Sound ausblenden ✕' : 'Disable sound ✕'}
+  </div>
+  <div style="
+    font-size: ${isMobile ? '24px' : '32px'};
+    margin-top: 10px;
+    text-shadow: 0 0 16px ${isLightMode ? '#111' : '#fff'};
+    color: ${isLightMode ? '#111' : '#fff'};
+  ">♪</div>
 `;
 document.body.appendChild(indicator);
 
-// === Musiknote zum Reaktivieren ===
-const note = document.createElement("div");
-note.textContent = "♬";
-note.style.position = "fixed";
-note.style.bottom = "22px";
-note.style.left = "12px";
-note.style.fontSize = window.innerWidth < 768 ? "14px" : "16px";
-note.style.color = "#fff";
-note.style.opacity = "0.5";
-note.style.cursor = "pointer";
-note.style.zIndex = "10000";
-note.style.pointerEvents = "auto";
-note.style.transition = "opacity 0.3s ease";
-note.title = lang === "de" ? "Sound aktivieren" : "Enable sound";
-
-note.addEventListener("click", () => {
-    audioDisabled = false;
-    interactionReady = true;
-    note.style.display = "none";
-    indicator.style.opacity = "1";
-    toggleSound();
-});
-document.body.appendChild(note);
-
-// Nur zeigen, wenn deaktiviert
-if (!audioDisabled) {
-    note.style.display = "none";
-}
-
-// === Close Button Funktion ===
-const closeBtn = document.getElementById("closeSound");
-closeBtn.addEventListener("click", () => {
-    audio.pause();
-    soundEnabled = false;
-    audioDisabled = true;
-    localStorage.setItem("audioDisabled", "true");
-    indicator.style.opacity = "0.3";
-    note.style.display = "block";
-});
-
-// === Scroll Hide/Show Indicator ===
+// === Scroll UI ein-/ausblenden
 let lastScrollY = window.scrollY;
 window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY + 10) {
-        indicator.style.opacity = "0";
-    } else if (currentScrollY < lastScrollY - 10) {
-        indicator.style.opacity = audioDisabled ? "0.3" : "1";
-    }
-    lastScrollY = currentScrollY;
+  const currentY = window.scrollY;
+  indicator.style.opacity = currentY > lastScrollY + 10 ? "0" : "1";
+  lastScrollY = currentY;
 });
 
-// === Fortschrittsanzeige aktualisieren ===
-setInterval(() => {
+// === Progress Bar Handling
+function startProgress() {
+  if (progressInterval) clearInterval(progressInterval);
+  progressInterval = setInterval(() => {
     if (!audio.duration || isNaN(audio.duration)) return;
     const percent = (audio.currentTime / audio.duration) * 100;
     const progress = document.getElementById("progressBar");
     if (progress) progress.style.width = percent + "%";
-}, 500);
+  }, 500);
+}
 
-// === Toggle Sound ohne Speicherung
+function stopProgress() {
+  clearInterval(progressInterval);
+  const progress = document.getElementById("progressBar");
+  if (progress) progress.style.width = "0%";
+}
+
+// === Toggle Sound
 function toggleSound() {
-    if (audioDisabled) return;
+  if (audioDisabled) return;
 
-    if (!soundEnabled) {
-        audio.currentTime = 0;
-        audio.play().catch(e => console.error("Autoplay prevented:", e));
-    } else {
-        audio.pause();
-    }
-    soundEnabled = !soundEnabled;
+  if (!soundEnabled) {
+    audio.currentTime = lastTime;
+    audio.play().catch(e => console.warn("Autoplay error:", e));
+    startProgress();
+  } else {
+    lastTime = audio.currentTime;
+    audio.pause();
+    stopProgress();
+  }
+
+  soundEnabled = !soundEnabled;
+}
+
+// === Aktivierung per Klick
+document.addEventListener("click", () => {
+  if (audioDisabled) return;
+
+  if (!interactionReady) {
+    hint.remove();
+    interactionReady = true;
+  }
+  toggleSound();
+});
+
+// === Schließen (X)
+const closeAudioBtn = indicator.querySelector("#closeAudio");
+if (closeAudioBtn) {
+  closeAudioBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    audio.pause();
+    audioDisabled = true;
+    soundEnabled = false;
+    lastTime = 0;
+    stopProgress();
+    indicator.remove();
+    hint.remove();
+  });
 }
     
     // === Zoom Image ===
