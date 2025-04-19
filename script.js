@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     
-// === Audio Setup ===
+/*// === Audio Setup ===
 const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
 audio.loop = true;
 audio.volume = 0.5;
@@ -183,7 +183,7 @@ function updatePlayPauseText() {
       ? (lang === "de" ? "Pause" : "Pause")
       : (lang === "de" ? "Play" : "Play");
   }
-}
+}*/
    
     // === Zoom Image ===
     const images = document.querySelectorAll(".img-container img");
