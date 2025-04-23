@@ -36,19 +36,16 @@ body {
 
 .logo {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-top: 10px;
     width: 100%;
-    gap: 16px; /* Abstand zwischen den Elementen */
 }
 
 .logo-image img {
     height: 28px;
     width: auto;
     display: block;
-    margin: 0 5px;
-    transition: transform 0.2s ease;
 }
 
 .moritz {
