@@ -48,6 +48,10 @@ body {
     display: block;
 }
 
+.logo-dark {
+  display: none;
+}
+
 .moritz {
     display: inline-block;
 }
@@ -311,6 +315,14 @@ background-color: #fff;
     .logo a {
         color: white;
     }
+    
+      .logo-light {
+    display: none;
+  }
+  .logo-dark {
+    display: inline;
+  }
+  
     nav a {
         color: white;
     }
