@@ -320,7 +320,7 @@ background-color: #fff;
     display: none;
   }
   .logo-dark {
-    display: inline;
+    display: block;
   }
   
     nav a {
