@@ -278,8 +278,11 @@ background-color: #fff;
         padding: 20px;
     }
     .logo a {
-        font-size: 48px;
+        font-size: 72px;
         letter-spacing: -5px;
+    }
+    .logo-image img {
+        height: 72px;
     }
     .content {
         margin-left: 20px;
