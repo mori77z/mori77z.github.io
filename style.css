@@ -37,7 +37,7 @@ body {
 .logo {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline; /* aligns text and logo-image to baseline */
     padding-top: 10px;
     width: 100%;
 }
@@ -46,7 +46,11 @@ body {
     display: flex;
     flex-direction: column;
     line-height: 1;
+    justify-content: center;
+    min-height: 34px; /* ensures it aligns with logo-image height */
 }
+
+
 
 .moritz {
     display: inline-block;
@@ -57,9 +61,7 @@ body {
     font-size: 12px;
     font-weight: normal;
     line-height: 1;
-    margin-top: 4px;
-    margin-bottom: 0;
-    color: black;
+    margin-top: 2px;
 }
 
 .logo a {
