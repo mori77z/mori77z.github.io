@@ -42,26 +42,28 @@ body {
     width: 100%;
 }
 
-.logo-image img {
-    height: 34px;
-    width: auto;
-}
-
-    .logo-light {
-    display: block;
-  }
-
-.logo-dark {
-  display: none;
+.logo-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
 }
 
 .moritz {
     display: inline-block;
 }
 
+.subtitle {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    margin-top: 4px;
+    margin-bottom: 0;
+    color: black;
+}
+
 .logo a {
-    /*font-family: 'Moritz Sans Neue Bold', sans-serif;*/
-    font-family: Helvetica,  Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 34px;
     font-weight: normal;
     line-height: 1;
@@ -78,6 +80,19 @@ body {
     font-style: italic;
     letter-spacing: -2px;
     padding-right: 4px;
+}
+
+.logo-image img {
+    height: 34px;
+    width: auto;
+}
+
+.logo-light {
+    display: block;
+}
+
+.logo-dark {
+    display: none;
 }
 
 nav {
