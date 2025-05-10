@@ -42,6 +42,11 @@ body {
     align-items: center;
     padding-top: 10px;
     width: 100%;
+}
+
+.logo-title {
+    display: flex;
+    flex-direction: column;
     line-height: 1;
 }
 
