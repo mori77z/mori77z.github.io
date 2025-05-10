@@ -19,6 +19,8 @@ body {
     src: url('https://moritzgauss.com/assets/moritzsans-neue-condensed-bold.woff') format('woff');
   }*/
 
+
+  
 .header-container {
     display: flex;
     flex-direction: column;
@@ -37,23 +39,10 @@ body {
 .logo {
     display: flex;
     justify-content: space-between;
-    align-items: baseline; /* aligns text and logo-image to baseline */
+    align-items: center;
     padding-top: 10px;
     width: 100%;
-}
-
-.logo-title {
-    display: flex;
-    flex-direction: column;
     line-height: 1;
-    justify-content: center;
-    min-height: 34px; /* ensures it aligns with logo-image height */
-}
-
-
-
-.moritz {
-    display: inline-block;
 }
 
 .subtitle {
@@ -61,11 +50,30 @@ body {
     font-size: 12px;
     font-weight: normal;
     line-height: 1;
-    margin-top: 2px;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.logo-image img {
+    height: 34px;
+    width: auto;
+}
+
+    .logo-light {
+    display: block;
+  }
+
+.logo-dark {
+  display: none;
+}
+
+.moritz {
+    display: inline-block;
 }
 
 .logo a {
-    font-family: Helvetica, Arial, sans-serif;
+    /*font-family: 'Moritz Sans Neue Bold', sans-serif;*/
+    font-family: Helvetica,  Arial, sans-serif;
     font-size: 34px;
     font-weight: normal;
     line-height: 1;
@@ -82,19 +90,6 @@ body {
     font-style: italic;
     letter-spacing: -2px;
     padding-right: 4px;
-}
-
-.logo-image img {
-    height: 34px;
-    width: auto;
-}
-
-.logo-light {
-    display: block;
-}
-
-.logo-dark {
-    display: none;
 }
 
 nav {
