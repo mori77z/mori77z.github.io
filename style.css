@@ -72,6 +72,9 @@ body {
 .subtitle {
     font-family: Times, serif;
     font-size: 14px;
+    font-weight: 300;
+    margin-top: -2px;
+    margin-bottom: -2px;
     text-align: left;
 }
 
