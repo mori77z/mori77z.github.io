@@ -191,18 +191,31 @@ nav a.active {
 }
 
 .iframe-container {
-  width: 100%;
-background-color: #fff;
-  height: 0;
-  padding-bottom: 75%; 
-  position: relative;
+    width: 100%;
+    background-color: #fff;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
 }
 
 .iframe-container iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: none; 
+    width: 120%;
+    height: 120%;
+    transform: scale(0.8);
+    transform-origin: top left;
+    pointer-events: none;
+    filter: blur(2px) brightness(0.9);
+    transition: filter 0.3s ease;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.iframe-container:hover iframe {
+    filter: blur(1px) brightness(1);
 }
 
 .arrows-wrapper {
@@ -254,21 +267,6 @@ background-color: #fff;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 }
-
-#android-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 9999;
-    display: none;
-    font-size: 1.5em;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    text-shadow: -4px -4px 6px white, 4px 4px 6px white, -4px 4px 6px white, 4px -4px 6px white;
-  }
   
 
 @media (min-width: 768px) {
