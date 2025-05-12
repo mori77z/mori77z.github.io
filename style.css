@@ -44,10 +44,10 @@ body {
 }
 
 .moritz {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Times, serif;
     display: inline-block;
-    letter-spacing: -0.075em;
-    font-size: 2em;
+    letter-spacing: -0.08em;
+    font-size: 1.8em;
 }
 
 .logo a {
