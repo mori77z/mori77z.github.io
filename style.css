@@ -47,6 +47,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     display: inline-block;
     letter-spacing: -0.075em;
+    font-size: 2em;
 }
 
 .logo a {
