@@ -3,13 +3,12 @@ body {
     background: white;
     display: flex;
     flex-direction: column;
-    /*font-family: 'Moritz Sans', sans-serif;*/
-    font-family: Helvetica,  Arial, sans-serif;
+    font-family: 'Moritz Sans', sans-serif; 
     margin: 0;
     padding-bottom: 40px;
   }
 
-  /*@font-face {
+  @font-face {
     font-family: 'Moritz Sans';
     src: url('https://moritzgauss.com/assets/moritzsans-condensed-webfont.woff') format('woff');
   }
@@ -17,7 +16,7 @@ body {
   @font-face {
     font-family: 'Moritz Sans Neue Bold';
     src: url('https://moritzgauss.com/assets/moritzsans-neue-condensed-bold.woff') format('woff');
-  }*/
+  }
 
 
   
@@ -49,13 +48,12 @@ body {
 }
 
 .logo a {
-    /*font-family: 'Moritz Sans Neue Bold', sans-serif;*/
-    font-family: Helvetica,  Arial, sans-serif;
-    font-size: 2em;
+    font-family: 'Moritz Sans Neue Bold', sans-serif;
+    font-size: 4em;
     font-weight: normal;
     line-height: 1;
     color: black;
-    letter-spacing: -2.5px;
+    letter-spacing: -0.075em;
     white-space: nowrap;
     box-sizing: border-box; 
     text-decoration: none;
@@ -63,14 +61,14 @@ body {
 }
 
 .logo a:hover {
-    font-family: Times, serif;
+    font-family: "Instrument Serif", serif;
     font-style: italic;
     letter-spacing: -2px;
     padding-right: 4px;
 }
 
 .subtitle {
-    font-family: Times, serif;
+    font-family: "Instrument Serif", serif;
     font-size: 0.8em;
     font-weight: 300;
     margin-top: -6px;
@@ -96,13 +94,13 @@ nav a {
 }
 
 nav a:hover {
-    font-family: Times, serif;
+    font-family: "Instrument Serif", serif;
     font-style: italic;
     padding-right: 4px;
 }
 
 nav a.active {
-    font-family: Times, serif;
+    font-family: "Instrument Serif", serif;
     font-style: italic;
     text-decoration: underline; 
     padding-right: 4px;
@@ -120,17 +118,17 @@ nav a.active {
  }   
 
  .info {
-    min-height: 120px;
-    overflow: hidden;
     word-wrap: break-word;
     overflow-wrap: break-word;
     padding-left: 10px;
     padding-right: 14px;
+    padding-bottom: 10px;
 }
 
 .info h2 {
     font-size: 1.6em;
     font-weight: normal;
+    letter-spacing: -1.5px;
     margin-bottom: 6px;
     margin-top: 0;
 }
@@ -138,6 +136,7 @@ nav a.active {
 .info p {
     word-wrap: break-word;
     overflow-wrap: break-word;
+    font-weight: 300;
     font-size: 1em;
     margin-top: 6px;
     line-height: 1;
@@ -145,10 +144,12 @@ nav a.active {
 
 .info a {
     color: black;
-    font-family: Times, serif;
+    font-family: "Instrument Serif", serif;
+    font-weight: 300;
     text-decoration: underline;
-    line-height: 1.2;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin-top: 4px;
+    overflow: hidden;
 }
 
 
@@ -167,7 +168,6 @@ nav a.active {
     align-items: flex-start;
     height: auto;
     width: 400px;
-    text-align: left;
     flex: 0 0 auto;
 }
 
@@ -272,8 +272,7 @@ nav a.active {
         padding: 20px;
     }
     .logo a {
-        font-size: 5em;
-        letter-spacing: -5px;
+        font-size: 8em;
     }
     .logo-image img {
         height: 72px;
