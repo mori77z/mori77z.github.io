@@ -44,8 +44,9 @@ body {
 }
 
 .moritz {
-font-family: Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     display: inline-block;
+    letter-spacing: -0.075em;
 }
 
 .logo a {
