@@ -50,7 +50,7 @@ font-family: Helvetica, Arial, sans-serif;
 
 .logo a {
     font-family: 'Moritz Sans Neue Bold', sans-serif;
-    font-size: 4em;
+    font-size: 3em;
     font-weight: normal;
     line-height: 1;
     color: black;
@@ -273,7 +273,7 @@ nav a.active {
         padding: 20px;
     }
     .logo a {
-        font-size: 8em;
+        font-size: 6em;
     }
     .logo-image img {
         height: 72px;
