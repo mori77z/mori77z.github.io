@@ -51,11 +51,11 @@ body {
 .logo a {
     /*font-family: 'Moritz Sans Neue Bold', sans-serif;*/
     font-family: Helvetica,  Arial, sans-serif;
-    font-size: 34px;
+    font-size: 2em;
     font-weight: normal;
     line-height: 1;
     color: black;
-    letter-spacing: -3px;
+    letter-spacing: -2.5px;
     white-space: nowrap;
     box-sizing: border-box; 
     text-decoration: none;
@@ -71,7 +71,7 @@ body {
 
 .subtitle {
     font-family: Times, serif;
-    font-size: 14px;
+    font-size: 0.8em;
     font-weight: 300;
     margin-top: -6px;
     margin-bottom: 0;
@@ -88,8 +88,8 @@ nav {
 }
 
 nav a {
-    font-size: 20px;
-    line-height: 22px;
+    font-size: 1.2em;
+    line-height: 1.1;
     text-decoration: underline;
     color: black;
     cursor: pointer;
@@ -116,8 +116,41 @@ nav a.active {
 .combined-container {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 10px;
+ }   
+
+ .info {
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding-left: 10px;
+    padding-right: 14px;
 }
+
+.info h2 {
+    font-size: 1.6em;
+    font-weight: normal;
+    margin-bottom: 6px;
+    margin-top: 0;
+}
+
+.info p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 1em;
+    margin-top: 6px;
+    line-height: 1;
+}
+
+.info a {
+    color: black;
+    font-family: Times, serif;
+    text-decoration: underline;
+    line-height: 1.2;
+    font-size: 1.2em;
+}
+
+
 .content {
     display: flex;
     justify-content: flex-start; 
@@ -135,35 +168,6 @@ nav a.active {
     width: 400px;
     text-align: left;
     flex: 0 0 auto;
-}
-
-.info {
-    height: 120px;
-    overflow: hidden;
-    width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.info h2 {
-    font-size: 24px;
-    font-weight: normal;
-    margin-bottom: 6px;
-    margin-top: 0;
-}
-
-.info p {
-    line-height: 1.2;
-    margin: 0;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.info a {
-    color: black;
-    font-family: Times, serif;
-    text-decoration: underline;
-    margin: 0;
 }
 
 .img-container {
@@ -235,12 +239,6 @@ nav a.active {
 .arrow_left, .arrow_right {
     color: black;
 }
-
-.discr-container {
-    font-size: 14px;
-    font-weight: 300;
-    padding: 0 10px;
-}
     
 .zoomed-container {
     position: fixed; 
@@ -273,14 +271,18 @@ nav a.active {
         padding: 20px;
     }
     .logo a {
-        font-size: 72px;
+        font-size: 5em;
         letter-spacing: -5px;
     }
     .logo-image img {
         height: 72px;
     }
+    nav a {
+    font-size: 1.6em;
+    line-height: 1.1;
+    }
     .subtitle {
-      font-size: 28px;
+      font-size: 1.4em;
       margin-top: -8px;
       }
     .content {
@@ -292,8 +294,16 @@ nav a.active {
     .discr-container {
         padding-left: 20px;
     }
+     .iframe-container iframe {
+    transform: scale(0.5);
+    }
+    .info {
+    padding-left: 20px;
+    padding-right: 24px;
+    }
+
     .info h2 {
-        font-size: 26px;
+        font-size: 1.9em;
     }
     .zoomed-image {
         max-width: 70vw;
