@@ -8,6 +8,22 @@
   padding-left: 10px;
   padding-right: 14px;
 }
+.last-edited {
+  font-family: "Instrument Serif", serif;
+  
+.custom-footer a {
+  color: inherit;
+  font-size: 1.1em;
+  text-decoration: underline;
+  font-weight: 600;
+  letter-spacing: -0.03;
+  }
+
+.custom-footer a:hover {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  padding-right: 3px;
+  }
 
 @media (min-width: 768px) {
   .custom-footer {
@@ -17,6 +33,7 @@
 }
 </style>
 <footer class="custom-footer">
-  <div id="last-edited">Last Updated: <span id="last-edited-date"></span></div>
-  <a href="/about/imprint" style="text-decoration: underline; color: inherit;">Imprint</a>
+  <div id="last-edited" class="last-edited">Last Updated: <span id="last-edited-date"></span></div>
+  <a href="/about">About</a>
+  <a href="/about/imprint">Imprint</a>
 </footer>
