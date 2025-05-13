@@ -6,6 +6,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // initAudioPlayer(); // Player bei Bedarf wieder aktivieren
 });
 
+// === Header Snippet einbinden ===
+function includeHeader() {
+    fetch("/snippets/header.html")
+        .then(response => {
+            if (!response.ok) throw new Error("Header konnte nicht geladen werden");
+            return response.text();
+        })
+        .then(data => {
+            const header = document.createElement("header");
+            header.innerHTML = data;
+            document.body.insertBefore(header, document.body.firstChild);
+        })
+        .catch(error => console.error("Fehler beim Laden des Headers:", error));
+}
+
 // === Glitch-Effekt beim Scrollen ===
 function initGlitchEffect() {
     const moritzElement = document.querySelector(".moritz");

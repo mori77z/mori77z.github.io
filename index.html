@@ -486,22 +486,6 @@
       <div class="zoomed-container">
          <img class="zoomed-image" src="" alt="Zoomed Image">
      </div>
-     
-<script>// === Header Snippet einbinden ===
-function includeHeader() {
-    fetch("/assets/header.html")
-        .then(response => {
-            if (!response.ok) throw new Error("Header konnte nicht geladen werden");
-            return response.text();
-        })
-        .then(data => {
-            const header = document.createElement("header");
-            header.innerHTML = data;
-            document.body.insertBefore(header, document.body.firstChild);
-        })
-        .catch(error => console.error("Fehler beim Laden des Headers:", error));
-}
-</script>
 
      
          <script src="/assets/global.js"></script>
