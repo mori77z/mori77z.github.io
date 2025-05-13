@@ -1,0 +1,120 @@
+<header class="header-container">
+  <style>
+    body.custom-body {
+      padding-bottom: 0;
+      margin: 0;
+    }
+
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 10px; 
+      overflow: visible;
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 10px;
+      width: 100%;
+    }
+
+    .moritz {
+      display: inline-block;
+    }
+
+    .logo a {
+      font-size: 2em;
+      font-weight: normal;
+      line-height: 1;
+      color: black;
+      letter-spacing: -0.075em;
+      white-space: nowrap;
+      box-sizing: border-box; 
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .logo a:hover {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      letter-spacing: -2px;
+      padding-right: 4px;
+    }
+
+    .subtitle {
+      font-family: "Instrument Serif", serif;
+      font-size: 0.8em;
+      font-weight: 300;
+      margin-top: -6px;
+      margin-bottom: 0;
+      text-align: left;
+    }
+
+    nav {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      font-size: 1.2em;
+      line-height: 1.1;
+      text-decoration: underline;
+      color: black;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      padding-right: 4px;
+    }
+
+    nav a.active {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      text-decoration: underline; 
+      padding-right: 4px;
+    }
+  </style>
+
+  <div class="logo">
+    <a class="moritz" href="/about">Moritz Gauss</a>
+    <a href="/studio/">Studio</a>
+  </div>
+
+  <h1 class="subtitle">digital artist and designer</h1>
+
+  <nav>
+    <a href="/" class="nav">Web</a>
+    <a href="/creative" class="nav">Creative</a>
+    <a href="/objects" class="nav">Objects</a>
+    <a href="/concepts" class="nav">Concepts</a>
+  </nav>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const links = document.querySelectorAll("nav a");
+      const path = window.location.pathname.replace(/\/index\.html$/, "/");
+
+      links.forEach(link => {
+        if (link.getAttribute("href") === path) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</header>

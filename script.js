@@ -242,19 +242,3 @@ function updatePlayPauseText() {
         });
     });
 });
-
-// === Android Overlay ===
-window.addEventListener('load', function () {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const isAndroid = /android/i.test(userAgent);
-    const isMobile = /mobile/i.test(userAgent);
-
-    const overlay = document.getElementById('android-overlay');
-
-    if (isAndroid && isMobile && overlay) {
-        overlay.style.display = 'flex';
-        document.addEventListener('click', function () {
-            overlay.style.display = 'none';
-        }, { once: true });
-    }
-});
