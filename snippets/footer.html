@@ -12,7 +12,7 @@
   font-family: "Instrument Serif", serif;
   
 .custom-footer a {
-  color: inherit;
+  color: black;
   font-size: 1.1em;
   text-decoration: underline;
   font-weight: 600;
@@ -31,6 +31,14 @@
     padding-right: 24px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .custom-footer a {
+    color: #fff;
+  }
+}
+
 </style>
 <footer class="custom-footer">
   <div id="last-edited" class="last-edited">Last Updated: <span id="last-edited-date"></span></div>
