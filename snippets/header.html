@@ -157,16 +157,60 @@
     <a href="/concepts" class="nav">Concepts</a>
   </nav>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const links = document.querySelectorAll("nav a");
-      const path = window.location.pathname.replace(/\/index\.html$/, "/");
+<script>
+  // === Glitch-Effekt beim Scrollen ===
+  function initGlitchEffect() {
+    const moritzElement = document.querySelector(".moritz");
+    if (!moritzElement) return;
 
-      links.forEach(link => {
-        if (link.getAttribute("href") === path) {
-          link.classList.add("active");
-        }
-      });
+    let isFlipping = false;
+    let lastScrollTop = 0;
+    let ticking = false;
+
+    function randomChar() {
+      const symbols = "✹❦♬♪♩★❥✱♫♞";
+      return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    function glitchText(element, originalText, duration = 300) {
+      if (isFlipping) return;
+      isFlipping = true;
+      const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
+      element.textContent = scrambledText;
+      setTimeout(() => {
+        element.textContent = originalText;
+        isFlipping = false;
+      }, duration);
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScroll = window.scrollY;
+          if (Math.abs(currentScroll - lastScrollTop) > 50) {
+            glitchText(moritzElement, "Moritz Gauss");
+            lastScrollTop = currentScroll;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
-  </script>
+  }
+
+  // === Aktiver nav-Link basierend auf URL ===
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("nav a");
+    const path = window.location.pathname.replace(/\/index\.html$/, "/");
+
+    links.forEach(link => {
+      const href = link.getAttribute("href");
+      if (href === path || (path === "/" && href === "/")) {
+        link.classList.add("active");
+      }
+    });
+
+    initGlitchEffect();
+  });
+</script>
 </header>
