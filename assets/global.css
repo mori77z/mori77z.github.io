@@ -110,7 +110,7 @@ body {
 .iframe-container iframe {
   width: 1200px; 
   height: 900px;
-  transform: scale(0.333);
+  transform: scale(0.5);
   transform-origin: 0 0;
   pointer-events: none;
   transition: filter 0.3s ease;
@@ -224,24 +224,6 @@ body {
     body {
         background-color: #000;
         color: #fff;
-    }
-    .header-container {
-    background-color: rgba(0, 0, 0, 0.1);
-    }
-    
-    .logo a {
-        color: white;
-    }
-    
-    .logo-light {
-    display: none;
-    }
-    .logo-dark {
-    display: block;
-    }
-  
-    nav a {
-        color: white;
     }
     .info {
         color: white;

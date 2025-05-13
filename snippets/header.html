@@ -11,8 +11,7 @@
       align-items: flex-start;
       padding: 10px;
       gap: 10px; 
-      overflow: visible;
-      position: sticky;
+      position: fixed;
       top: 0;
       background-color: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(5px);
@@ -88,6 +87,51 @@
       font-style: italic;
       text-decoration: underline; 
       padding-right: 4px;
+    }
+
+@media (min-width: 768px) {
+    .header-container {
+        padding: 20px;
+    }
+    .logo a {
+        font-size: 5em;
+    }
+    .logo-image img {
+        height: 72px;
+    }
+    nav a {
+    font-size: 1.6em;
+    line-height: 1.1;
+    }
+    .subtitle {
+      font-size: 1.4em;
+      margin-top: -8px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+    body.custom-body {
+        background-color: #000;
+        color: #fff;
+    }
+    .header-container {
+    background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo a {
+        color: white;
+    }
+    
+    .logo-light {
+    display: none;
+    }
+    .logo-dark {
+    display: block;
+    }
+  
+    nav a {
+        color: white;
+    }
     }
   </style>
 
