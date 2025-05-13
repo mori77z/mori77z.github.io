@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     includeHeader();
+    includeFooter();
     initZoomImages();
     initArrowScroll();
     // initAudioPlayer(); // Player bei Bedarf wieder aktivieren
@@ -65,6 +66,36 @@ function includeHeader() {
             }
         })
         .catch(error => console.error("Fehler beim Laden des Headers:", error));
+}
+
+function includeFooter() {
+    fetch("/snippets/footer.html")
+        .then(response => {
+            if (!response.ok) throw new Error("Footer konnte nicht geladen werden");
+            return response.text();
+        })
+        .then(data => {
+            const footer = document.createElement("footer");
+            footer.innerHTML = data;
+            document.body.appendChild(footer);
+            updateLastEditedDate();
+        })
+        .catch(error => console.error("Fehler beim Laden des Footers:", error));
+}
+
+function updateLastEditedDate() {
+    const edited = new Date(document.lastModified);
+    const formatted = edited.toLocaleString('de-DE', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    const dateSpan = document.getElementById("last-edited-date");
+    if (dateSpan) {
+        dateSpan.textContent = formatted;
+    }
 }
 
 // === Bild-Zoom bei Klick ===
