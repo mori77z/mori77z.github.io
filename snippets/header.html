@@ -9,22 +9,22 @@
     }
 
     .header-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px;
-  gap: 10px;
-  position: fixed;
-  top: 0;
-  left: 0; 
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  z-index: 10;
-  width: 100%;
-  box-sizing: border-box;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 10;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
     .logo {
       display: flex;
@@ -96,50 +96,50 @@
       padding-right: 4px;
     }
 
-@media (min-width: 768px) {
-    .header-container {
+    @media (min-width: 768px) {
+      .header-container {
         padding: 20px;
-    }
-    .logo a {
+      }
+      .logo a {
         font-size: 5em;
-    }
-    .logo-image img {
+      }
+      .logo-image img {
         height: 72px;
-    }
-    nav a {
-    font-size: 1.6em;
-    line-height: 1.1;
-    }
-    .subtitle {
-      font-size: 1.4em;
-      margin-top: -8px;
+      }
+      nav a {
+        font-size: 1.6em;
+        line-height: 1.1;
+      }
+      .subtitle {
+        font-size: 1.4em;
+        margin-top: -8px;
       }
     }
 
     @media (prefers-color-scheme: dark) {
-    body.custom-body {
+      body.custom-body {
         background-color: #000;
         color: #fff;
         height: 100px;
-    }
-    .header-container {
-    background-color: rgba(0, 0, 0, 0.1);
-    }
-    
-    .logo a {
+      }
+      .header-container {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .logo a {
         color: white;
-    }
-    
-    .logo-light {
-    display: none;
-    }
-    .logo-dark {
-    display: block;
-    }
-  
-    nav a {
+      }
+
+      .logo-light {
+        display: none;
+      }
+      .logo-dark {
+        display: block;
+      }
+
+      nav a {
         color: white;
-    }
+      }
     }
   </style>
 
@@ -156,61 +156,4 @@
     <a href="/objects" class="nav">Objects</a>
     <a href="/concepts" class="nav">Concepts</a>
   </nav>
-
-<script>
-  // === Glitch-Effekt beim Scrollen ===
-  function initGlitchEffect() {
-    const moritzElement = document.querySelector(".moritz");
-    if (!moritzElement) return;
-
-    let isFlipping = false;
-    let lastScrollTop = 0;
-    let ticking = false;
-
-    function randomChar() {
-      const symbols = "✹❦♬♪♩★❥✱♫♞";
-      return symbols[Math.floor(Math.random() * symbols.length)];
-    }
-
-    function glitchText(element, originalText, duration = 300) {
-      if (isFlipping) return;
-      isFlipping = true;
-      const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
-      element.textContent = scrambledText;
-      setTimeout(() => {
-        element.textContent = originalText;
-        isFlipping = false;
-      }, duration);
-    }
-
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const currentScroll = window.scrollY;
-          if (Math.abs(currentScroll - lastScrollTop) > 50) {
-            glitchText(moritzElement, "Moritz Gauss");
-            lastScrollTop = currentScroll;
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-  }
-
-  // === Aktiver nav-Link basierend auf URL ===
-  document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("nav a");
-    const path = window.location.pathname.replace(/\/index\.html$/, "/");
-
-    links.forEach(link => {
-      const href = link.getAttribute("href");
-      if (href === path || (path === "/" && href === "/")) {
-        link.classList.add("active");
-      }
-    });
-
-    initGlitchEffect();
-  });
-</script>
 </header>
