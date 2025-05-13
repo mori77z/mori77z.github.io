@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     includeHeader();
-    initGlitchEffect();
     initZoomImages();
     initArrowScroll();
     // initAudioPlayer(); // Player bei Bedarf wieder aktivieren
@@ -17,48 +16,55 @@ function includeHeader() {
             const header = document.createElement("header");
             header.innerHTML = data;
             document.body.insertBefore(header, document.body.firstChild);
+
+            // Aktiven Navigationslink hervorheben
+            const currentPath = window.location.pathname;
+            header.querySelectorAll("nav a").forEach(link => {
+                const href = link.getAttribute("href");
+                if (href === currentPath || (currentPath === "/" && href === "/")) {
+                    link.classList.add("active");
+                }
+            });
+
+            // Glitch-Funktion auf .moritz
+            const moritzElement = header.querySelector(".moritz");
+            if (moritzElement) {
+                let isFlipping = false;
+                let lastScrollTop = 0;
+                let ticking = false;
+
+                function randomChar() {
+                    const symbols = "✹❦♬♪♩★❥✱♫♞";
+                    return symbols[Math.floor(Math.random() * symbols.length)];
+                }
+
+                function glitchText(element, originalText, duration = 300) {
+                    if (isFlipping) return;
+                    isFlipping = true;
+                    const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
+                    element.textContent = scrambledText;
+                    setTimeout(() => {
+                        element.textContent = originalText;
+                        isFlipping = false;
+                    }, duration);
+                }
+
+                window.addEventListener("scroll", () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            const currentScroll = window.scrollY;
+                            if (Math.abs(currentScroll - lastScrollTop) > 50) {
+                                glitchText(moritzElement, "Moritz Gauss");
+                                lastScrollTop = currentScroll;
+                            }
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+            }
         })
         .catch(error => console.error("Fehler beim Laden des Headers:", error));
-}
-
-// === Glitch-Effekt beim Scrollen ===
-function initGlitchEffect() {
-    const moritzElement = document.querySelector(".moritz");
-    if (!moritzElement) return;
-
-    let isFlipping = false;
-    let lastScrollTop = 0;
-    let ticking = false;
-
-    function randomChar() {
-        const symbols = "✹❦♬♪♩★❥✱♫♞";
-        return symbols[Math.floor(Math.random() * symbols.length)];
-    }
-
-    function glitchText(element, originalText, duration = 300) {
-        if (isFlipping) return;
-        isFlipping = true;
-        const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
-        element.textContent = scrambledText;
-        setTimeout(() => {
-            element.textContent = originalText;
-            isFlipping = false;
-        }, duration);
-    }
-
-    window.addEventListener("scroll", () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const currentScroll = window.scrollY;
-                if (Math.abs(currentScroll - lastScrollTop) > 50) {
-                    glitchText(moritzElement, "Moritz Gauss");
-                    lastScrollTop = currentScroll;
-                }
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
 }
 
 // === Bild-Zoom bei Klick ===
