@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
-    margin: 0;
+    margin-top: 106px;
     padding-bottom: 40px;
   }
 
@@ -170,23 +170,9 @@ body {
   
 
 @media (min-width: 768px) {
-    .header-container {
-        padding: 20px;
+  body {
+    margin-top: 166px;
     }
-    .logo a {
-        font-size: 5em;
-    }
-    .logo-image img {
-        height: 72px;
-    }
-    nav a {
-    font-size: 1.6em;
-    line-height: 1.1;
-    }
-    .subtitle {
-      font-size: 1.4em;
-      margin-top: -8px;
-      }
     .content {
         margin-left: 20px;
     }
