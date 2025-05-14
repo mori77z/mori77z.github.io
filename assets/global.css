@@ -128,7 +128,7 @@ body {
 }
 
 .iframe-container:hover iframe {
-    filter: blur(1px) brightness(1);
+    filter: darken(2);
 }
 
 .arrows-wrapper {
