@@ -13,4 +13,4 @@ setInterval(() => {
   const favicon = document.getElementById('favicon');
   favicon.href = frames[index];
   index = (index + 1) % frames.length;
-}, 150);
+}, 300);
