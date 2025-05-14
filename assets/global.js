@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     includeFooter();
     initZoomImages();
     initArrowScroll();
+    initConfirmLinks();
     // initAudioPlayer(); // Player bei Bedarf wieder aktivieren
 });
 
@@ -96,6 +97,19 @@ function updateLastEditedDate() {
     if (dateSpan) {
         dateSpan.textContent = formatted;
     }
+}
+
+function initConfirmLinks() {
+    document.querySelectorAll(".iframe-container").forEach(container => {
+        container.addEventListener("click", function (e) {
+            e.preventDefault();
+            const url = container.dataset.href;
+            const confirmResult = confirm("Open in new tab?");
+            if (confirmResult) {
+                window.open(url, "_blank");
+            }
+        });
+    });
 }
 
 // === Bild-Zoom bei Klick ===
