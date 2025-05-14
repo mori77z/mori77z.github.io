@@ -19,14 +19,14 @@ function includeHeader() {
             header.innerHTML = data;
             document.body.insertBefore(header, document.body.firstChild);
 
-            // Aktiven Navigationslink hervorheben
-            const currentPath = window.location.pathname;
-            header.querySelectorAll("nav a").forEach(link => {
-                const href = link.getAttribute("href");
-                if (href === currentPath || (currentPath === "/" && href === "/")) {
-                    link.classList.add("active");
-                }
-            });
+const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+header.querySelectorAll("nav a").forEach(link => {
+    const href = link.getAttribute("href").replace(/\/$/, "") || "/";
+    if (href === currentPath) {
+        link.classList.add("active");
+    }
+});
+
 
             // Glitch-Funktion auf .moritz
             const moritzElement = header.querySelector(".moritz");
