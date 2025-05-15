@@ -42,7 +42,7 @@ body {
 .info h2 {
     font-size: 1.6em;
     font-weight: normal;
-    letter-spacing: -1.5px;
+    letter-spacing: -0.03em;
     margin-bottom: 6px;
     margin-top: 0;
 }
@@ -52,6 +52,7 @@ body {
     overflow-wrap: break-word;
     font-weight: 300;
     font-size: 1em;
+    letter-spacing: 0.02em;
     margin-top: 6px;
     line-height: 1;
 }
@@ -205,6 +206,15 @@ body {
     .info h2 {
         font-size: 1.9em;
     }
+    
+.info p {
+    font-size: 1.3em;
+}
+
+.info a {
+    font-size: 1.3em;
+}
+
     .zoomed-image {
         max-width: 70vw;
         max-height: 70vw;
