@@ -3,12 +3,18 @@ body {
     background: white;
     display: flex;
     flex-direction: column;
-    font-family: "Almarai", sans-serif;
+    font-family: "Helvetica", sans-serif;
     padding-top: 150px;
     padding-bottom: 40px;
     overflow-x: hidden;
     margin: 0;
 }
+
+    @font-face {
+      font-family: 'Helvetica';
+      src: url('/assets/Helvetica.woff') format('woff');
+        font-display: swap;
+    }
 
 .main-container {
     width: 100%;
@@ -52,7 +58,6 @@ body {
 
 .info a {
     color: black;
-    font-family: "IBM Plex Mono", sans-serif;
     font-weight: 300;
     text-decoration: underline;
     font-size: 1em;
