@@ -28,7 +28,7 @@ body {
 .combined-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
  }   
 
  .info {
@@ -187,6 +187,9 @@ body {
   body {
     padding-top: 240px;
     }
+    .combined-container {
+    gap: 10 px;
+     }   
     .content {
         margin-left: 20px;
     }
