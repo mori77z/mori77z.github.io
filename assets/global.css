@@ -228,7 +228,7 @@ body {
     }
 }
 
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
     body {
         background-color: #000;
         color: #fff;
@@ -242,4 +242,4 @@ body {
     .arrow_left, .arrow_right {
         color: white;
     }
-}
+}*/
