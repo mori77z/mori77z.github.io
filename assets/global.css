@@ -1,20 +1,22 @@
+    @font-face {
+      font-family: 'Helvetica';
+      src: url('/assets/Helvetica.woff') format('woff');
+        font-display: swap;
+    }
+    
 body {
     width: 100%;
     background: white;
     display: flex;
     flex-direction: column;
-    font-family: "Helvetica", sans-serif;
+    font-family: Helvetica, sans-serif;
+    color: #ddd;
     padding-top: 150px;
     padding-bottom: 40px;
     overflow-x: hidden;
     margin: 0;
 }
 
-    @font-face {
-      font-family: 'Helvetica';
-      src: url('/assets/Helvetica.woff') format('woff');
-        font-display: swap;
-    }
 
 .main-container {
     width: 100%;
@@ -60,7 +62,7 @@ body {
 }
 
 .info a {
-    color: black;
+    color: #ddd;
     font-weight: 400;
     text-decoration: underline;
     margin-top: 4px;
@@ -154,7 +156,7 @@ body {
 }
 
 .arrow_left, .arrow_right {
-    color: black;
+    color: #ddd;
 }
     
 .zoomed-container {
