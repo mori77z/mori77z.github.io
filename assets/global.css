@@ -6,11 +6,11 @@
     
 body {
     width: 100%;
-    background: white;
+    background: #ddd;
     display: flex;
     flex-direction: column;
     font-family: Helvetica, sans-serif;
-    color: #727273;
+    color: black;
     padding-top: 150px;
     padding-bottom: 40px;
     overflow-x: hidden;
@@ -62,7 +62,7 @@ body {
 }
 
 .info a {
-    color: #ddd;
+    color: black;
     font-weight: 400;
     text-decoration: underline;
     margin-top: 4px;
@@ -156,7 +156,7 @@ body {
 }
 
 .arrow_left, .arrow_right {
-    color: #727273;
+    color: black;
 }
     
 .zoomed-container {
