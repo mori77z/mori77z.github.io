@@ -28,43 +28,44 @@ header.querySelectorAll("nav a").forEach(link => {
 });
 
 
-            // Glitch-Funktion auf .moritz
-            const moritzElement = header.querySelector(".moritz");
-            if (moritzElement) {
-                let isFlipping = false;
-                let lastScrollTop = 0;
-                let ticking = false;
+// Glitch-Funktion auf .moritz
+const moritzElement = header.querySelector(".moritz");
+if (moritzElement) {
+    const originalHTML = '<span class="capital">M</span>oritz Gauss';
+    let isFlipping = false;
+    let lastScrollTop = 0;
+    let ticking = false;
 
-                function randomChar() {
-                    const symbols = "✹❦♬♪♩★❥✱♫♞";
-                    return symbols[Math.floor(Math.random() * symbols.length)];
+    function randomChar() {
+        const symbols = "✹❦♬♪♩★❥✱♫♞";
+        return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    function glitchText(element, originalHTML, duration = 300) {
+        if (isFlipping) return;
+        isFlipping = true;
+        const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
+        element.textContent = scrambledText;
+        setTimeout(() => {
+            element.innerHTML = originalHTML;
+            isFlipping = false;
+        }, duration);
+    }
+
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const currentScroll = window.scrollY;
+                if (Math.abs(currentScroll - lastScrollTop) > 50) {
+                    glitchText(moritzElement, originalHTML);
+                    lastScrollTop = currentScroll;
                 }
-
-                function glitchText(element, originalText, duration = 300) {
-                    if (isFlipping) return;
-                    isFlipping = true;
-                    const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
-                    element.textContent = scrambledText;
-                    setTimeout(() => {
-                        element.textContent = originalText;
-                        isFlipping = false;
-                    }, duration);
-                }
-
-                window.addEventListener("scroll", () => {
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            const currentScroll = window.scrollY;
-                            if (Math.abs(currentScroll - lastScrollTop) > 50) {
-                                glitchText(moritzElement, "Moritz Gauss");
-                                lastScrollTop = currentScroll;
-                            }
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                });
-            }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
         })
         .catch(error => console.error("Fehler beim Laden des Headers:", error));
 }
