@@ -24,9 +24,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Poiret+One&family=Trocchi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
 </head>
+<style>
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.masked-logo {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: top left;
+}
+
+header .masked-logo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 150px;
+  height: 75px;
+  opacity: 0;
+}
+</style>
 <body>
 
- 
+ <!-- Loader -->
+<div class="loader">
+  <div class="masked-logo">
+    <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <mask id="text-mask">
+          <rect width="100%" height="100%" fill="white" />
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica, sans-serif" font-weight="bold" font-size="100" letter-spacing="-4px" fill="black">
+            Moritz Gauss
+          </text>
+        </mask>
+      </defs>
+      <image
+        href="/path/to/your/loop.gif"
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid slice"
+        mask="url(#text-mask)"
+      />
+    </svg>
+  </div>
+</div>
+
         <div class="main-container">
 
                         <div class="combined-container" id="sanzo-wada">
@@ -480,7 +532,48 @@
       <div class="zoomed-container">
          <img class="zoomed-image" src="" alt="Zoomed Image">
      </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.querySelector('.loader');
+  const loaderLogo = loader.querySelector('.masked-logo');
+  const headerLogo = document.querySelector('header .masked-logo');
+  const pageContent = document.querySelectorAll('header, main');
 
+  const tl = gsap.timeline({
+    defaults: { ease: 'power2.out' },
+    onComplete: () => {
+      loader.remove(); // Remove loader from DOM completely
+    },
+  });
+
+  // Animate loader logo to top-left corner
+  tl.to(loaderLogo, {
+    top: '1rem',
+    left: '1rem',
+    scale: 0.5,
+    duration: 1.2,
+  })
+
+  // Fade out and remove loader logo
+  .to(loaderLogo, {
+    opacity: 0,
+    duration: 0.3,
+  })
+
+  // Fade in header logo
+  .to(headerLogo, {
+    opacity: 1,
+    duration: 0.5
+  }, "-=0.2")
+
+  // Fade in rest of page content
+  .to(pageContent, {
+    opacity: 1,
+    duration: 0.8,
+    stagger: 0.2,
+  }, "-=0.3");
+});
+</script>
          <script src="/assets/global.js"></script>
          <script src="/material/favicon.js"></script>   
      </body>
