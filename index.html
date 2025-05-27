@@ -25,40 +25,52 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
 </head>
 <style>
-.loader {
+body {
+  margin: 0;
+  overflow: hidden; /* prevent scroll during load */
+}
+
+#preloader {
   position: fixed;
-  inset: 0;
-  background: #fff;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000; /* or whatever fits */
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
-.masked-logo {
+#logo-container {
+  width: 200px;
+  height: auto;
+  transition: transform 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out;
   position: absolute;
-  width: 300px;
-  height: 150px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transform-origin: top left;
 }
 
-header .masked-logo {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  width: 150px;
-  height: 75px;
+#logo-container.animated {
+  top: 2rem;
+  left: 2rem;
+  transform: translate(0, 0) scale(0.3);
+}
+
+#main-content.hidden {
   opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#main-content.visible {
+  opacity: 1;
 }
 </style>
 <body>
-
- <!-- Loader -->
-<div class="loader">
-  <div class="masked-logo">
+<div id="preloader">
+  <div id="logo-container">
     <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
       <defs>
         <mask id="text-mask">
@@ -77,6 +89,9 @@ header .masked-logo {
       />
     </svg>
   </div>
+</div>
+
+
 </div>
 
         <div class="main-container">
@@ -525,53 +540,25 @@ header .masked-logo {
                      <span class="arrow arrow_right">→</span>
              </div>
             </div>
-         </div>
-     </div>                  
-     
-     
-      <div class="zoomed-container">
-         <img class="zoomed-image" src="" alt="Zoomed Image">
-     </div>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const loader = document.querySelector('.loader');
-  const loaderLogo = loader.querySelector('.masked-logo');
-  const headerLogo = document.querySelector('header .masked-logo');
-  const pageContent = document.querySelectorAll('header, main');
+            <script>
+window.addEventListener('load', () => {
+  const logo = document.getElementById('logo-container');
+  const content = document.getElementById('main-content');
 
-  const tl = gsap.timeline({
-    defaults: { ease: 'power2.out' },
-    onComplete: () => {
-      loader.remove(); // Remove loader from DOM completely
-    },
-  });
+  // Trigger the logo animation
+  setTimeout(() => {
+    logo.classList.add('animated');
+  }, 500); // short delay for visual pacing
 
-  // Animate loader logo to top-left corner
-  tl.to(loaderLogo, {
-    top: '1rem',
-    left: '1rem',
-    scale: 0.5,
-    duration: 1.2,
-  })
+  // Show content after animation
+  setTimeout(() => {
+    content.classList.remove('hidden');
+    content.classList.add('visible');
 
-  // Fade out and remove loader logo
-  .to(loaderLogo, {
-    opacity: 0,
-    duration: 0.3,
-  })
-
-  // Fade in header logo
-  .to(headerLogo, {
-    opacity: 1,
-    duration: 0.5
-  }, "-=0.2")
-
-  // Fade in rest of page content
-  .to(pageContent, {
-    opacity: 1,
-    duration: 0.8,
-    stagger: 0.2,
-  }, "-=0.3");
+    // Optional: remove preloader from DOM
+    document.getElementById('preloader').style.display = 'none';
+    document.body.style.overflow = 'auto'; // re-enable scrolling
+  }, 1500);
 });
 </script>
          <script src="/assets/global.js"></script>
