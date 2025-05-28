@@ -6,7 +6,7 @@
     
 body {
     width: 100%;
-    background:  white, #fc4022;
+    background:  white;
     display: flex;
     flex-direction: column;
     font-family: Helvetica, sans-serif;
@@ -17,13 +17,15 @@ body {
     margin: 0;
 }
 
+body {
+    background:  #FC4022;
+}
 
 .main-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 80px;
-    overflow: hidden;
     flex: 1;
 }
 
