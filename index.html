@@ -24,75 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Poiret+One&family=Trocchi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
 </head>
-<style>
-body {
-  margin: 0;
-  overflow: hidden; /* prevent scroll during load */
-}
-
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #000; /* or whatever fits */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-#logo-container {
-  width: 200px;
-  height: auto;
-  transition: transform 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-#logo-container.animated {
-  top: 2rem;
-  left: 2rem;
-  transform: translate(0, 0) scale(0.3);
-}
-
-#main-content.hidden {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-#main-content.visible {
-  opacity: 1;
-}
-</style>
 <body>
-<!--<div id="preloader">
-  <div id="logo-container">
-    <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <mask id="text-mask">
-          <rect width="100%" height="100%" fill="white" />
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica, sans-serif" font-weight="bold" font-size="100" letter-spacing="-4px" fill="black">
-            Moritz Gauss
-          </text>
-        </mask>
-      </defs>
-      <image
-        href="/path/to/your/loop.gif"
-        width="100%"
-        height="100%"
-        preserveAspectRatio="xMidYMid slice"
-        mask="url(#text-mask)"
-      />
-    </svg>
-  </div>
-</div>-->
-
-
-</div>
 
         <div class="main-container">
 
