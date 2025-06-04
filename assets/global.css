@@ -49,7 +49,6 @@ html {
     font-size: 1.4em;
     font-weight: normal;
     letter-spacing: -0.03em;
-    margin-bottom: 6px;
     line-height: 1;
     margin-top: 0;
 }
@@ -59,7 +58,6 @@ html {
     overflow-wrap: break-word;
     font-weight: 300;
     letter-spacing: 0.02em;
-    margin-top: 6px;
     line-height: 1;
 }
 
@@ -67,8 +65,7 @@ html {
     color: black;
     font-weight: 400;
     text-decoration: underline;
-    margin-top: 4px;
-    overflow: hidden;
+    line-height: 1;
 }
 
 
