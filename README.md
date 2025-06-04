@@ -4,7 +4,7 @@ This repository contains the source code for my personal website as a freelance 
 
 *License*
 
-This project is licensed under the a custom License. Unauthorized distribution or modification of this code is prohibited. Please refer to the LICENSE file for more details.
+This project is licensed under a custom License. Unauthorized distribution or modification of this code is prohibited. Please refer to the LICENSE file for more details.
 
 *Security*
 
