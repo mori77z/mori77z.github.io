@@ -17,8 +17,9 @@ body {
     margin: 0;
 }
 
-html {
-    background:  #FC4022;
+::selection {
+    color: yellow;
+    background: red;
 }
 
 .main-container {
@@ -200,17 +201,15 @@ html {
     .discr-container {
         padding-left: 20px;
     }
-     .iframe-container iframe {
-    transform: scale(0.5);
-    }
+
     .info {
     padding-left: 20px;
     padding-right: 24px;
-    font-size: 1.4em;
+    font-size: 1em;
     }
 
     .info h2 {
-        font-size: 2.2em;
+        font-size: 1.6em;
     }
 
     .zoomed-image {
