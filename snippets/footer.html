@@ -5,8 +5,11 @@
   justify-content: flex-start;
   gap: 20px;
   align-items: baseline;
-  padding: 60px 10px 40px 20px;
+  padding: 60px 10px 40px 20px; /* top, right, bottom, left */
+  padding-left: 10px;
+  padding-right: 20px;
 }
+
 .last-edited {
   font-size: 0.6em;
   font-weight: 300;
@@ -18,25 +21,24 @@
   font-size: 1em;
   text-decoration: underline;
   letter-spacing: -0.03em;
-  }
+}
 
 .custom-footer a:hover {
   font-family: "Snell", serif;
   font-style: italic;
   padding-right: 3px;
-  }
+}
 
 @media (min-width: 768px) {
   .custom-footer {
     font-size: 1.2em;
     padding-left: 20px;
-    padding-right: 24px;
+    padding-right: 30px;
     height: 100px;
   }
 }
 
- @media (prefers-color-scheme: dark) {
-
+@media (prefers-color-scheme: dark) {
   .custom-footer a {
     color: #fff;
   }
