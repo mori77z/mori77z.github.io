@@ -216,6 +216,11 @@ body {
         max-width: 70vw;
         max-height: 70vw;
     }
+
+    .iframe-container iframe {
+    transform: scale(0.47);
+    }
+    
     .scroll-box {
         width: 600px;
         height: auto;
