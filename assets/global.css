@@ -233,7 +233,10 @@ body {
     }  
     .info a {
         color: white;
-    }   
+    }
+    .info a:hover {
+    color: white;
+    }
     .arrow_left, .arrow_right {
         color: white;
     }
