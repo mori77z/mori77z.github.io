@@ -1,15 +1,9 @@
-    @font-face {
-      font-family: 'Helvetica';
-      src: url('/assets/Helvetica.woff') format('woff');
-        font-display: swap;
-    }
-    
 body {
     width: 100%;
     background:  white;
     display: flex;
     flex-direction: column;
-    font-family: Helvetica, sans-serif;
+    font-family: Times, sans-serif;
     color: black;
     padding-top: 150px;
     padding-bottom: 40px;
@@ -41,7 +35,6 @@ body {
     overflow-wrap: break-word;
     padding-left: 10px;
     padding-right: 14px;
-    padding-bottom: 10px;
     font-size: 0.8em;
     line-height: 0.9;
 }
@@ -57,18 +50,18 @@ body {
 .info p {
     word-wrap: break-word;
     overflow-wrap: break-word;
-    font-weight: 300;
-    letter-spacing: 0.02em;
     line-height: 1;
 }
 
 .info a {
     color: black;
-    font-weight: 400;
     text-decoration: underline;
     line-height: 1;
 }
 
+.info a:hover {
+    color: black;
+}
 
 .content {
     display: flex;
@@ -207,6 +200,10 @@ body {
     padding-right: 24px;
     font-size: 1em;
     }
+    
+    .info a:hover {
+    color: #ddd;
+    }
 
     .info h2 {
         font-size: 1.6em;
@@ -218,19 +215,16 @@ body {
     }
 
     .iframe-container iframe {
-    transform: scale(0.47);
+    transform: scale(0.5);
     }
     
     .scroll-box {
         width: 600px;
         height: auto;
     }
-    .discr-container {
-        font-size: 16px;
-    }
 }
 
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     body {
         background-color: #000;
         color: #fff;
@@ -244,4 +238,4 @@ body {
     .arrow_left, .arrow_right {
         color: white;
     }
-}*/
+}
