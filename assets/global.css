@@ -119,18 +119,13 @@ body {
 .iframe-container iframe {
   width: 1200px; 
   height: 900px;
-  transform: scale(0.1);
+  transform: scale(0.15);
   transform-origin: 0 0;
   pointer-events: none;
-  transition: filter 0.3s ease;
   border: none;
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.iframe-container:hover iframe {
-    filter: darken(2);
 }
 
 .arrows-wrapper {
@@ -221,7 +216,7 @@ body {
     }
     
     .iframe-container iframe {
-    transform: scale(0.2);
+    transform: scale(0.35);
     }
 }
 
