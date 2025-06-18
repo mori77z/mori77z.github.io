@@ -118,7 +118,7 @@ body {
 .iframe-container iframe {
   width: 1200px; 
   height: 900px;
-  transform: scale(0.35);
+  transform: scale(0.2);
   transform-origin: 0 0;
   pointer-events: none;
   transition: filter 0.3s ease;
@@ -214,7 +214,7 @@ body {
     }
 
     .iframe-container iframe {
-    transform: scale(0.5);
+    transform: scale(0.4);
     }
     
     .scroll-box {
