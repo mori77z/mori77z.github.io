@@ -77,7 +77,7 @@ body {
 .scroll-box {
     align-items: flex-start;
     height: auto;
-    width: 400px;
+    width: 200px;
     flex: 0 0 auto;
 }
 
@@ -218,7 +218,7 @@ body {
     }
     
     .scroll-box {
-        width: 600px;
+        width: 400px;
         height: auto;
     }
 }
