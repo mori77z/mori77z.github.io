@@ -21,11 +21,6 @@
     <link rel="stylesheet" href="/assets/global.css">
 </head>
 <body>
-<div id="preloader">
-  <div id="logo-container">
-    <span class="capital">M</span><span class="initial-g">G</span>
-  </div>
-</div>
 
         <div class="main-container">
 
@@ -486,57 +481,6 @@
             </div>
         </div>
         
-<script>
-window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  const logo = document.getElementById('logo-container');
-  const g = document.getElementById('g-letter');
-  const content = document.getElementById('main-content');
-
-  // === Apply initial styles ===
-  Object.assign(preloader.style, {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'white',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: '9999',
-    transition: 'opacity 0.6s ease',
-  });
-
-  Object.assign(logo.style, {
-    fontSize: '3rem',
-    transform: 'scale(1)',
-    opacity: '1',
-    transition: 'transform 0.8s ease, opacity 0.6s ease',
-  });
-
-  Object.assign(g.style, {
-    fontFamily: 'Times New Roman, Times, serif',
-    fontWeight: '400',
-  });
-
-  // === Animation ===
-  setTimeout(() => {
-    logo.style.transform = 'scale(1.6)';
-    logo.style.opacity = '0';
-  }, 300);
-
-  setTimeout(() => {
-    preloader.style.opacity = '0';
-    document.body.style.overflow = 'auto';
-    content.style.display = 'block';
-
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 600); // match fade-out
-  }, 1200);
-});
-</script>
          <script src="/assets/global.js"></script>
          <script src="/material/favicon.js"></script>   
      </body>
