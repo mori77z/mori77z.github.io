@@ -27,7 +27,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
- }   
+    scrollbar-width: none;
+ }
+
+.combined-container::-webkit-scrollbar {
+  display: none;
+}
+
 
  .info {
     word-wrap: break-word;
