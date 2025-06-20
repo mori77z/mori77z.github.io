@@ -29,19 +29,6 @@ body {
     gap: 6px;
 }
 
-  .combined-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.combined-container::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.6); 
-  border-radius: 4px;
-}
-
-.combined-container::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-
 
  .info {
     word-wrap: break-word;
@@ -87,6 +74,19 @@ body {
     overflow-x: auto; 
     max-width: 100%;
     height: auto;
+}
+
+  .content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.6); 
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .scroll-box {
