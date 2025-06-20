@@ -27,16 +27,21 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
-  overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
 }
 
-.combined-container::-webkit-scrollbar {
-  width: 0 !important;        /* Safari + Chrome */
-  height: 0 !important;
-  background: transparent;
+  .combined-container::-webkit-scrollbar {
+  width: 8px;
 }
+
+.combined-container::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.6); 
+  border-radius: 4px;
+}
+
+.combined-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 
  .info {
     word-wrap: break-word;
