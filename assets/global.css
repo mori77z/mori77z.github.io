@@ -27,13 +27,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    scrollbar-width: none;
- }
-
-.combined-container::-webkit-scrollbar {
-  display: none;
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
 }
 
+.combined-container::-webkit-scrollbar {
+  width: 0 !important;        /* Safari + Chrome */
+  height: 0 !important;
+  background: transparent;
+}
 
  .info {
     word-wrap: break-word;
