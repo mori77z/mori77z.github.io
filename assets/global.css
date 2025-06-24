@@ -77,23 +77,18 @@ body {
 }
 
   .content::-webkit-scrollbar {
-  width: 8px;
+    width: 4px;
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: #ddd; 
-  border-radius: 12px;
+  background: rgba (0, 0, 0, 0.4); 
+  margin-top: 10px;
+  margin-top: 10px;
+  border-radius: 20px;
 }
 
 .content::-webkit-scrollbar-track {
   background: transparent;
-}
-
-.scroll-box {
-    align-items: flex-start;
-    height: auto;
-    width: 200px;
-    flex: 0 0 auto;
 }
 
 .img-container {
@@ -189,7 +184,7 @@ body {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 260px;
+    padding-top: 340px;
     }
     .combined-container {
     gap: 10 px;
