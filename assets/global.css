@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     font-family: Times, sans-serif;
     color: black;
-    padding-top: 150px;
+    padding-top: 180px;
     overflow-x: hidden;
     margin: 0;
 }
@@ -205,12 +205,19 @@ body {
     }
 
     .info {
+    opacity: 0;
+    cursor: pointer;
     padding-left: 20px;
     padding-right: 30px;
     padding-bottom: 20px;
     font-size: 1em;
     }
+
+    .info:hover {
+      opacity: 1;
+      pointer-events: auto;
     
+    }
     .info a:hover {
     color: #ddd;
     }
