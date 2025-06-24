@@ -76,7 +76,14 @@ body {
     height: auto;
 }
 
-  .content::-webkit-scrollbar {
+.scroll-box {
+    align-items: flex-start;
+    height: auto;
+    width: 200px;
+    flex: 0 0 auto;
+}
+
+.content::-webkit-scrollbar {
     width: 4px;
 }
 
