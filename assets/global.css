@@ -36,6 +36,8 @@ body {
     padding-left: 10px;
     padding-right: 14px;
     padding-bottom: 10px;
+    font-size: 0.8em;
+    line-height: 0.9;
 }
 
 .info h2 {
@@ -50,14 +52,11 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1;
-    font-size: 0.8em;
-    line-height: 0.9;
 }
 
 .info a {
     color: black;
     text-decoration: underline;
-    line-height: 0.9;
 }
 
 .info a:hover {
@@ -227,7 +226,7 @@ body {
         font-size: 1.6em;
     }
     
-        .info h2 {
+    .info {
         font-size: 1.1em;
     }
 
