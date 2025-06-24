@@ -57,7 +57,7 @@ body {
 .info a {
     color: black;
     text-decoration: underline;
-    line-height: 1;
+    line-height: 0.9;
 }
 
 .info a:hover {
@@ -225,6 +225,10 @@ body {
 
     .info h2 {
         font-size: 1.6em;
+    }
+    
+        .info h2 {
+        font-size: 1.1em;
     }
 
     .zoomed-image {
