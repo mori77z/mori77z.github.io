@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     font-family: Times, sans-serif;
     color: black;
-    padding-top: 180px;
+    padding-top: 160px;
     overflow-x: hidden;
     margin: 0;
 }
@@ -26,6 +26,8 @@ body {
 .combined-container {
     display: flex;
     flex-direction: column;
+    width: 100%
+    min-height: 200px;
     gap: 6px;
 }
 
@@ -79,12 +81,12 @@ body {
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.6); 
-  border-radius: 4px;
+  background: #ddd; 
+  border-radius: 12px;
 }
 
 .content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: transparent;
 }
 
 .scroll-box {
@@ -187,7 +189,7 @@ body {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 220px;
+    padding-top: 260px;
     }
     .combined-container {
     gap: 10 px;
@@ -203,15 +205,12 @@ body {
     }
 
     .info {
+    opacity: 0;
     padding-left: 20px;
     padding-right: 30px;
     padding-bottom: 20px;
     }
 
-
-.combined-container .info {
-  opacity: 0;
-}
 
 .combined-container:hover .info {
   opacity: 1;
