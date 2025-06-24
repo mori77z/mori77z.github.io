@@ -189,7 +189,7 @@ body {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 300px;
+    padding-top: 220px;
     }
     .combined-container {
     gap: 10 px;
@@ -206,7 +206,6 @@ body {
 
     .info {
     opacity: 0;
-    cursor: pointer;
     padding-left: 20px;
     padding-right: 30px;
     padding-bottom: 20px;
@@ -216,8 +215,8 @@ body {
     .info:hover {
       opacity: 1;
       pointer-events: auto;
-    
     }
+    
     .info a:hover {
     color: #ddd;
     }
