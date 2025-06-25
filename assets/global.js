@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initNavScrollHide();
 });
 
-// === Header Snippet einbinden ===
 function includeHeader() {
     fetch("/snippets/header.html")
         .then(response => {
@@ -28,7 +27,6 @@ header.querySelectorAll("nav a").forEach(link => {
 });
 
 
-// Glitch-Funktion auf .moritz
 const moritzElement = header.querySelector(".moritz");
 if (moritzElement) {
     const originalHTML = '<span class="capital">M</span>oritz Gauss';
@@ -109,9 +107,12 @@ function initConfirmLinks() {
             if (confirmResult) {
                 window.open(url, "_blank");
             }
-            
-            function initNavScrollHide() {
-  const nav = document.querySelector('nav'); // Passe ggf. Selector an
+        });
+    });
+}
+
+    function initNavScrollHide() {
+  const nav = document.querySelector('nav'); 
 
   if (!nav) return;
 
@@ -120,24 +121,20 @@ function initConfirmLinks() {
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (window.innerWidth >= 768) {  // Desktop only
+    if (window.innerWidth >= 768) {  
       if (currentScroll > lastScroll && currentScroll > 100) {
         nav.classList.add('shrink');
       } else {
         nav.classList.remove('shrink');
       }
     } else {
-      nav.classList.remove('shrink'); // Mobile immer sichtbar
+      nav.classList.remove('shrink'); 
     }
 
     lastScroll = currentScroll <= 0 ? 0 : currentScroll;
   });
 }
-        });
-    });
-}
 
-// === Bild-Zoom bei Klick ===
 function initZoomImages() {
     const images = document.querySelectorAll(".img-container img");
     if (!images.length) return;
