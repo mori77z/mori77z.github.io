@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initZoomImages();
     initArrowScroll();
     initConfirmLinks();
-    initNavScrollHide();
 });
 
 function includeHeader() {
