@@ -111,29 +111,20 @@ function initConfirmLinks() {
     });
 }
 
-    function initNavScrollHide() {
-  const nav = document.querySelector('nav'); 
+let lastScroll = 0;
+const nav = document.querySelector('.nav');
 
-  if (!nav) return;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
 
-  let lastScroll = 0;
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    nav.classList.add('shrink');
+  } else {
+    nav.classList.remove('shrink');
+  }
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (window.innerWidth >= 768) {  
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        nav.classList.add('shrink');
-      } else {
-        nav.classList.remove('shrink');
-      }
-    } else {
-      nav.classList.remove('shrink'); 
-    }
-
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
-  });
-}
+  lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+});
 
 function initZoomImages() {
     const images = document.querySelectorAll(".img-container img");
