@@ -111,20 +111,29 @@ function initConfirmLinks() {
     });
 }
 
-let lastScroll = 0;
-const nav = document.querySelector('.nav');
+function initNavScrollHide() {
+  const nav = document.querySelector('nav'); // wählt das <nav> Element ohne Klassen
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
+  if (!nav) return;
 
-  if (currentScroll > lastScroll && currentScroll > 100) {
-    nav.classList.add('shrink');
-  } else {
-    nav.classList.remove('shrink');
-  }
+  let lastScroll = 0;
 
-  lastScroll = currentScroll <= 0 ? 0 : currentScroll;
-});
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (window.innerWidth >= 768) {  // Desktop only
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('shrink');
+      } else {
+        nav.classList.remove('shrink');
+      }
+    } else {
+      nav.classList.remove('shrink'); // Mobile immer sichtbar
+    }
+
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  });
+}
 
 function initZoomImages() {
     const images = document.querySelectorAll(".img-container img");
