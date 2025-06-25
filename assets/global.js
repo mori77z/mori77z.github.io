@@ -111,23 +111,36 @@ function initConfirmLinks() {
 }
 
 function initNavScrollHide() {
-  const nav = document.querySelector('nav'); // wählt das <nav> Element ohne Klassen
-
-  if (!nav) return;
+  const nav = document.querySelector('nav');
+  if (!nav) {
+    console.log("🚨 Nav nicht gefunden!");
+    return;
+  }
+  console.log("✅ Nav gefunden, starte Scroll-Listener");
 
   let lastScroll = 0;
 
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    console.log(`Scrollposition: ${currentScroll}, letzte: ${lastScroll}`);
 
-    if (window.innerWidth >= 768) {  // Desktop only
+    if (window.innerWidth >= 768) {
       if (currentScroll > lastScroll && currentScroll > 100) {
-        nav.classList.add('shrink');
+        if (!nav.classList.contains('shrink')) {
+          nav.classList.add('shrink');
+          console.log("⬇️ Nach unten gescrollt – Nav wird versteckt");
+        }
       } else {
-        nav.classList.remove('shrink');
+        if (nav.classList.contains('shrink')) {
+          nav.classList.remove('shrink');
+          console.log("⬆️ Nach oben gescrollt – Nav wird angezeigt");
+        }
       }
     } else {
-      nav.classList.remove('shrink'); // Mobile immer sichtbar
+      if (nav.classList.contains('shrink')) {
+        nav.classList.remove('shrink');
+        console.log("📱 Mobile View – Nav immer sichtbar");
+      }
     }
 
     lastScroll = currentScroll <= 0 ? 0 : currentScroll;
