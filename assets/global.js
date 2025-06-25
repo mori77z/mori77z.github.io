@@ -25,6 +25,7 @@ header.querySelectorAll("nav a").forEach(link => {
     }
 });
 
+initNavScrollHide();
 
 const moritzElement = header.querySelector(".moritz");
 if (moritzElement) {
