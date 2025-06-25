@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initZoomImages();
     initArrowScroll();
     initConfirmLinks();
+    initNavScrollHide();
 });
 
 // === Header Snippet einbinden ===
@@ -108,6 +109,30 @@ function initConfirmLinks() {
             if (confirmResult) {
                 window.open(url, "_blank");
             }
+            
+            function initNavScrollHide() {
+  const nav = document.querySelector('nav'); // Passe ggf. Selector an
+
+  if (!nav) return;
+
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (window.innerWidth >= 768) {  // Desktop only
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('shrink');
+      } else {
+        nav.classList.remove('shrink');
+      }
+    } else {
+      nav.classList.remove('shrink'); // Mobile immer sichtbar
+    }
+
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  });
+}
         });
     });
 }
