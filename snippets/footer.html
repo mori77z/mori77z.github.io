@@ -1,40 +1,47 @@
 <style>
 
 .custom-footer {
-  font-size: 1em;
   display: flex;
-  justify-content: space-between;
-  padding-top: 60px;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: baseline;
   padding-left: 10px;
-  padding-right: 14px;
+  padding-right: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
+
 .last-edited {
-  font-family: "Instrument Serif", serif;
-  }
+  font-size: 0.6em;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
   
 .custom-footer a {
   color: black;
-  font-size: 1.1em;
+  font-size: 1em;
   text-decoration: underline;
-  font-weight: 600;
-  letter-spacing: -0.03;
-  }
+  letter-spacing: -0.03em;
+}
 
 .custom-footer a:hover {
-  font-family: "Instrument Serif", serif;
+  font-family: "Snell", serif;
   font-style: italic;
   padding-right: 3px;
-  }
+}
 
 @media (min-width: 768px) {
   .custom-footer {
+    font-size: 1.2em;
     padding-left: 20px;
-    padding-right: 24px;
+    padding-right: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    height: 100px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-
   .custom-footer a {
     color: #fff;
   }

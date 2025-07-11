@@ -5,7 +5,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 10px;
+      padding: 10px 14px 10px 10px;
       gap: 10px;
       position: fixed;
       top: 0;
@@ -19,6 +19,13 @@
       box-sizing: border-box;
     }
 
+    @font-face {
+      font-family: 'Snell';
+      src: url('/assets/Snell-Roundhand-Script.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     .logo {
       display: flex;
       justify-content: space-between;
@@ -30,81 +37,108 @@
     .moritz {
       display: inline-block;
     }
+    
+    .capital {
+      font-weight: 600;
+      }
 
     .logo a {
       font-size: 2em;
-      font-weight: normal;
-      line-height: 1;
+      font-weight: 400;
       color: black;
+      line-height: 1;
       letter-spacing: -0.075em;
       white-space: nowrap;
       box-sizing: border-box; 
       text-decoration: none;
-      cursor: pointer;
     }
 
     .logo a:hover {
-      font-family: "Instrument Serif", serif;
+      font-family: "Snell", serif;
       font-style: italic;
-      letter-spacing: -2px;
+      font-size: 2.1em;
+      letter-spacing: -0.03em;
       padding-right: 4px;
-    }
-
-    .subtitle {
-      font-family: "Instrument Serif", serif;
-      font-size: 0.8em;
-      font-weight: 300;
-      margin-top: -6px;
-      margin-bottom: 0;
-      text-align: left;
     }
 
     nav {
       display: flex;
       width: 100%;
+      height: auto;
       justify-content: space-between;
       align-items: flex-start;
-      margin-top: 6px;
+      margin-top: 20px;
       margin-bottom: 10px;
     }
 
     nav a {
       font-size: 1.2em;
       line-height: 1.1;
+      letter-spacing: -0.03em;
       text-decoration: underline;
       color: black;
-      cursor: pointer;
     }
 
     nav a:hover {
-      font-family: "Instrument Serif", serif;
+      font-family: "Snell", serif;
       font-style: italic;
+      font-size: 1.3em;
+      letter-spacing: 0;
       padding-right: 4px;
     }
 
     nav a.active {
-      font-family: "Instrument Serif", serif;
+      font-family: "Snell", serif;
       font-style: italic;
+      font-size: 1.3em;
+      letter-spacing: 0;
       text-decoration: underline; 
       padding-right: 4px;
     }
 
     @media (min-width: 768px) {
       .header-container {
-        padding: 20px;
+        padding: 20px 30px 20px 20px;
       }
       .logo a {
-        font-size: 5em;
+        font-size: 3em;
       }
+       .logo a:hover {
+      font-size: 3.1em;
+       }
       .logo-image img {
-        height: 72px;
+        height: 48px;
       }
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        gap: 10px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        will-change: transform, opacity;
+}
+
+nav.shrink {
+  transform: translateY(-100%);
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+}
       nav a {
-        font-size: 1.6em;
-        line-height: 1.1;
+        font-size: 2em;
       }
+          nav a:hover {
+      font-size: 2.1em;
+    }
+
+    nav a.active {
+      font-size: 2.1em;
+    }
       .subtitle {
-        font-size: 1.4em;
+        font-size: 1em;
         margin-top: -8px;
       }
     }
@@ -118,6 +152,9 @@
       .logo a {
         color: white;
       }
+      .subtitle {
+        color: white;
+      }
 
       .logo-light {
         display: none;
@@ -129,15 +166,20 @@
       nav a {
         color: white;
       }
-    }
+      }
+      
+      @media (prefers-color-scheme: dark) and (min-width: 768px) {
+  .header-container {
+    background-color: transparent;
+  }
+}
+    
   </style>
 
   <div class="logo">
-    <a class="moritz" href="/about">Moritz Gauss</a>
-    <a href="/studio/">Studio</a>
+    <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
+   <!-- <a href="/studio/">Studio</a>-->
   </div>
-
-  <h1 class="subtitle">digital artist and designer</h1>
 
   <nav>
     <a href="/" class="nav">Web</a>

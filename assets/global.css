@@ -1,13 +1,18 @@
 body {
     width: 100%;
-    background: white;
+    background:  white;
     display: flex;
     flex-direction: column;
-    font-family: Helvetica, Arial, sans-serif;
-    padding-top: 150px;
-    padding-bottom: 40px;
+    font-family: Times, sans-serif;
+    color: black;
+    padding-top: 160px;
     overflow-x: hidden;
     margin: 0;
+}
+
+::selection {
+    color: yellow;
+    background: red;
 }
 
 .main-container {
@@ -15,7 +20,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 80px;
-    overflow: hidden;
     flex: 1;
 }
 
@@ -23,51 +27,40 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
  }   
 
- .combined-container.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.info {
+ .info {
     word-wrap: break-word;
     overflow-wrap: break-word;
     padding-left: 10px;
     padding-right: 14px;
     padding-bottom: 10px;
+    font-size: 0.8em;
+    line-height: 0.9;
 }
 
 .info h2 {
-    font-size: 1.6em;
+    font-size: 1.4em;
     font-weight: normal;
-    letter-spacing: -1.5px;
-    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+    line-height: 1;
     margin-top: 0;
 }
 
 .info p {
     word-wrap: break-word;
     overflow-wrap: break-word;
-    font-weight: 300;
-    font-size: 1em;
-    margin-top: 6px;
     line-height: 1;
 }
 
 .info a {
     color: black;
-    font-family: "Instrument Serif", serif;
-    font-weight: 300;
     text-decoration: underline;
-    font-size: 1em;
-    margin-top: 4px;
-    overflow: hidden;
 }
 
+.info a:hover {
+    color: black;
+}
 
 .content {
     display: flex;
@@ -79,23 +72,14 @@ body {
     overflow-x: auto; 
     max-width: 100%;
     height: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-}
-
-.content::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
 }
 
 .scroll-box {
     align-items: flex-start;
     height: auto;
-    width: 280px;
+    width: 400px;
     flex: 0 0 auto;
 }
-
-
 
 .img-container {
     width: 100%;
@@ -133,43 +117,20 @@ body {
 
 /* Mobile styles (default) */
 .iframe-container iframe {
-    width: 50%;
-    height: 100%;
-    border: none;
-    transform: scale(0.7);
-    transform-origin: center;
-    display: block;
-    margin: 0 auto;
-    z-index: 1;
+  width: 1200px; 
+  height: 900px;
+  transform: scale(0.35);
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition: filter 0.3s ease;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.iframe-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/assets/mobile-frame.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Desktop styles */
-@media (min-width: 768px) {
-  .iframe-container iframe {
-    width: 100%;
-    height: 100%;
-    transform: scale(0.55);
-    transform-origin: center;
-  }
-  
-  .iframe-container::after {
-    background-image: url('/assets/browser-frame.png');
-  }
+.iframe-container:hover iframe {
+    filter: blur(1px) brightness(1);
 }
 
 .arrows-wrapper {
@@ -177,8 +138,8 @@ body {
     justify-content: left;
     align-items: center;
     gap: 6px;
-    margin-top: 2px;
-    padding: 10px 10px 0;
+    margin: 0;
+    padding: 4px 10px 0;
 }
 
 .arrows .arrow {
@@ -219,8 +180,11 @@ body {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 240px;
+    padding-top: 360px;
     }
+    .combined-container {
+    gap: 10 px;
+     }   
     .content {
         margin-left: 20px;
     }
@@ -231,26 +195,45 @@ body {
         padding-left: 20px;
     }
      .iframe-container iframe {
-    transform: scale(0.55);
+    transform: scale(0.5);
     }
     .info {
+    opacity: 0;
     padding-left: 20px;
-    padding-right: 24px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    }
+
+
+.combined-container:hover .info {
+  opacity: 1;
+  pointer-events: auto;
+}
+    
+    .info a:hover {
+    color: #ddd;
     }
 
     .info h2 {
-        font-size: 1.9em;
+        font-size: 1.6em;
     }
+    
+    .info {
+        font-size: 1.1em;
+    }
+
     .zoomed-image {
         max-width: 70vw;
         max-height: 70vw;
     }
+    
     .scroll-box {
         width: 400px;
         height: auto;
     }
-    .discr-container {
-        font-size: 16px;
+    
+    .iframe-container iframe {
+    transform: scale(0.35);
     }
 }
 
@@ -264,7 +247,10 @@ body {
     }  
     .info a {
         color: white;
-    }   
+    }
+    .info a:hover {
+    color: white;
+    }
     .arrow_left, .arrow_right {
         color: white;
     }

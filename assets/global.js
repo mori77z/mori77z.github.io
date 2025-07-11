@@ -3,10 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     includeFooter();
     initZoomImages();
     initArrowScroll();
-    // initAudioPlayer(); // Player bei Bedarf wieder aktivieren
+    initConfirmLinks();
 });
 
-// === Header Snippet einbinden ===
 function includeHeader() {
     fetch("/snippets/header.html")
         .then(response => {
@@ -18,52 +17,53 @@ function includeHeader() {
             header.innerHTML = data;
             document.body.insertBefore(header, document.body.firstChild);
 
-            // Aktiven Navigationslink hervorheben
-            const currentPath = window.location.pathname;
-            header.querySelectorAll("nav a").forEach(link => {
-                const href = link.getAttribute("href");
-                if (href === currentPath || (currentPath === "/" && href === "/")) {
-                    link.classList.add("active");
+const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+header.querySelectorAll("nav a").forEach(link => {
+    const href = link.getAttribute("href").replace(/\/$/, "") || "/";
+    if (href === currentPath) {
+        link.classList.add("active");
+    }
+});
+
+initNavScrollHide();
+
+const moritzElement = header.querySelector(".moritz");
+if (moritzElement) {
+    const originalHTML = '<span class="capital">M</span>oritz Gauss';
+    let isFlipping = false;
+    let lastScrollTop = 0;
+    let ticking = false;
+
+    function randomChar() {
+        const symbols = "✹❦♬♪♩★❥✱♫♞";
+        return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    function glitchText(element, originalHTML, duration = 300) {
+        if (isFlipping) return;
+        isFlipping = true;
+        const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
+        element.textContent = scrambledText;
+        setTimeout(() => {
+            element.innerHTML = originalHTML;
+            isFlipping = false;
+        }, duration);
+    }
+
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const currentScroll = window.scrollY;
+                if (Math.abs(currentScroll - lastScrollTop) > 50) {
+                    glitchText(moritzElement, originalHTML);
+                    lastScrollTop = currentScroll;
                 }
+                ticking = false;
             });
-
-            // Glitch-Funktion auf .moritz
-            const moritzElement = header.querySelector(".moritz");
-            if (moritzElement) {
-                let isFlipping = false;
-                let lastScrollTop = 0;
-                let ticking = false;
-
-                function randomChar() {
-                    const symbols = "✹❦♬♪♩★❥✱♫♞";
-                    return symbols[Math.floor(Math.random() * symbols.length)];
-                }
-
-                function glitchText(element, originalText, duration = 300) {
-                    if (isFlipping) return;
-                    isFlipping = true;
-                    const scrambledText = Array.from({ length: 7 }, () => randomChar()).join("");
-                    element.textContent = scrambledText;
-                    setTimeout(() => {
-                        element.textContent = originalText;
-                        isFlipping = false;
-                    }, duration);
-                }
-
-                window.addEventListener("scroll", () => {
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            const currentScroll = window.scrollY;
-                            if (Math.abs(currentScroll - lastScrollTop) > 50) {
-                                glitchText(moritzElement, "Moritz Gauss");
-                                lastScrollTop = currentScroll;
-                            }
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                });
-            }
+            ticking = true;
+        }
+    });
+}
         })
         .catch(error => console.error("Fehler beim Laden des Headers:", error));
 }
@@ -98,7 +98,45 @@ function updateLastEditedDate() {
     }
 }
 
-// === Bild-Zoom bei Klick ===
+function initConfirmLinks() {
+    document.querySelectorAll(".iframe-container").forEach(container => {
+        container.addEventListener("click", function (e) {
+            e.preventDefault();
+            const url = container.dataset.href;
+            const confirmResult = confirm("Open in new tab?");
+            if (confirmResult) {
+                window.open(url, "_blank");
+            }
+        });
+    });
+}
+
+function initNavScrollHide() {
+  const nav = document.querySelector('nav');
+  if (!nav) {
+    console.log("Nav nicht gefunden!");
+    return;
+  }
+
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (window.innerWidth >= 768) {
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('shrink');
+      } else {
+        nav.classList.remove('shrink');
+      }
+    } else {
+      nav.classList.remove('shrink');
+    }
+
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  });
+}
+
 function initZoomImages() {
     const images = document.querySelectorAll(".img-container img");
     if (!images.length) return;
@@ -151,6 +189,7 @@ function initArrowScroll() {
     });
 }
 
+/*
 // === Audio Player Setup ===
 function initAudioPlayer() {
     const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
@@ -183,18 +222,18 @@ function initAudioPlayer() {
     player.style.display = "none";
     player.style.pointerEvents = "auto";
 
-    player.innerHTML = `
-      <div style="font-size: ${isMobile ? "16px" : "18px"};"><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
+    player.innerHTML = \`
+      <div style="font-size: \${isMobile ? "16px" : "18px"};"><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
       <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
-        <div id="progressBar" style="width: 0%; height: 100%; background: ${barColor};"></div>
+        <div id="progressBar" style="width: 0%; height: 100%; background: \${barColor};"></div>
       </div>
-      <div id="playPauseBtn" style="cursor: pointer; margin-top: 4px; font-weight: bold; font-size: ${isMobile ? "15px" : "16px"};">
-        ${lang === "de" ? "Play" : "Play"}
+      <div id="playPauseBtn" style="cursor: pointer; margin-top: 4px; font-weight: bold; font-size: \${isMobile ? "15px" : "16px"};">
+        \${lang === "de" ? "Play" : "Play"}
       </div>
-      <div id="closePlayer" style="cursor: pointer; margin-top: 6px; text-decoration: underline; font-size: ${isMobile ? "16px" : "18px"};">
-        ${lang === "de" ? "Player schließen" : "Close player"}
+      <div id="closePlayer" style="cursor: pointer; margin-top: 6px; text-decoration: underline; font-size: \${isMobile ? "16px" : "18px"};">
+        \${lang === "de" ? "Player schließen" : "Close player"}
       </div>
-    `;
+    \`;
 
     document.body.appendChild(player);
 
@@ -211,7 +250,7 @@ function initAudioPlayer() {
     note.style.padding = "10px";
     note.style.background = bgCircle;
     note.style.borderRadius = "50%";
-    note.style.boxShadow = "0 0 16px " + shadowColor;
+    note.style.boxShadow = \`0 0 16px \${shadowColor}\`;
     note.style.color = textColor;
     note.style.userSelect = "none";
     document.body.appendChild(note);
@@ -289,19 +328,4 @@ function initAudioPlayer() {
       }
     }
 }
-
-// Fade-in on scroll for .combined-container
-function fadeInOnScroll() {
-  const elements = document.querySelectorAll('.combined-container');
-  const windowHeight = window.innerHeight;
-
-  elements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < windowHeight - 60) {
-      el.classList.add('fade-in');
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', fadeInOnScroll);
-window.addEventListener('scroll', fadeInOnScroll);
+*/
