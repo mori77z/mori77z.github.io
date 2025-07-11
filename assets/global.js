@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initZoomImages();
     initArrowScroll();
     initConfirmLinks();
+    fadeInOnScroll();
 });
 
 function includeHeader() {
@@ -189,7 +190,6 @@ function initArrowScroll() {
     });
 }
 
-/*
 // === Audio Player Setup ===
 function initAudioPlayer() {
     const audio = new Audio("https://moritzgauss.com/assets/thelast2peopleonearth.mp3");
@@ -222,18 +222,18 @@ function initAudioPlayer() {
     player.style.display = "none";
     player.style.pointerEvents = "auto";
 
-    player.innerHTML = \`
-      <div style="font-size: \${isMobile ? "16px" : "18px"};"><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
+    player.innerHTML = `
+      <div style="font-size: ${isMobile ? "16px" : "18px"};"><i>"perfect sound to scroll the web"</i> by dj poolboi</div>
       <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); margin: 6px 0;">
-        <div id="progressBar" style="width: 0%; height: 100%; background: \${barColor};"></div>
+        <div id="progressBar" style="width: 0%; height: 100%; background: ${barColor};"></div>
       </div>
-      <div id="playPauseBtn" style="cursor: pointer; margin-top: 4px; font-weight: bold; font-size: \${isMobile ? "15px" : "16px"};">
-        \${lang === "de" ? "Play" : "Play"}
+      <div id="playPauseBtn" style="cursor: pointer; margin-top: 4px; font-weight: bold; font-size: ${isMobile ? "15px" : "16px"};">
+        ${lang === "de" ? "Play" : "Play"}
       </div>
-      <div id="closePlayer" style="cursor: pointer; margin-top: 6px; text-decoration: underline; font-size: \${isMobile ? "16px" : "18px"};">
-        \${lang === "de" ? "Player schließen" : "Close player"}
+      <div id="closePlayer" style="cursor: pointer; margin-top: 6px; text-decoration: underline; font-size: ${isMobile ? "16px" : "18px"};">
+        ${lang === "de" ? "Player schließen" : "Close player"}
       </div>
-    \`;
+    `;
 
     document.body.appendChild(player);
 
@@ -250,7 +250,7 @@ function initAudioPlayer() {
     note.style.padding = "10px";
     note.style.background = bgCircle;
     note.style.borderRadius = "50%";
-    note.style.boxShadow = \`0 0 16px \${shadowColor}\`;
+    note.style.boxShadow = "0 0 16px " + shadowColor;
     note.style.color = textColor;
     note.style.userSelect = "none";
     document.body.appendChild(note);
@@ -328,4 +328,19 @@ function initAudioPlayer() {
       }
     }
 }
-*/
+  
+function fadeInOnScroll() {
+    const elements = document.querySelectorAll('.combined-container');
+    if (!elements.length) return;
+
+    const observer = new window.IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+}
