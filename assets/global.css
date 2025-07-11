@@ -23,9 +23,17 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
  }   
 
- .info {
+ .combined-container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info {
     word-wrap: break-word;
     overflow-wrap: break-word;
     padding-left: 10px;
@@ -83,9 +91,11 @@ body {
 .scroll-box {
     align-items: flex-start;
     height: auto;
-    width: 400px;
+    width: 280px;
     flex: 0 0 auto;
 }
+
+
 
 .img-container {
     width: 100%;
@@ -112,30 +122,54 @@ body {
 }
 
 .iframe-container {
+    position: relative;
     width: 100%;
-    background-color: #fff;
-    height: auto;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    position: relative;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Mobile styles (default) */
 .iframe-container iframe {
-  width: 1200px; 
-  height: 900px;
-  transform: scale(0.35);
-  transform-origin: 0 0;
-  pointer-events: none;
-  transition: filter 0.3s ease;
-  border: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+    width: 50%;
+    height: 100%;
+    border: none;
+    transform: scale(0.7);
+    transform-origin: center;
+    display: block;
+    margin: 0 auto;
+    z-index: 1;
 }
 
-.iframe-container:hover iframe {
-    filter: blur(1px) brightness(1);
+.iframe-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/mobile-frame.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    transform: scale(0.55);
+    transform-origin: center;
+  }
+  
+  .iframe-container::after {
+    background-image: url('/assets/browser-frame.png');
+  }
 }
 
 .arrows-wrapper {
@@ -197,7 +231,7 @@ body {
         padding-left: 20px;
     }
      .iframe-container iframe {
-    transform: scale(0.5);
+    transform: scale(0.55);
     }
     .info {
     padding-left: 20px;
@@ -212,7 +246,7 @@ body {
         max-height: 70vw;
     }
     .scroll-box {
-        width: 600px;
+        width: 400px;
         height: auto;
     }
     .discr-container {
