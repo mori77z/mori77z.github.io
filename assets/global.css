@@ -91,7 +91,7 @@ body {
 
 .img-container {
     width: 100%;
-    background-color: #fff;
+    background-color: #000;
     height: auto;
     aspect-ratio: 4 / 3;
     overflow: hidden;
@@ -119,6 +119,7 @@ body {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     display: flex;
+    background-color: #000;
     justify-content: center;
     align-items: center;
 }
@@ -243,6 +244,13 @@ body {
     body {
         background-color: #000;
         color: #fff;
+    }
+    
+    .img-container {
+
+    }
+    .iframe-container {
+    background-color: #fff;
     }
     .info {
         color: white;
