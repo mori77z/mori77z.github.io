@@ -41,6 +41,26 @@
     .capital {
       font-weight: 600;
       }
+      
+    .underline-dotted::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0.1em;
+      width: 100%;
+      height: 5px;
+      background-image: repeating-radial-gradient(
+        circle,
+        red 0px,
+        red 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      background-repeat: repeat-x;
+      background-size: 6px 6px;
+      background-position: 0 50%;
+      pointer-events: none;
+    }
 
     .logo a {
       font-size: 2em;
@@ -177,7 +197,7 @@ nav.shrink {
   </style>
 
   <div class="logo">
-    <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
+    <a class="moritz" href="/about"><span class="capital">M</span>oritz <span class="underline-dotted">Gauss</span></a>
     <a href="/studio/">Studio</a>
   </div>
 
