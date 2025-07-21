@@ -119,7 +119,7 @@ body {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     display: flex;
-    background-color: #000;
+    background-color: #fff;
     justify-content: center;
     align-items: center;
 }
