@@ -43,16 +43,56 @@
       }
       
 
+.stdio-link {
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+}
+
+.stdio-link .text::after {
+  content: "u";
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.stdio-link:hover .text::after,
+.stdio-link:active .text::after {
+  opacity: 1;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: grey;
+  margin-left: 2px;
+  border-radius: 1px;
+  animation: blink 0.8s ease-in-out infinite;
+  vertical-align: bottom;
+}
+
+.stdio-link:hover .cursor,
+.stdio-link:active .cursor {
+  display: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .underline-dotted {
   position: relative;
-  display: inline-block;
 }
 
 .underline-dotted::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -1px;
+  bottom: -2px;
   width: 100%;
   height: 5px;
   background-image: repeating-radial-gradient(
@@ -64,47 +104,8 @@
   );
   background-repeat: repeat-x;
   background-size: 5px 5px;
-  background-position: left bottom;
   pointer-events: none;
-  z-index: 2;
-}
-
-.cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background-color: grey;
-  margin-left: 3px;
-  border-radius: 1px;
-  animation: blink 0.8s ease-in-out infinite;
-  vertical-align: bottom;
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  40%, 60% {
-    opacity: 0;
-  }
-}
-
-.stdio-link {
-  white-space: nowrap;
-}
-
-.label::after {
-  content: "u";
-  opacity: 0;
-  visibility: hidden;
-  display: inline;
-  letter-spacing: -0.08em;
-}
-
-.stdio-link:hover .label::after,
-.stdio-link:active .label::after {
-  opacity: 1;
-  visibility: visible;
+  z-index: 1;
 }
 
     .logo a {
@@ -243,7 +244,9 @@ nav.shrink {
 
   <div class="logo">
     <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
-    <a class="stdio-link" href="/studio/"><span class="label underline-dotted">Stdio</span><span class="cursor"></span></a>
+<a class="stdio-link underline-dotted" href="/studio/">
+  <span class="studio-link">Stdio</span><span class="cursor"></span>
+</a>
   </div>
 
   <nav>
