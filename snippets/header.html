@@ -68,6 +68,21 @@
   z-index: 2;
 }
 
+.cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background-color: grey;
+  margin-left: 2px;
+  animation: blink 1s steps(2, start) infinite;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
     .logo a {
       font-size: 2em;
       font-weight: 400;
@@ -204,7 +219,7 @@ nav.shrink {
 
   <div class="logo">
     <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
-    <a class="underline-dotted" href="/studio/">Stdio</a>
+    <a class="underline-dotted" href="/studio/">Stdio<span class="cursor"></span></a>
   </div>
 
   <nav>
