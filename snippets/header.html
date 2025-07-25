@@ -44,23 +44,44 @@
       
 
 .stdio-link {
-  white-space: nowrap;
-  display: inline-block;
+  display: inline-flex;
+  align-items: baseline;
   position: relative;
   font-size: 2em;
-  text-decoration: none;
   color: black;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.stdio-link .text::after {
-  content: "u";
-  opacity: 0;
+.word {
+  display: inline-block;
   transition: opacity 0.2s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
 }
 
-.stdio-link:hover .text::after,
-.stdio-link:active .text::after {
+.stdio {
   opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+
+.studio {
+  opacity: 0;
+}
+
+.stdio-link:hover .stdio,
+.stdio-link:active .stdio {
+  opacity: 0;
+  position: absolute;
+}
+
+.stdio-link:hover .studio,
+.stdio-link:active .studio {
+  opacity: 1;
+  position: relative;
 }
 
 .cursor {
@@ -68,7 +89,7 @@
   width: 2px;
   height: 1em;
   background-color: grey;
-  margin-left: 2px;
+  margin-left: 3px;
   border-radius: 1px;
   animation: blink 0.8s ease-in-out infinite;
   vertical-align: bottom;
@@ -79,16 +100,8 @@
   display: none;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
 
-.underline-dotted {
-  position: relative;
-}
-
-.underline-dotted::after {
+.word::after {
   content: "";
   position: absolute;
   left: 0;
@@ -106,6 +119,12 @@
   background-size: 5px 5px;
   pointer-events: none;
   z-index: 1;
+}
+
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
     .logo a {
@@ -244,9 +263,7 @@ nav.shrink {
 
   <div class="logo">
     <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
-<a class="stdio-link underline-dotted" href="/studio/">
-  <span class="studio-link">Stdio</span><span class="cursor"></span>
-</a>
+<a class="stdio-link" href="/studio/"><span class="word stdio">Stdio</span><span class="word studio">Studio</span><span class="cursor"></span></a>
   </div>
 
   <nav>
