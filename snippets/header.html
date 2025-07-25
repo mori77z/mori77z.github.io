@@ -92,7 +92,7 @@
   margin-left: 3px;
   border-radius: 1px;
   animation: blink 0.8s ease-in-out infinite;
-  transform: translateY(10%);
+  transform: translateY(20%);
 }
 
 .stdio-link:hover .cursor,
@@ -118,7 +118,14 @@
   background-repeat: repeat-x;
   background-size: 5px 5px;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.stdio-link:hover .word::after,
+.stdio-link:active .word::after {
+  opacity: 0;
 }
 
 
