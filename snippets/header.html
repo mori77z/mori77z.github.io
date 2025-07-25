@@ -45,13 +45,14 @@
 
 .underline-dotted {
   position: relative;
-  z-index: 1;
+  display: inline-block;
 }
+
 .underline-dotted::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -1px;
   width: 100%;
   height: 5px;
   background-image: repeating-radial-gradient(
@@ -70,12 +71,28 @@
 
 .cursor {
   display: inline-block;
-  width: 1px;
+  min-width: 2px;
+  width: 3px;
   height: 1em;
   background-color: grey;
-  margin-left: 2px;
+  margin-left: 3px;
   animation: blink 1s steps(2, start) infinite;
   vertical-align: bottom;
+}
+
+.stdio-link:hover .cursor,
+.stdio-link:active .cursor {
+  display: none;
+}
+
+.stdio-link:hover .label::after,
+.stdio-link:active .label::after {
+  content: "u";
+  letter-spacing: -0.08em;
+}
+
+.label::after {
+  transition: opacity 0.3s ease;
 }
 
 @keyframes blink {
@@ -219,7 +236,7 @@ nav.shrink {
 
   <div class="logo">
     <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
-    <a class="underline-dotted" href="/studio/">Stdio<span class="cursor"></span></a>
+    <a class="stdio-link" href="/studio/"><span class="label underline-dotted">Stdio</span><span class="cursor"></span></a>
   </div>
 
   <nav>
