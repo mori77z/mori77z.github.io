@@ -36,15 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
 }   
-
-.combined-container.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 .name {
     margin-bottom: 0;
