@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initZoomImages();
     initArrowScroll();
     initConfirmLinks();
-    fadeInOnScroll();
     initDateTimePicker();
     initEmailButton();
     initTranslations();
@@ -29,8 +28,6 @@ header.querySelectorAll("nav a").forEach(link => {
         link.classList.add("active");
     }
 });
-
-initNavScrollHide();
 
 const moritzElement = header.querySelector(".moritz");
 if (moritzElement) {
@@ -88,20 +85,6 @@ function includeFooter() {
         .catch(error => console.error("Fehler beim Laden des Footers:", error));
 }
 
-function updateLastEditedDate() {
-    const edited = new Date(document.lastModified);
-    const formatted = edited.toLocaleString('de-DE', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-    const dateSpan = document.getElementById("last-edited-date");
-    if (dateSpan) {
-        dateSpan.textContent = formatted;
-    }
-}
 
 function initConfirmLinks() {
     document.querySelectorAll(".iframe-container").forEach(container => {
@@ -114,32 +97,6 @@ function initConfirmLinks() {
             }
         });
     });
-}
-
-function initNavScrollHide() {
-  const nav = document.querySelector('logo');
-  if (!nav) {
-    console.log("Nav nicht gefunden!");
-    return;
-  }
-
-  let lastScroll = 0;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (window.innerWidth >= 768) {
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        nav.classList.add('shrink');
-      } else {
-        nav.classList.remove('shrink');
-      }
-    } else {
-      nav.classList.remove('shrink');
-    }
-
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
-  });
 }
 
 function initZoomImages() {
