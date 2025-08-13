@@ -3,7 +3,7 @@ body {
     background:  white;
     display: flex;
     flex-direction: column;
-    font-family: Times, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: black;
     padding-top: 160px;
     overflow-x: hidden;
@@ -237,31 +237,5 @@ body {
     
     .iframe-container iframe {
     transform: scale(0.35);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-        color: #fff;
-    }
-    
-    .img-container {
-
-    }
-    .iframe-container {
-    background-color: #fff;
-    }
-    .info {
-        color: white;
-    }  
-    .info a {
-        color: white;
-    }
-    .info a:hover {
-    color: white;
-    }
-    .arrow_left, .arrow_right {
-        color: white;
     }
 }
