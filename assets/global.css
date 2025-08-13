@@ -15,7 +15,16 @@ body {
     background: red;
 }
 
-.main-container {
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.project-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -264,6 +273,11 @@ body {
   body {
     padding-top: 360px;
     }
+    main {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
     .combined-container {
     gap: 10 px;
      }   
