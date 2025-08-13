@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     fadeInOnScroll();
     initDateTimePicker();
     initEmailButton();
+    initTranslations();
+    initHoverImage();
 });
 
 function includeHeader() {
@@ -264,6 +266,76 @@ function initEmailButton() {
             : `Hey Moritz,\n\nI would like to schedule a call with you on ${formattedDate} at ${selectedTime}.\n\nBest regards,\n[Your Name / Company / Email Address]`;
 
         window.location.href = `mailto:email@moritzgauss.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+}
+
+// === Übersetzungen ===
+const translations = {
+  "en": `<p>Moritz Gauss, born in Stuttgart ...</p>`,
+  "de": `<p>Moritz Gauss, geboren in Stuttgart ...</p>`,
+  "it": `<p>Moritz Gauss, nato a Stoccarda ...</p>`,
+  "es": `<p>Moritz Gauss, nacido en Stuttgart ...</p>`,
+  "fr": `<p>Moritz Gauss, né à Stuttgart ...</p>`,
+  "zh": `<p>Moritz Gauss，出生于斯图加特 ...</p>`,
+  "ar": `<p>موريتس جاوس، وُلد في شتوتغارت ...</p>`,
+  "ja": `<p>モーリッツ・ガウスはシュトゥットガルト ...</p>`,
+  "kyr": `<p>Моріц Гаус, народився в Штутгарті ...</p>`,
+  "tr": `<p>Moritz Gauss, Stuttgart doğumlu ...</p>`,
+  "ro": `<p>Moritz Gauss, născut în Stuttgart ...</p>`,
+  "cs": `<p>Moritz Gauss, narozený ve Stuttgartu ...</p>`
+};
+
+function setLanguage(lang) {
+    const bio = document.getElementById("bio");
+    if (!bio) return;
+    if (translations[lang]) {
+        bio.innerHTML = translations[lang];
+    } else {
+        console.warn(`Language ${lang} is not defined. Defaulting to English.`);
+        bio.innerHTML = translations['en'];
+    }
+}
+
+function initTranslations() {
+    setLanguage('en'); // Default auf Englisch
+}
+
+// === Hover-Bild ===
+function initHoverImage() {
+    const name = document.getElementById('hover-name');
+    const image = document.getElementById('hover-image');
+    if (!name || !image) return;
+
+    let visible = false;
+
+    function showImage() {
+        image.style.opacity = 1;
+        visible = true;
+    }
+    function hideImage() {
+        image.style.opacity = 0;
+        visible = false;
+    }
+
+    name.addEventListener('mouseenter', showImage);
+    name.addEventListener('mouseleave', hideImage);
+
+    name.addEventListener('click', e => {
+        e.stopPropagation();
+        showImage();
+    });
+
+    name.addEventListener('mousemove', e => {
+        image.style.left = `${e.clientX + 20}px`;
+        image.style.top = `${e.clientY + 20}px`;
+    });
+
+    document.addEventListener('click', e => {
+        if (visible && !name.contains(e.target)) hideImage();
+    });
+
+    document.addEventListener('touchstart', e => {
+        if (visible && !name.contains(e.target)) hideImage();
     });
 }
 
