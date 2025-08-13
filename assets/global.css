@@ -40,27 +40,8 @@ body {
 
 .name {
     margin-bottom: 0;
-    font-weight: 400;
-    letter-spacing: -0.075em;
+    color: transparent;
     font-size: 1.8em;
-}
-
-.capital {
-    font-weight: 600;
-}
-
-#hover-image {
-  position: fixed;
-  width: 200px;
-  height: auto;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: -1;
-}
-
-.contact-details {
-    text-align: center;
 }
 
 .contact-details a {
@@ -69,23 +50,12 @@ body {
 
 #hover-image {
   position: fixed;
-  width: 200px;
+  width: 100px;
   height: auto;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;
   z-index: -1;
-}
-
-
-.bio-container {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    padding: 0 20px;
-    margin: 0 auto;
 }
 
 .bio {
@@ -94,19 +64,8 @@ body {
     max-width: 600px;
 }
 
-.language-buttons {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-.imprint-link {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 .imprint-link a {
-    font-size: 20px;
     color: black;
 }
 
