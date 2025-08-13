@@ -66,6 +66,17 @@ body {
     color: black;
 }
 
+#hover-image {
+  position: fixed;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: -1;
+}
+
+
 .bio-container {
     display: flex;
     flex-direction: column; 
