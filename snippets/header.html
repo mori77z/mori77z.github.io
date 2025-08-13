@@ -19,12 +19,6 @@
       box-sizing: border-box;
     }
 
-    @font-face {
-      font-family: 'Snell';
-      src: url('/assets/Snell-Roundhand-Script.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
 
     .logo {
       display: flex;
@@ -32,6 +26,8 @@
       align-items: flex-start;
       padding-top: 10px;
       width: 100%;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      will-change: transform, opacity;
     }
 
     .moritz {
@@ -42,98 +38,6 @@
       font-weight: 600;
       }
       
-
-.stdio-link {
-  display: inline-flex;
-  align-items: baseline;
-  position: relative;
-  font-size: 2em;
-  color: black;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.word {
-  display: inline-block;
-  transition: opacity 0.2s ease;
-  position: absolute;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-}
-
-.stdio {
-  opacity: 1;
-  position: relative;
-  pointer-events: auto;
-}
-
-.studio {
-  opacity: 0;
-}
-
-.stdio-link:hover .stdio,
-.stdio-link:active .stdio {
-  opacity: 0;
-  position: absolute;
-}
-
-.stdio-link:hover .studio,
-.stdio-link:active .studio {
-  opacity: 1;
-  position: relative;
-}
-
-.cursor {
-  display: inline-block;
-  width: 2px;
-  height: 0.9em;
-  background-color: grey;
-  margin-left: 3px;
-  border-radius: 1px;
-  animation: blink 0.8s ease-in-out infinite;
-  transform: translateY(20%);
-}
-
-.stdio-link:hover .cursor,
-.stdio-link:active .cursor {
-  display: none;
-}
-
-
-.word::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 5px;
-  background-image: repeating-radial-gradient(
-    circle,
-    red 0px,
-    red 2px,
-    transparent 2px,
-    transparent 5px
-  );
-  background-repeat: repeat-x;
-  background-size: 5px 5px;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.stdio-link:hover .word::after,
-.stdio-link:active .word::after {
-  opacity: 0;
-}
-
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
     .logo a {
       font-size: 2em;
       font-weight: 400;
@@ -146,7 +50,7 @@
     }
 
     .logo a:hover {
-      font-family: "Snell", serif;
+      font-family: Times, serif;
       font-style: italic;
       font-size: 2.1em;
       letter-spacing: -0.03em;
@@ -172,7 +76,7 @@
     }
 
     nav a:hover {
-      font-family: "Snell", serif;
+      font-family: Times, serif;
       font-style: italic;
       font-size: 1.3em;
       letter-spacing: 0;
@@ -180,7 +84,7 @@
     }
 
     nav a.active {
-      font-family: "Snell", serif;
+      font-family: Times, serif;
       font-style: italic;
       font-size: 1.3em;
       letter-spacing: 0;
@@ -196,34 +100,17 @@
         font-size: 3em;
       }
        .logo a:hover {
-      font-size: 3.1em;
+      font-size: 4.1em;
        }
       .logo-image img {
         height: 48px;
       }
-      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        gap: 10px;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        will-change: transform, opacity;
-}
 
-nav.shrink {
-  transform: translateY(-100%);
-  opacity: 0;
-  height: 0;
-  pointer-events: none;
-}
       nav a {
-        font-size: 2em;
+        font-size: 3em;
       }
           nav a:hover {
-      font-size: 2.1em;
+      font-size: 3.1em;
     }
 
     nav a.active {
@@ -234,49 +121,16 @@ nav.shrink {
         margin-top: -8px;
       }
     }
-
-    @media (prefers-color-scheme: dark) {
-
-      .header-container {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-
-      .logo a {
-        color: white;
-      }
-      .subtitle {
-        color: white;
-      }
-
-      .logo-light {
-        display: none;
-      }
-      .logo-dark {
-        display: block;
-      }
-
-      nav a {
-        color: white;
-      }
-      }
-      
-      @media (prefers-color-scheme: dark) and (min-width: 768px) {
-  .header-container {
-    background-color: transparent;
-  }
-}
     
   </style>
 
   <div class="logo">
-    <a class="moritz" href="/about"><span class="capital">M</span>oritz Gauss</a>
-<a class="stdio-link" href="/studio/"><span class="word stdio">Stdio</span><span class="word studio">Studio</span><span class="cursor"></span></a>
+    <a class="moritz" href="/"><span class="capital">M</span>oritz Gauss</a>
   </div>
 
   <nav>
-    <a href="/" class="nav">Web</a>
-    <a href="/creative" class="nav">Creative</a>
-    <a href="/objects" class="nav">Objects</a>
-    <a href="/concepts" class="nav">Concepts</a>
+    <a href="/projects" class="nav">Projects</a>
+    <a href="/studio" class="nav">Studio</a>
+    <a href="/about" class="nav">About</a>
   </nav>
 </header>
