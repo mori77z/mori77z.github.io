@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initConfirmLinks();
     initDateTimePicker();
     initEmailButton();
-    initTranslations();
     initHoverImage();
 });
 
@@ -224,37 +223,6 @@ function initEmailButton() {
 
         window.location.href = `mailto:email@moritzgauss.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
-}
-
-// === Übersetzungen ===
-const translations = {
-  "en": `<p>Moritz Gauss, born in Stuttgart ...</p>`,
-  "de": `<p>Moritz Gauss, geboren in Stuttgart ...</p>`,
-  "it": `<p>Moritz Gauss, nato a Stoccarda ...</p>`,
-  "es": `<p>Moritz Gauss, nacido en Stuttgart ...</p>`,
-  "fr": `<p>Moritz Gauss, né à Stuttgart ...</p>`,
-  "zh": `<p>Moritz Gauss，出生于斯图加特 ...</p>`,
-  "ar": `<p>موريتس جاوس، وُلد في شتوتغارت ...</p>`,
-  "ja": `<p>モーリッツ・ガウスはシュトゥットガルト ...</p>`,
-  "kyr": `<p>Моріц Гаус, народився в Штутгарті ...</p>`,
-  "tr": `<p>Moritz Gauss, Stuttgart doğumlu ...</p>`,
-  "ro": `<p>Moritz Gauss, născut în Stuttgart ...</p>`,
-  "cs": `<p>Moritz Gauss, narozený ve Stuttgartu ...</p>`
-};
-
-function setLanguage(lang) {
-    const bio = document.getElementById("bio");
-    if (!bio) return;
-    if (translations[lang]) {
-        bio.innerHTML = translations[lang];
-    } else {
-        console.warn(`Language ${lang} is not defined. Defaulting to English.`);
-        bio.innerHTML = translations['en'];
-    }
-}
-
-function initTranslations() {
-    setLanguage('en'); // Default auf Englisch
 }
 
 // === Hover-Bild ===
