@@ -70,21 +70,29 @@ main {
     user-select: none;      
 }
 
-.expand-section-toggle {
-  all: unset;         
-    letter-spacing: -0.05em;
-    font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-  display: inline-block;
-  transition: font-style 0.3s ease;
+.expand-section-toggle:nth-of-type(odd) {
+  transform: rotate(6deg);
+}
+
+.expand-section-toggle:nth-of-type(even) {
+  transform: rotate(-6deg);
 }
 
 .expand-section-toggle:hover,
 .expand-section-toggle.active {
   font-style: italic;
+  transform: rotate(0deg);
 }
 
+.expand-section-toggle {
+  all: unset;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s ease, font-style 0.3s ease;
+}
 .expand-section {
   max-height: 0;
   overflow: hidden;
@@ -294,7 +302,7 @@ input:focus, select:focus {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 360px;
+    padding-top: 200px;
     }
     main {
         padding-left: 20px;
