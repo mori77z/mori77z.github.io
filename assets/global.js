@@ -315,26 +315,31 @@ function initExpandToggles() {
         btn.textContent = "+";
     });
 }
-// --- Expand section toggles (new) ---
+
 function initExpandSectionToggles() {
     document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
         const section = toggleBtn.nextElementSibling;
         if (!section || !section.classList.contains("expand-section")) return;
 
+        // Reset toggle button style
+        toggleBtn.classList.remove("active");
+
+        // Initialize section
         section.style.maxHeight = "0px";
-        section.style.fontStyle = "normal";
 
         toggleBtn.addEventListener("click", () => {
             const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
 
             if (!isOpen) {
+                // Open section
                 section.style.maxHeight = section.scrollHeight + "px";
-                section.style.fontStyle = "italic";
+                toggleBtn.classList.add("active");  // only toggle button becomes italic
             } else {
+                // Close section
                 section.style.maxHeight = section.scrollHeight + "px";
                 section.offsetHeight; // force reflow
                 section.style.maxHeight = "0px";
-                section.style.fontStyle = "normal";
+                toggleBtn.classList.remove("active");
             }
         });
     });
