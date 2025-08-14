@@ -267,184 +267,93 @@ function initHoverImage() {
     });
 }
 
-// --- Expand Toggle for combined-container ---
 function initExpandToggles() {
-  document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const container = btn.closest(".combined-container");
-      if (!container) return;
+    document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
+        // --- Random tilt on page load ---
+        const angle = (Math.random() * 10) - 5; // -10 to +10 degrees
+        btn.style.transform = `rotate(${angle}deg)`;
+        btn.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
 
-      const content = container.querySelector(".content");
-      const arrows = container.querySelector(".arrows-wrapper");
-      if (!content) return;
-
-      const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
-
-      if (!isOpen) {
-        content.style.maxHeight = content.scrollHeight + "px";
-        content.classList.add("active");
-        btn.textContent = "Show less..";
-
-        if (arrows) arrows.style.display = "flex";
-
-        content.querySelectorAll("[data-src]").forEach(el => {
-          el.src = el.dataset.src;
-          el.removeAttribute("data-src");
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'rotate(0deg)';
+            btn.style.fontStyle = 'italic';
         });
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        content.offsetHeight;
-        content.style.maxHeight = "0px";
-        content.classList.remove("active");
-        btn.textContent = "Show more..";
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = `rotate(${angle}deg)`;
+            btn.style.fontStyle = 'normal';
+        });
 
-        if (arrows) arrows.style.display = "none";
-      }
-    });
+        // --- Click toggle logic ---
+        btn.addEventListener("click", () => {
+            const container = btn.closest(".combined-container");
+            if (!container) return;
 
-    const container = btn.closest(".combined-container");
-    const content = container.querySelector(".content");
-    const arrows = container.querySelector(".arrows-wrapper");
-    if (content) content.style.maxHeight = "0px";
-    if (arrows) arrows.style.display = "none";
-    btn.textContent = "Show more..";
-  });
-}
+            const content = container.querySelector(".content");
+            const arrows = container.querySelector(".arrows-wrapper");
+            if (!content) return;
 
-// --- Expand Section Toggle ---
-function initExpandSectionToggles() {
-  document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
-    const section = toggleBtn.nextElementSibling;
-    if (!section || !section.classList.contains("expand-section")) return;
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
 
-    section.style.maxHeight = "0px";
+            if (!isOpen) {
+                // Open
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add("active");
+                btn.textContent = "Show less..";
 
-    toggleBtn.addEventListener("click", () => {
-      const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+                if (arrows) arrows.style.display = "flex";
 
-      if (!isOpen) {
-        section.style.maxHeight = section.scrollHeight + "px";
-        toggleBtn.classList.add("active");
-      } else {
-        section.style.maxHeight = section.scrollHeight + "px";
-        section.offsetHeight;
-        section.style.maxHeight = "0px";
-        toggleBtn.classList.remove("active");
-      }
-    });
-  });
-}
+                // Lazy load
+                content.querySelectorAll("[data-src]").forEach(el => {
+                    el.src = el.dataset.src;
+                    el.removeAttribute("data-src");
+                });
+            } else {
+                // Close
+                content.style.maxHeight = content.scrollHeight + "px"; // set current height
+                content.offsetHeight; // force reflow
+                content.style.maxHeight = "0px";
+                content.classList.remove("active");
+                btn.textContent = "Show more..";
 
-function initTiltAndShake() {
-  const tiltSelector = '.expand-toggle, .expand-section-toggle, nav a';
-  let tiltElements = [];
-  let tiltEnabled = true;
-  let tiltResetTimeout = null;
-
-  // collect targets and apply small random tilt
-  function collectTiltElements() {
-    tiltElements = Array.from(document.querySelectorAll(tiltSelector));
-  }
-
-  function applyRandomTilt() {
-    collectTiltElements();
-    tiltElements.forEach(el => {
-      const angle = (Math.random() * 8) - 4; // -4° to +4°
-      el.dataset.tiltAngle = angle;
-      el.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
-      el.style.transform = `rotate(${angle}deg)`;
-
-      el.onmouseenter = () => {
-        if (!tiltEnabled) return;
-        el.style.transform = 'rotate(0deg)';
-        el.style.fontStyle = 'italic';
-      };
-      el.onmouseleave = () => {
-        if (!tiltEnabled) return;
-        el.style.transform = `rotate(${el.dataset.tiltAngle}deg)`;
-        el.style.fontStyle = 'normal';
-      };
-    });
-  }
-
-  applyRandomTilt();
-
-  // straighten our targets and any inline rotate(...) for 5s
-  function disableTiltTemporarily() {
-    tiltEnabled = false;
-
-    // 1) our tilt targets
-    tiltElements.forEach(el => {
-      el.style.transform = 'rotate(0deg)';
-      el.style.fontStyle = 'normal';
-    });
-
-    // 2) any element that has inline rotate(...) - preserve other transforms
-    document.querySelectorAll('[style*="transform"]').forEach(el => {
-      const t = el.style.transform || '';
-      if (t.includes('rotate(')) {
-        el.style.transform = t.replace(/rotate\([^)]*\)/g, 'rotate(0deg)');
-      }
-    });
-
-    clearTimeout(tiltResetTimeout);
-    tiltResetTimeout = setTimeout(() => {
-      tiltEnabled = true;
-      applyRandomTilt(); // new shuffled angles
-    }, 5000);
-  }
-
-  // shake detection with iOS permission handling
-  let lastMag = null;
-  let lastShakeTime = 0;
-  const SHAKE_DELTA = 12;   // tune if needed
-  const SHAKE_COOLDOWN = 1000;
-
-  function onMotion(e) {
-    const acc = e.acceleration || e.accelerationIncludingGravity;
-    if (!acc) return;
-    const x = acc.x || 0, y = acc.y || 0, z = acc.z || 0;
-    const mag = Math.sqrt(x*x + y*y + z*z);
-
-    if (lastMag !== null) {
-      const delta = Math.abs(mag - lastMag);
-      const now = Date.now();
-      if (delta > SHAKE_DELTA && (now - lastShakeTime) > SHAKE_COOLDOWN) {
-        lastShakeTime = now;
-        disableTiltTemporarily();
-      }
-    }
-    lastMag = mag;
-  }
-
-  function enableMotionListening() {
-    // Android/desktop
-    window.addEventListener('devicemotion', onMotion);
-  }
-
-  function requestIOSPermissionIfNeeded() {
-    if (typeof DeviceMotionEvent === 'undefined') {
-      // not supported, silently do nothing
-      return;
-    }
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-      const ask = () => {
-        DeviceMotionEvent.requestPermission()
-          .then(state => {
-            if (state === 'granted') {
-              enableMotionListening();
+                if (arrows) arrows.style.display = "none";
             }
-          })
-          .catch(() => { /* ignore */ });
-      };
-      // first user interaction triggers the permission prompt
-      window.addEventListener('click', ask, { once: true });
-      window.addEventListener('touchstart', ask, { once: true });
-    } else {
-      // non-iOS
-      enableMotionListening();
-    }
-  }
+        });
 
-  requestIOSPermissionIfNeeded();
+        // Initialize closed state
+        const container = btn.closest(".combined-container");
+        const content = container.querySelector(".content");
+        const arrows = container.querySelector(".arrows-wrapper");
+        if (content) content.style.maxHeight = "0px";
+        if (arrows) arrows.style.display = "none";
+        btn.textContent = "Show more..";
+    });
+}
+
+function initExpandSectionToggles() {
+    document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
+        const section = toggleBtn.nextElementSibling;
+        if (!section || !section.classList.contains("expand-section")) return;
+
+        // Reset toggle button style
+        toggleBtn.classList.remove("active");
+
+        // Initialize section
+        section.style.maxHeight = "0px";
+
+        toggleBtn.addEventListener("click", () => {
+            const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+
+            if (!isOpen) {
+                // Open section
+                section.style.maxHeight = section.scrollHeight + "px";
+                toggleBtn.classList.add("active");  // only toggle button becomes italic
+            } else {
+                // Close section
+                section.style.maxHeight = section.scrollHeight + "px";
+                section.offsetHeight; // force reflow
+                section.style.maxHeight = "0px";
+                toggleBtn.classList.remove("active");
+            }
+        });
+    });
 }
