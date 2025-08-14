@@ -65,6 +65,12 @@ main {
     color: black;
 }
 
+.expand-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
 .expand-section a {
     text-decoration: underline;
     color: black;
