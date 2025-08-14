@@ -71,33 +71,30 @@ main {
     user-select: none;
 }
 
+.expand-section-toggle {
+  all: unset;         
+  font-size: 1.4em;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+  transition: font-style 0.3s ease;
+}
+
+.expand-section-toggle:hover,
+.expand-section-toggle.active {
+  font-style: italic;
+}
+
 .expand-section {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease, font-style 0.3s ease;
-  font-style: normal;
+  transition: max-height 0.3s ease;
 }
+
 .expand-section a{
     color: black;
     text-decoration: underline;
 }
-
-.expand-section-toggle {
-    all: unset;
-    cursor: pointer;
-    color: inherit;
-    font-size: 1.4em;
-    letter-spacing: -0.03em;
-    font-weight: normal;
-    padding-left: 10px;
-    display: inline-block;
-    user-select: none;
-}
-
-.expand-section-toggle:hover {
-  font-style: italic;
-}
-
 
 .info {
     word-wrap: break-word;
