@@ -25,7 +25,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 80px;
-    flex: 1;
 }
 
 .combined-container {
@@ -65,6 +64,17 @@ main {
 .imprint-link a {
     color: black;
     text-decoration: underline;
+}
+
+.expand-toggle {
+    all: unset;
+    cursor: pointer;
+    color: inherit;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0;
+    display: inline-block;
+    user-select: none;
 }
 
 .expand-toggle a {
@@ -152,16 +162,6 @@ main {
   transition: max-height 0.4s ease;
 }
 
-.info h2.active::after,
-.expand-toggle.active::after {
-  content: "▼";
-}
-
-.info h2::after,
-.expand-toggle::after {
-  content: "▶";
-  margin-left: 5px;
-}
 
 .scroll-box {
     align-items: flex-start;
