@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
     color: black;
-    padding-top: 160px;
+    padding-top: 100px;
     overflow-x: hidden;
     margin: 0;
 }
@@ -15,11 +15,10 @@ body {
     background: red;
 }
 
-.opener-text h1 {
+.opener-text h4 {
     font-size: 3em;
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    overflow-wrap: break-word;
+    font-weight: 200;
+    letter-spacing: -0.05em;
 }
 
 main {
@@ -41,9 +40,9 @@ main {
 }   
 
 
-.name {
+.mail a {
     margin-bottom: 0;
-    color: transparent;
+    color: inherit;
     font-size: 1.8em;
 }
 
@@ -61,12 +60,6 @@ main {
   z-index: -1;
 }
 
-.bio {
-    text-align: justify;
-    text-wrap: pretty
-    max-width: 600px;
-}
-
 .expand-toggle {
     all: unset;
     cursor: pointer;
@@ -74,7 +67,19 @@ main {
     font-size: 1.6em;
     padding-left: 10px;
     display: inline-block;
-    user-select: none;      
+    user-select: none;
+    transition: transform 0.3s ease, font-style 0.3s ease;
+}
+
+.expand-toggle:nth-of-type(4n+1) { transform: rotate(8deg); }
+.expand-toggle:nth-of-type(4n+2) { transform: rotate(-5deg); }
+.expand-toggle:nth-of-type(4n+3) { transform: rotate(6deg); }
+.expand-toggle:nth-of-type(4n+4) { transform: rotate(-7deg); }
+
+.expand-toggle:hover,
+.expand-toggle.active {
+    font-style: italic;
+    transform: rotate(0deg);
 }
 
 .expand-section-toggle:nth-of-type(odd) {
@@ -89,6 +94,7 @@ main {
 .expand-section-toggle.active {
   font-style: italic;
   transform: rotate(0deg);
+  padding-right: 4px;
 }
 
 .expand-section-toggle {
@@ -309,7 +315,7 @@ input:focus, select:focus {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 200px;
+    padding-top: 120px;
     }
     main {
         padding-left: 20px;
@@ -364,7 +370,7 @@ input:focus, select:focus {
     transform: scale(0.35);
     }
     
-        .name {
+        .mail a {
         font-size: 2em;
     }
 }
