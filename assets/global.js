@@ -283,7 +283,7 @@ function initExpandToggles() {
                 // Open
                 content.style.maxHeight = content.scrollHeight + "px";
                 content.classList.add("active");
-                btn.textContent = "-";
+                btn.textContent = "🙃";
                 
                 // Show arrows
                 if (arrows) arrows.style.display = "flex";
@@ -299,7 +299,7 @@ function initExpandToggles() {
                 content.offsetHeight; // force reflow
                 content.style.maxHeight = "0px";
                 content.classList.remove("active");
-                btn.textContent = "+";
+                btn.textContent = "🙂";
 
                 // Hide arrows
                 if (arrows) arrows.style.display = "none";
@@ -312,7 +312,7 @@ function initExpandToggles() {
         const arrows = container.querySelector(".arrows-wrapper");
         if (content) content.style.maxHeight = "0px";
         if (arrows) arrows.style.display = "none";
-        btn.textContent = "+";
+        btn.textContent = "🙂";
     });
 }
 
