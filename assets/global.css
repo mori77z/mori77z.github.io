@@ -19,10 +19,7 @@ body {
     font-size: 3em;
     font-weight: 500;
     letter-spacing: -0.03em;
-    word-wrap: break-word;
     overflow-wrap: break-word;
-    text-align: justify;
-    text-wrap: pretty
 }
 
 main {
