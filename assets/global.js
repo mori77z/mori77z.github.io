@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initEmailButton();
     initHoverImage();
     initExpandToggles();
+    initExpandSectionToggles()
 });
 
 function includeHeader() {
@@ -312,6 +313,30 @@ function initExpandToggles() {
         if (content) content.style.maxHeight = "0px";
         if (arrows) arrows.style.display = "none";
         btn.textContent = "+";
+    });
+}
+// --- Expand section toggles (new) ---
+function initExpandSectionToggles() {
+    document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
+        const section = toggleBtn.nextElementSibling;
+        if (!section || !section.classList.contains("expand-section")) return;
+
+        section.style.maxHeight = "0px";
+        section.style.fontStyle = "normal";
+
+        toggleBtn.addEventListener("click", () => {
+            const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+
+            if (!isOpen) {
+                section.style.maxHeight = section.scrollHeight + "px";
+                section.style.fontStyle = "italic";
+            } else {
+                section.style.maxHeight = section.scrollHeight + "px";
+                section.offsetHeight; // force reflow
+                section.style.maxHeight = "0px";
+                section.style.fontStyle = "normal";
+            }
+        });
     });
 }
 
