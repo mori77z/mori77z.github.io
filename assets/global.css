@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
     color: black;
-    padding-top: 100px;
+    padding-top: 140px;
     overflow-x: hidden;
     margin: 0;
 }
@@ -304,7 +304,7 @@ input:focus, select:focus {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 120px;
+    padding-top: 160px;
     }
     main {
         padding-left: 20px;
