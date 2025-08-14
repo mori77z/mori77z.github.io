@@ -70,16 +70,11 @@ main {
     all: unset;
     cursor: pointer;
     color: inherit;
-    font-size: 1em;
-    font-weight: normal;
-    padding: 0;
+    font-size: 2em;
+    font-weight: 600;
+    padding-left: 10px;
     display: inline-block;
     user-select: none;
-}
-
-.expand-toggle a {
-    color: black;
-    text-decoration: underline;
 }
 
 .expand-section {
@@ -92,24 +87,6 @@ main {
     text-decoration: underline;
     color: black;
 }
-
-.toggle-label {
-  cursor: pointer;
-  text-decoration: underline;
-  color: black;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.hidden-links {
-  display: none;
-  margin-top: 10px;
-}
-
-#toggle-private-links:checked ~ .hidden-links {
-  display: block;
-}
-
 
 .info {
     word-wrap: break-word;
@@ -161,7 +138,6 @@ main {
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
-
 
 .scroll-box {
     align-items: flex-start;
@@ -317,10 +293,10 @@ input:focus, select:focus {
         padding-left: 20px;
         padding-right: 20px;
     }
+    .expand-toggle {
+    padding-left: 20px;
+     } 
     
-    .combined-container {
-    gap: 10 px;
-     }   
     .content {
         margin-left: 20px;
     }
