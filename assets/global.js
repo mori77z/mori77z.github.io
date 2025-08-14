@@ -273,6 +273,7 @@ function initExpandToggles() {
         const angle = (Math.random() * 20) - 10; // -10 to +10 degrees
         btn.style.transform = `rotate(${angle}deg)`;
         btn.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
+
         btn.addEventListener('mouseenter', () => {
             btn.style.transform = 'rotate(0deg)';
             btn.style.fontStyle = 'italic';
@@ -299,10 +300,9 @@ function initExpandToggles() {
                 content.classList.add("active");
                 btn.textContent = "Show less..";
 
-                // Show arrows
                 if (arrows) arrows.style.display = "flex";
 
-                // Lazy load images/videos
+                // Lazy load
                 content.querySelectorAll("[data-src]").forEach(el => {
                     el.src = el.dataset.src;
                     el.removeAttribute("data-src");
@@ -315,7 +315,6 @@ function initExpandToggles() {
                 content.classList.remove("active");
                 btn.textContent = "Show more..";
 
-                // Hide arrows
                 if (arrows) arrows.style.display = "none";
             }
         });
@@ -327,19 +326,6 @@ function initExpandToggles() {
         if (content) content.style.maxHeight = "0px";
         if (arrows) arrows.style.display = "none";
         btn.textContent = "Show more..";
-    });
-}
-
-// Initialize on page load
-document.addEventListener("DOMContentLoaded", initExpandToggles);
-
-        // Initialize closed state
-        const container = btn.closest(".combined-container");
-        const content = container.querySelector(".content");
-        const arrows = container.querySelector(".arrows-wrapper");
-        if (content) content.style.maxHeight = "0px";
-        if (arrows) arrows.style.display = "none";
-        btn.textContent = "🙂";
     });
 }
 
