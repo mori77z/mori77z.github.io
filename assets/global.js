@@ -267,70 +267,51 @@ function initHoverImage() {
 
 
 function initExpandToggles() {
-    const toggleElements = document.querySelectorAll(".expand-toggle, .combined-container .info h2");
+    document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const container = btn.closest(".combined-container");
+            if (!container) return;
 
-    toggleElements.forEach(header => {
-        // store original text for h2 toggles
-        const isH2 = header.tagName.toLowerCase() === "h2";
-        const originalText = isH2 ? header.textContent.trim() : "";
-
-        header.addEventListener("click", e => {
-            e.preventDefault();
-
-            const parent = header.closest(".combined-container") || header.closest("section");
-            let content = parent ? parent.querySelector(".content, .expand-section") : null;
-
-            if (!content && header.classList.contains("expand-toggle")) {
-                let targetSel = header.dataset.target || (header.getAttribute("href") || "").replace(/^#/, "");
-                if (targetSel) content = document.querySelector(targetSel);
-                if (!content) {
-                    let sib = header.nextElementSibling;
-                    while (sib && !(sib.classList && sib.classList.contains("expand-section"))) {
-                        sib = sib.nextElementSibling;
-                    }
-                    content = sib || null;
-                }
-            }
-
+            const content = container.querySelector(".content");
+            const arrows = container.querySelector(".arrows-wrapper");
             if (!content) return;
 
-            const isOpen = !content.style.maxHeight || content.style.maxHeight === "0px";
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
 
-            if (isOpen) {
-                // open
+            if (!isOpen) {
+                // Open
                 content.style.maxHeight = content.scrollHeight + "px";
                 content.classList.add("active");
-                header.classList.add("active");
-                content.addEventListener("transitionend", function onEnd(ev) {
-                    if (ev.propertyName === "max-height") {
-                        content.style.maxHeight = "none";
-                        content.removeEventListener("transitionend", onEnd);
-                    }
-                });
+                btn.textContent = "-";
+                
+                // Show arrows
+                if (arrows) arrows.style.display = "flex";
 
-                // Lazy-load
+                // Lazy load images/videos
                 content.querySelectorAll("[data-src]").forEach(el => {
                     el.src = el.dataset.src;
                     el.removeAttribute("data-src");
                 });
-
-                // H2 smiley toggle
-                if (isH2) header.textContent = `🙃 ${originalText}`;
             } else {
-                // close
-                content.style.maxHeight = content.scrollHeight + "px";
+                // Close
+                content.style.maxHeight = content.scrollHeight + "px"; // set current height
                 content.offsetHeight; // force reflow
                 content.style.maxHeight = "0px";
                 content.classList.remove("active");
-                header.classList.remove("active");
+                btn.textContent = "+";
 
-                // H2 smiley toggle
-                if (isH2) header.textContent = `🙂 ${originalText}`;
+                // Hide arrows
+                if (arrows) arrows.style.display = "none";
             }
         });
 
-        // initialize H2 smiley closed state
-        if (isH2) header.textContent = `🙂 ${originalText}`;
+        // Initialize closed state
+        const container = btn.closest(".combined-container");
+        const content = container.querySelector(".content");
+        const arrows = container.querySelector(".arrows-wrapper");
+        if (content) content.style.maxHeight = "0px";
+        if (arrows) arrows.style.display = "none";
+        btn.textContent = "+";
     });
 }
 
