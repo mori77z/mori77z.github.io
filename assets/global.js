@@ -264,4 +264,21 @@ function initHoverImage() {
     });
 }
 
+// --- Expand Section Toggle ---
+document.querySelectorAll(".expand-toggle").forEach(toggleButton => {
+  toggleButton.addEventListener("click", e => {
+    e.preventDefault();
+
+    // Nächstes .expand-section im DOM suchen
+    const section = toggleButton.closest("section, div")?.querySelector(".expand-section");
+    if (!section) return;
+
+    if (section.style.maxHeight === "0px" || !section.style.maxHeight) {
+      section.style.maxHeight = "400px";
+    } else {
+      section.style.maxHeight = "0px";
+    }
+  });
+});
+
 
