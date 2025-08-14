@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     initEmailButton();
     initHoverImage();
     initExpandToggles();
-    initExpandSectionToggles()
+    initExpandSectionToggles();
+    initTiltAndShake();
 }); 
 
 function includeHeader() {
@@ -266,83 +267,76 @@ function initHoverImage() {
     });
 }
 
-  // --- Expand Toggle for combined-container ---
-  function initExpandToggles() {
-    document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
-
-      btn.addEventListener("click", () => {
-        const container = btn.closest(".combined-container");
-        if (!container) return;
-
-        const content = container.querySelector(".content");
-        const arrows = container.querySelector(".arrows-wrapper");
-        if (!content) return;
-
-        const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
-
-        if (!isOpen) {
-          // Open
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.classList.add("active");
-          btn.textContent = "Show less..";
-
-          if (arrows) arrows.style.display = "flex";
-
-          // Lazy load
-          content.querySelectorAll("[data-src]").forEach(el => {
-            el.src = el.dataset.src;
-            el.removeAttribute("data-src");
-          });
-        } else {
-          // Close
-          content.style.maxHeight = content.scrollHeight + "px";
-          content.offsetHeight; // force reflow
-          content.style.maxHeight = "0px";
-          content.classList.remove("active");
-          btn.textContent = "Show more..";
-
-          if (arrows) arrows.style.display = "none";
-        }
-      });
-
-      // Initial closed state
+// --- Expand Toggle for combined-container ---
+function initExpandToggles() {
+  document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
       const container = btn.closest(".combined-container");
+      if (!container) return;
+
       const content = container.querySelector(".content");
       const arrows = container.querySelector(".arrows-wrapper");
-      if (content) content.style.maxHeight = "0px";
-      if (arrows) arrows.style.display = "none";
-      btn.textContent = "Show more..";
+      if (!content) return;
+
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add("active");
+        btn.textContent = "Show less..";
+
+        if (arrows) arrows.style.display = "flex";
+
+        content.querySelectorAll("[data-src]").forEach(el => {
+          el.src = el.dataset.src;
+          el.removeAttribute("data-src");
+        });
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.offsetHeight;
+        content.style.maxHeight = "0px";
+        content.classList.remove("active");
+        btn.textContent = "Show more..";
+
+        if (arrows) arrows.style.display = "none";
+      }
     });
-  }
 
-  // --- Expand Section Toggle ---
-  function initExpandSectionToggles() {
-    document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
-      const section = toggleBtn.nextElementSibling;
-      if (!section || !section.classList.contains("expand-section")) return;
+    const container = btn.closest(".combined-container");
+    const content = container.querySelector(".content");
+    const arrows = container.querySelector(".arrows-wrapper");
+    if (content) content.style.maxHeight = "0px";
+    if (arrows) arrows.style.display = "none";
+    btn.textContent = "Show more..";
+  });
+}
 
-      section.style.maxHeight = "0px";
+// --- Expand Section Toggle ---
+function initExpandSectionToggles() {
+  document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
+    const section = toggleBtn.nextElementSibling;
+    if (!section || !section.classList.contains("expand-section")) return;
 
-      toggleBtn.addEventListener("click", () => {
-        const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+    section.style.maxHeight = "0px";
 
-        if (!isOpen) {
-          section.style.maxHeight = section.scrollHeight + "px";
-          toggleBtn.classList.add("active");
-        } else {
-          section.style.maxHeight = section.scrollHeight + "px";
-          section.offsetHeight; // force reflow
-          section.style.maxHeight = "0px";
-          toggleBtn.classList.remove("active");
-        }
-      });
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+
+      if (!isOpen) {
+        section.style.maxHeight = section.scrollHeight + "px";
+        toggleBtn.classList.add("active");
+      } else {
+        section.style.maxHeight = section.scrollHeight + "px";
+        section.offsetHeight;
+        section.style.maxHeight = "0px";
+        toggleBtn.classList.remove("active");
+      }
     });
-  }
+  });
+}
 
-  initExpandToggles();
-  initExpandSectionToggles();
-
-  // --- Tilt + Shake Detection ---
+// --- Tilt + Shake Detection ---
+function initTiltAndShake() {
   const tiltElements = document.querySelectorAll('.expand-toggle, .expand-section-toggle, nav a');
   let tiltEnabled = true;
   let tiltResetTimeout;
@@ -370,7 +364,6 @@ function initHoverImage() {
 
   applyRandomTilt();
 
-  // Shake detection
   let lastX = null, lastY = null, lastZ = null;
   let lastShakeTime = 0;
 
@@ -387,8 +380,8 @@ function initHoverImage() {
 
       const now = Date.now();
 
-      if ((deltaX + deltaY + deltaZ) > 25) { 
-        if (now - lastShakeTime > 1000) { 
+      if ((deltaX + deltaY + deltaZ) > 25) {
+        if (now - lastShakeTime > 1000) {
           lastShakeTime = now;
           disableTiltTemporarily();
         }
@@ -403,7 +396,6 @@ function initHoverImage() {
   function disableTiltTemporarily() {
     tiltEnabled = false;
 
-    // Straighten any rotated tiltElements
     tiltElements.forEach(el => {
       el.style.transform = 'rotate(0deg)';
       el.style.fontStyle = 'normal';
@@ -415,5 +407,4 @@ function initHoverImage() {
       applyRandomTilt();
     }, 5000);
   }
-
-});
+}
