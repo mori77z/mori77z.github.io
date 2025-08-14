@@ -267,21 +267,22 @@ function initHoverImage() {
 
 
 function initExpandToggles() {
-    // Handles both .expand-toggle buttons AND h2 inside .combined-container
     const toggleElements = document.querySelectorAll(".expand-toggle, .combined-container .info h2");
 
     toggleElements.forEach(header => {
+        // store original text for h2 toggles
+        const isH2 = header.tagName.toLowerCase() === "h2";
+        const originalText = isH2 ? header.textContent.trim() : "";
+
         header.addEventListener("click", e => {
             e.preventDefault();
 
-            // Determine section to toggle
             const parent = header.closest(".combined-container") || header.closest("section");
             let content = parent ? parent.querySelector(".content, .expand-section") : null;
 
-            // Fallback for .expand-toggle with data-target or href
             if (!content && header.classList.contains("expand-toggle")) {
                 let targetSel = header.dataset.target || (header.getAttribute("href") || "").replace(/^#/, "");
-                if (targetSel) content = document.querySelector(targetSel) || content;
+                if (targetSel) content = document.querySelector(targetSel);
                 if (!content) {
                     let sib = header.nextElementSibling;
                     while (sib && !(sib.classList && sib.classList.contains("expand-section"))) {
@@ -293,7 +294,6 @@ function initExpandToggles() {
 
             if (!content) return;
 
-            // Toggle open/close
             const isOpen = !content.style.maxHeight || content.style.maxHeight === "0px";
 
             if (isOpen) {
@@ -313,16 +313,24 @@ function initExpandToggles() {
                     el.src = el.dataset.src;
                     el.removeAttribute("data-src");
                 });
+
+                // H2 smiley toggle
+                if (isH2) header.textContent = `🙃 ${originalText}`;
             } else {
                 // close
-                content.style.maxHeight = content.scrollHeight + "px"; // set current height
+                content.style.maxHeight = content.scrollHeight + "px";
                 content.offsetHeight; // force reflow
                 content.style.maxHeight = "0px";
                 content.classList.remove("active");
                 header.classList.remove("active");
+
+                // H2 smiley toggle
+                if (isH2) header.textContent = `🙂 ${originalText}`;
             }
         });
+
+        // initialize H2 smiley closed state
+        if (isH2) header.textContent = `🙂 ${originalText}`;
     });
 }
-
 
