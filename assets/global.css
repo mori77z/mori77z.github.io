@@ -70,8 +70,9 @@ main {
     all: unset;
     cursor: pointer;
     color: inherit;
-    font-size: 2em;
-    font-weight: 600;
+    font-size: 1.4em;
+    letter-spacing: -0.03em;
+    font-weight: normal;
     padding-left: 10px;
     display: inline-block;
     user-select: none;
