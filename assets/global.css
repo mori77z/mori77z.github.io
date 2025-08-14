@@ -81,13 +81,22 @@ main {
 .expand-section {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, font-style 0.3s ease;
+  font-style: normal;
 }
 
-.expand-section a {
-    text-decoration: underline;
-    color: black;
+.expand-section-toggle {
+  font-size: 1.4em;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+  transition: font-style 0.3s ease;
 }
+
+.expand-section-toggle:hover {
+  font-style: italic;
+}
+
 
 .info {
     word-wrap: break-word;
