@@ -266,106 +266,90 @@ function initHoverImage() {
     });
 }
 
-
-function initExpandToggles() {
+  // --- Expand Toggle for combined-container ---
+  function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
-        // --- Random tilt on page load ---
-        const angle = (Math.random() * 10) - 5; // -10 to +10 degrees
-        btn.style.transform = `rotate(${angle}deg)`;
-        btn.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
 
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transform = 'rotate(0deg)';
-            btn.style.fontStyle = 'italic';
-        });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = `rotate(${angle}deg)`;
-            btn.style.fontStyle = 'normal';
-        });
-
-        // --- Click toggle logic ---
-        btn.addEventListener("click", () => {
-            const container = btn.closest(".combined-container");
-            if (!container) return;
-
-            const content = container.querySelector(".content");
-            const arrows = container.querySelector(".arrows-wrapper");
-            if (!content) return;
-
-            const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
-
-            if (!isOpen) {
-                // Open
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.classList.add("active");
-                btn.textContent = "Show less..";
-
-                if (arrows) arrows.style.display = "flex";
-
-                // Lazy load
-                content.querySelectorAll("[data-src]").forEach(el => {
-                    el.src = el.dataset.src;
-                    el.removeAttribute("data-src");
-                });
-            } else {
-                // Close
-                content.style.maxHeight = content.scrollHeight + "px"; // set current height
-                content.offsetHeight; // force reflow
-                content.style.maxHeight = "0px";
-                content.classList.remove("active");
-                btn.textContent = "Show more..";
-
-                if (arrows) arrows.style.display = "none";
-            }
-        });
-
-        // Initialize closed state
+      btn.addEventListener("click", () => {
         const container = btn.closest(".combined-container");
+        if (!container) return;
+
         const content = container.querySelector(".content");
         const arrows = container.querySelector(".arrows-wrapper");
-        if (content) content.style.maxHeight = "0px";
-        if (arrows) arrows.style.display = "none";
-        btn.textContent = "Show more..";
-    });
-}
+        if (!content) return;
 
-function initExpandSectionToggles() {
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+        if (!isOpen) {
+          // Open
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.classList.add("active");
+          btn.textContent = "Show less..";
+
+          if (arrows) arrows.style.display = "flex";
+
+          // Lazy load
+          content.querySelectorAll("[data-src]").forEach(el => {
+            el.src = el.dataset.src;
+            el.removeAttribute("data-src");
+          });
+        } else {
+          // Close
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.offsetHeight; // force reflow
+          content.style.maxHeight = "0px";
+          content.classList.remove("active");
+          btn.textContent = "Show more..";
+
+          if (arrows) arrows.style.display = "none";
+        }
+      });
+
+      // Initial closed state
+      const container = btn.closest(".combined-container");
+      const content = container.querySelector(".content");
+      const arrows = container.querySelector(".arrows-wrapper");
+      if (content) content.style.maxHeight = "0px";
+      if (arrows) arrows.style.display = "none";
+      btn.textContent = "Show more..";
+    });
+  }
+
+  // --- Expand Section Toggle ---
+  function initExpandSectionToggles() {
     document.querySelectorAll(".expand-section-toggle").forEach(toggleBtn => {
-        const section = toggleBtn.nextElementSibling;
-        if (!section || !section.classList.contains("expand-section")) return;
+      const section = toggleBtn.nextElementSibling;
+      if (!section || !section.classList.contains("expand-section")) return;
 
-        // Reset toggle button style
-        toggleBtn.classList.remove("active");
+      section.style.maxHeight = "0px";
 
-        // Initialize section
-        section.style.maxHeight = "0px";
+      toggleBtn.addEventListener("click", () => {
+        const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
 
-        toggleBtn.addEventListener("click", () => {
-            const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
-
-            if (!isOpen) {
-                // Open section
-                section.style.maxHeight = section.scrollHeight + "px";
-                toggleBtn.classList.add("active");  // only toggle button becomes italic
-            } else {
-                // Close section
-                section.style.maxHeight = section.scrollHeight + "px";
-                section.offsetHeight; // force reflow
-                section.style.maxHeight = "0px";
-                toggleBtn.classList.remove("active");
-            }
-        });
+        if (!isOpen) {
+          section.style.maxHeight = section.scrollHeight + "px";
+          toggleBtn.classList.add("active");
+        } else {
+          section.style.maxHeight = section.scrollHeight + "px";
+          section.offsetHeight; // force reflow
+          section.style.maxHeight = "0px";
+          toggleBtn.classList.remove("active");
+        }
+      });
     });
-}
+  }
 
- // --- Tilt + Shake Detection ---
-  const tiltElements = document.querySelectorAll('.expand-toggle, nav a');
+  initExpandToggles();
+  initExpandSectionToggles();
+
+  // --- Tilt + Shake Detection ---
+  const tiltElements = document.querySelectorAll('.expand-toggle, .expand-section-toggle, nav a');
   let tiltEnabled = true;
   let tiltResetTimeout;
 
   function applyRandomTilt() {
     tiltElements.forEach(el => {
-      const angle = (Math.random() * 10) - 5; // -5° to +5°
+      const angle = (Math.random() * 8) - 4; // -4° to +4°
       el.dataset.tiltAngle = angle;
       el.style.transform = `rotate(${angle}deg)`;
       el.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
@@ -419,24 +403,17 @@ function initExpandSectionToggles() {
   function disableTiltTemporarily() {
     tiltEnabled = false;
 
-    // Straighten *any* rotated element
-    document.querySelectorAll('*').forEach(el => {
-      const transform = window.getComputedStyle(el).transform;
-      if (transform && transform !== 'none' && transform.includes('matrix')) {
-        el.style.transform = 'rotate(0deg)';
-      }
-    });
-
+    // Straighten any rotated tiltElements
     tiltElements.forEach(el => {
+      el.style.transform = 'rotate(0deg)';
       el.style.fontStyle = 'normal';
     });
 
     clearTimeout(tiltResetTimeout);
     tiltResetTimeout = setTimeout(() => {
       tiltEnabled = true;
-      applyRandomTilt(); // shuffle new angles
+      applyRandomTilt();
     }, 5000);
   }
 
 });
-
