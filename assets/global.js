@@ -266,57 +266,63 @@ function initHoverImage() {
 }
 
 
-// --- Expand Section Toggle (robust, mehrere Fälle) ---
 function initExpandToggles() {
-  document.querySelectorAll(".expand-toggle").forEach(btn => {
-    btn.addEventListener("click", e => {
-      e.preventDefault();
+    // Handles both .expand-toggle buttons AND h2 inside .combined-container
+    const toggleElements = document.querySelectorAll(".expand-toggle, .combined-container .info h2");
 
-      // 1) data-target hat Vorrang (z. B. data-target="#clients")
-      let targetSel = btn.dataset.target;
+    toggleElements.forEach(header => {
+        header.addEventListener("click", e => {
+            e.preventDefault();
 
-      // 2) sonst href="#id" verwenden
-      if (!targetSel) {
-        const href = btn.getAttribute("href");
-        if (href && href.startsWith("#")) targetSel = href;
-      }
+            // Determine section to toggle
+            const parent = header.closest(".combined-container") || header.closest("section");
+            let content = parent ? parent.querySelector(".content, .expand-section") : null;
 
-      let section = targetSel ? document.querySelector(targetSel) : null;
+            // Fallback for .expand-toggle with data-target or href
+            if (!content && header.classList.contains("expand-toggle")) {
+                let targetSel = header.dataset.target || (header.getAttribute("href") || "").replace(/^#/, "");
+                if (targetSel) content = document.querySelector(targetSel) || content;
+                if (!content) {
+                    let sib = header.nextElementSibling;
+                    while (sib && !(sib.classList && sib.classList.contains("expand-section"))) {
+                        sib = sib.nextElementSibling;
+                    }
+                    content = sib || null;
+                }
+            }
 
-      // 3) Fallback: nächstes Geschwister-Element mit .expand-section
-      if (!section) {
-        let sib = btn.nextElementSibling;
-        while (sib && !(sib.classList && sib.classList.contains("expand-section"))) {
-          sib = sib.nextElementSibling;
-        }
-        section = sib || null;
-      }
+            if (!content) return;
 
-      if (!section) return;
+            // Toggle open/close
+            const isOpen = !content.style.maxHeight || content.style.maxHeight === "0px";
 
-      // Dynamisches Ein-/Ausklappen mit sauberer Transition
-      const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+            if (isOpen) {
+                // open
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add("active");
+                header.classList.add("active");
+                content.addEventListener("transitionend", function onEnd(ev) {
+                    if (ev.propertyName === "max-height") {
+                        content.style.maxHeight = "none";
+                        content.removeEventListener("transitionend", onEnd);
+                    }
+                });
 
-      if (!isOpen) {
-        // Öffnen: erst auf scrollHeight animieren, danach auf 'none' setzen
-        section.style.maxHeight = section.scrollHeight + "px";
-        section.addEventListener("transitionend", function onOpenEnd(ev) {
-          if (ev.propertyName === "max-height") {
-            section.style.maxHeight = "none"; // erlaubt natürlich wachsenden Inhalt
-            section.removeEventListener("transitionend", onOpenEnd);
-          }
+                // Lazy-load
+                content.querySelectorAll("[data-src]").forEach(el => {
+                    el.src = el.dataset.src;
+                    el.removeAttribute("data-src");
+                });
+            } else {
+                // close
+                content.style.maxHeight = content.scrollHeight + "px"; // set current height
+                content.offsetHeight; // force reflow
+                content.style.maxHeight = "0px";
+                content.classList.remove("active");
+                header.classList.remove("active");
+            }
         });
-      } else {
-        // Schließen: aktuelle Höhe setzen, reflow forcen, dann auf 0
-        const h = section.scrollHeight;
-        section.style.maxHeight = h + "px";
-        // Reflow forcieren:
-        // eslint-disable-next-line no-unused-expressions
-        section.offsetHeight;
-        section.style.maxHeight = "0px";
-      }
     });
-  });
 }
 
 
