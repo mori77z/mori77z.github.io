@@ -270,7 +270,7 @@ function initHoverImage() {
 function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
         // --- Random tilt on page load ---
-        const angle = (Math.random() * 20) - 10; // -10 to +10 degrees
+        const angle = (Math.random() * 10) - 5; // -10 to +10 degrees
         btn.style.transform = `rotate(${angle}deg)`;
         btn.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
 
