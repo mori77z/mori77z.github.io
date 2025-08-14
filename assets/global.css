@@ -34,6 +34,7 @@ main {
     gap: 10px;
 }   
 
+
 .name {
     margin-bottom: 0;
     color: transparent;
@@ -120,6 +121,23 @@ main {
     overflow-x: auto; 
     max-width: 100%;
     height: auto;
+}
+
+.content, .expand-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.info h2.active::after,
+.expand-toggle.active::after {
+  content: "▼";
+}
+
+.info h2::after,
+.expand-toggle::after {
+  content: "▶";
+  margin-left: 5px;
 }
 
 .scroll-box {
