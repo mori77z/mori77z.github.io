@@ -269,6 +269,20 @@ function initHoverImage() {
 
 function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
+        // --- Random tilt on page load ---
+        const angle = (Math.random() * 20) - 10; // -10 to +10 degrees
+        btn.style.transform = `rotate(${angle}deg)`;
+        btn.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'rotate(0deg)';
+            btn.style.fontStyle = 'italic';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = `rotate(${angle}deg)`;
+            btn.style.fontStyle = 'normal';
+        });
+
+        // --- Click toggle logic ---
         btn.addEventListener("click", () => {
             const container = btn.closest(".combined-container");
             if (!container) return;
@@ -283,8 +297,8 @@ function initExpandToggles() {
                 // Open
                 content.style.maxHeight = content.scrollHeight + "px";
                 content.classList.add("active");
-                btn.textContent = "🙃";
-                
+                btn.textContent = "Show less..";
+
                 // Show arrows
                 if (arrows) arrows.style.display = "flex";
 
@@ -299,12 +313,25 @@ function initExpandToggles() {
                 content.offsetHeight; // force reflow
                 content.style.maxHeight = "0px";
                 content.classList.remove("active");
-                btn.textContent = "🙂";
+                btn.textContent = "Show more..";
 
                 // Hide arrows
                 if (arrows) arrows.style.display = "none";
             }
         });
+
+        // Initialize closed state
+        const container = btn.closest(".combined-container");
+        const content = container.querySelector(".content");
+        const arrows = container.querySelector(".arrows-wrapper");
+        if (content) content.style.maxHeight = "0px";
+        if (arrows) arrows.style.display = "none";
+        btn.textContent = "Show more..";
+    });
+}
+
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", initExpandToggles);
 
         // Initialize closed state
         const container = btn.closest(".combined-container");
