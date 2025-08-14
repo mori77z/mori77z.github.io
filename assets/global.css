@@ -66,6 +66,10 @@ main {
     color: black;
 }
 
+.expand-toggle {
+    color: black;
+}
+
 .expand-section {
   max-height: 0;
   overflow: hidden;
