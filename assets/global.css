@@ -60,18 +60,11 @@ main {
     max-width: 600px;
 }
 
-
-.imprint-link a {
-    color: black;
-    text-decoration: underline;
-}
-
 .expand-toggle {
     all: unset;
     cursor: pointer;
     color: inherit;
     font-size: 1.4em;
-    letter-spacing: -0.03em;
     font-weight: normal;
     padding-left: 10px;
     display: inline-block;
@@ -84,13 +77,21 @@ main {
   transition: max-height 0.3s ease, font-style 0.3s ease;
   font-style: normal;
 }
+.expand-section a{
+    color: black;
+    text-decoration: underline;
+}
 
 .expand-section-toggle {
-  font-size: 1.4em;
-  text-decoration: underline;
-  cursor: pointer;
-  display: inline-block;
-  transition: font-style 0.3s ease;
+    all: unset;
+    cursor: pointer;
+    color: inherit;
+    font-size: 1.4em;
+    letter-spacing: -0.03em;
+    font-weight: normal;
+    padding-left: 10px;
+    display: inline-block;
+    user-select: none;
 }
 
 .expand-section-toggle:hover {
