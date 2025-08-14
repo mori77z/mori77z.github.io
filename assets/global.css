@@ -64,10 +64,12 @@ main {
 
 .imprint-link a {
     color: black;
+    text-decoration: underline;
 }
 
-.expand-toggle {
+.expand-toggle a {
     color: black;
+    text-decoration: underline;
 }
 
 .expand-section {
@@ -79,6 +81,23 @@ main {
 .expand-section a {
     text-decoration: underline;
     color: black;
+}
+
+.toggle-label {
+  cursor: pointer;
+  text-decoration: underline;
+  color: black;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.hidden-links {
+  display: none;
+  margin-top: 10px;
+}
+
+#toggle-private-links:checked ~ .hidden-links {
+  display: block;
 }
 
 
