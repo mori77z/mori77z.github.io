@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initHoverImage();
     initExpandToggles();
     initExpandSectionToggles()
-});
+}); 
 
 function includeHeader() {
     fetch("/snippets/header.html")
