@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initDateTimePicker();
     initEmailButton();
     initHoverImage();
+    initExpandToggles();
 });
 
 function includeHeader() {
@@ -264,21 +265,58 @@ function initHoverImage() {
     });
 }
 
-// --- Expand Section Toggle ---
-document.querySelectorAll(".expand-toggle").forEach(toggleButton => {
-  toggleButton.addEventListener("click", e => {
-    e.preventDefault();
 
-    // Nächstes .expand-section im DOM suchen
-    const section = toggleButton.closest("section, div")?.querySelector(".expand-section");
-    if (!section) return;
+// --- Expand Section Toggle (robust, mehrere Fälle) ---
+function initExpandToggles() {
+  document.querySelectorAll(".expand-toggle").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
 
-    if (section.style.maxHeight === "0px" || !section.style.maxHeight) {
-      section.style.maxHeight = "400px";
-    } else {
-      section.style.maxHeight = "0px";
-    }
+      // 1) data-target hat Vorrang (z. B. data-target="#clients")
+      let targetSel = btn.dataset.target;
+
+      // 2) sonst href="#id" verwenden
+      if (!targetSel) {
+        const href = btn.getAttribute("href");
+        if (href && href.startsWith("#")) targetSel = href;
+      }
+
+      let section = targetSel ? document.querySelector(targetSel) : null;
+
+      // 3) Fallback: nächstes Geschwister-Element mit .expand-section
+      if (!section) {
+        let sib = btn.nextElementSibling;
+        while (sib && !(sib.classList && sib.classList.contains("expand-section"))) {
+          sib = sib.nextElementSibling;
+        }
+        section = sib || null;
+      }
+
+      if (!section) return;
+
+      // Dynamisches Ein-/Ausklappen mit sauberer Transition
+      const isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+
+      if (!isOpen) {
+        // Öffnen: erst auf scrollHeight animieren, danach auf 'none' setzen
+        section.style.maxHeight = section.scrollHeight + "px";
+        section.addEventListener("transitionend", function onOpenEnd(ev) {
+          if (ev.propertyName === "max-height") {
+            section.style.maxHeight = "none"; // erlaubt natürlich wachsenden Inhalt
+            section.removeEventListener("transitionend", onOpenEnd);
+          }
+        });
+      } else {
+        // Schließen: aktuelle Höhe setzen, reflow forcen, dann auf 0
+        const h = section.scrollHeight;
+        section.style.maxHeight = h + "px";
+        // Reflow forcieren:
+        // eslint-disable-next-line no-unused-expressions
+        section.offsetHeight;
+        section.style.maxHeight = "0px";
+      }
+    });
   });
-});
+}
 
 
