@@ -64,6 +64,19 @@
       margin-bottom: 10px;
     }
 
+.nav a:nth-of-type(odd) {
+  transform: rotate(4deg);
+}
+
+.nav a:nth-of-type(even) {
+  transform: rotate(-4deg);
+}
+
+.nav a:hover,
+.nav a.active {
+  font-style: italic;
+  transform: rotate(0deg);
+}
     nav a {
       font-size: 1.2em;
       line-height: 1.1;
@@ -72,16 +85,6 @@
       color: black;
     }
 
-    nav a:hover {
-      font-style: italic;
-      padding-right: 4px;
-    }
-
-    nav a.active {
-      font-style: italic;
-      text-decoration: underline; 
-      padding-right: 4px;
-    }
 
     @media (min-width: 768px) {
       .header-container {
