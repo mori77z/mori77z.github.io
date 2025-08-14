@@ -20,7 +20,7 @@ main {
     padding-right: 10px;
 }
 
-.project-container {
+.projects-container {
     width: 100%;
     display: flex;
     flex-direction: column;
