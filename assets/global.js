@@ -358,3 +358,85 @@ function initExpandSectionToggles() {
     });
 }
 
+ // --- Tilt + Shake Detection ---
+  const tiltElements = document.querySelectorAll('.expand-toggle, nav a');
+  let tiltEnabled = true;
+  let tiltResetTimeout;
+
+  function applyRandomTilt() {
+    tiltElements.forEach(el => {
+      const angle = (Math.random() * 10) - 5; // -5° to +5°
+      el.dataset.tiltAngle = angle;
+      el.style.transform = `rotate(${angle}deg)`;
+      el.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
+
+      el.onmouseenter = () => {
+        if (!tiltEnabled) return;
+        el.style.transform = 'rotate(0deg)';
+        el.style.fontStyle = 'italic';
+      };
+
+      el.onmouseleave = () => {
+        if (!tiltEnabled) return;
+        el.style.transform = `rotate(${el.dataset.tiltAngle}deg)`;
+        el.style.fontStyle = 'normal';
+      };
+    });
+  }
+
+  applyRandomTilt();
+
+  // Shake detection
+  let lastX = null, lastY = null, lastZ = null;
+  let lastShakeTime = 0;
+
+  window.addEventListener('devicemotion', e => {
+    const acc = e.accelerationIncludingGravity;
+    if (!acc) return;
+
+    const { x, y, z } = acc;
+
+    if (lastX !== null && lastY !== null && lastZ !== null) {
+      const deltaX = Math.abs(x - lastX);
+      const deltaY = Math.abs(y - lastY);
+      const deltaZ = Math.abs(z - lastZ);
+
+      const now = Date.now();
+
+      if ((deltaX + deltaY + deltaZ) > 25) { 
+        if (now - lastShakeTime > 1000) { 
+          lastShakeTime = now;
+          disableTiltTemporarily();
+        }
+      }
+    }
+
+    lastX = x;
+    lastY = y;
+    lastZ = z;
+  });
+
+  function disableTiltTemporarily() {
+    tiltEnabled = false;
+
+    // Straighten *any* rotated element
+    document.querySelectorAll('*').forEach(el => {
+      const transform = window.getComputedStyle(el).transform;
+      if (transform && transform !== 'none' && transform.includes('matrix')) {
+        el.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    tiltElements.forEach(el => {
+      el.style.fontStyle = 'normal';
+    });
+
+    clearTimeout(tiltResetTimeout);
+    tiltResetTimeout = setTimeout(() => {
+      tiltEnabled = true;
+      applyRandomTilt(); // shuffle new angles
+    }, 5000);
+  }
+
+});
+
