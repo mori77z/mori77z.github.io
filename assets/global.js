@@ -335,25 +335,30 @@ function initExpandSectionToggles() {
   });
 }
 
-// --- Tilt + Shake Detection ---
 function initTiltAndShake() {
-  const tiltElements = document.querySelectorAll('.expand-toggle, .expand-section-toggle, nav a');
+  const tiltSelector = '.expand-toggle, .expand-section-toggle, nav a';
+  let tiltElements = [];
   let tiltEnabled = true;
-  let tiltResetTimeout;
+  let tiltResetTimeout = null;
+
+  // collect targets and apply small random tilt
+  function collectTiltElements() {
+    tiltElements = Array.from(document.querySelectorAll(tiltSelector));
+  }
 
   function applyRandomTilt() {
+    collectTiltElements();
     tiltElements.forEach(el => {
       const angle = (Math.random() * 8) - 4; // -4° to +4°
       el.dataset.tiltAngle = angle;
-      el.style.transform = `rotate(${angle}deg)`;
       el.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
+      el.style.transform = `rotate(${angle}deg)`;
 
       el.onmouseenter = () => {
         if (!tiltEnabled) return;
         el.style.transform = 'rotate(0deg)';
         el.style.fontStyle = 'italic';
       };
-
       el.onmouseleave = () => {
         if (!tiltEnabled) return;
         el.style.transform = `rotate(${el.dataset.tiltAngle}deg)`;
@@ -364,47 +369,82 @@ function initTiltAndShake() {
 
   applyRandomTilt();
 
-  let lastX = null, lastY = null, lastZ = null;
-  let lastShakeTime = 0;
-
-  window.addEventListener('devicemotion', e => {
-    const acc = e.accelerationIncludingGravity;
-    if (!acc) return;
-
-    const { x, y, z } = acc;
-
-    if (lastX !== null && lastY !== null && lastZ !== null) {
-      const deltaX = Math.abs(x - lastX);
-      const deltaY = Math.abs(y - lastY);
-      const deltaZ = Math.abs(z - lastZ);
-
-      const now = Date.now();
-
-      if ((deltaX + deltaY + deltaZ) > 25) {
-        if (now - lastShakeTime > 1000) {
-          lastShakeTime = now;
-          disableTiltTemporarily();
-        }
-      }
-    }
-
-    lastX = x;
-    lastY = y;
-    lastZ = z;
-  });
-
+  // straighten our targets and any inline rotate(...) for 5s
   function disableTiltTemporarily() {
     tiltEnabled = false;
 
+    // 1) our tilt targets
     tiltElements.forEach(el => {
       el.style.transform = 'rotate(0deg)';
       el.style.fontStyle = 'normal';
     });
 
+    // 2) any element that has inline rotate(...) - preserve other transforms
+    document.querySelectorAll('[style*="transform"]').forEach(el => {
+      const t = el.style.transform || '';
+      if (t.includes('rotate(')) {
+        el.style.transform = t.replace(/rotate\([^)]*\)/g, 'rotate(0deg)');
+      }
+    });
+
     clearTimeout(tiltResetTimeout);
     tiltResetTimeout = setTimeout(() => {
       tiltEnabled = true;
-      applyRandomTilt();
+      applyRandomTilt(); // new shuffled angles
     }, 5000);
   }
+
+  // shake detection with iOS permission handling
+  let lastMag = null;
+  let lastShakeTime = 0;
+  const SHAKE_DELTA = 12;   // tune if needed
+  const SHAKE_COOLDOWN = 1000;
+
+  function onMotion(e) {
+    const acc = e.acceleration || e.accelerationIncludingGravity;
+    if (!acc) return;
+    const x = acc.x || 0, y = acc.y || 0, z = acc.z || 0;
+    const mag = Math.sqrt(x*x + y*y + z*z);
+
+    if (lastMag !== null) {
+      const delta = Math.abs(mag - lastMag);
+      const now = Date.now();
+      if (delta > SHAKE_DELTA && (now - lastShakeTime) > SHAKE_COOLDOWN) {
+        lastShakeTime = now;
+        disableTiltTemporarily();
+      }
+    }
+    lastMag = mag;
+  }
+
+  function enableMotionListening() {
+    // Android/desktop
+    window.addEventListener('devicemotion', onMotion);
+  }
+
+  function requestIOSPermissionIfNeeded() {
+    if (typeof DeviceMotionEvent === 'undefined') {
+      // not supported, silently do nothing
+      return;
+    }
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      const ask = () => {
+        DeviceMotionEvent.requestPermission()
+          .then(state => {
+            if (state === 'granted') {
+              enableMotionListening();
+            }
+          })
+          .catch(() => { /* ignore */ });
+      };
+      // first user interaction triggers the permission prompt
+      window.addEventListener('click', ask, { once: true });
+      window.addEventListener('touchstart', ask, { once: true });
+    } else {
+      // non-iOS
+      enableMotionListening();
+    }
+  }
+
+  requestIOSPermissionIfNeeded();
 }
