@@ -40,7 +40,7 @@ main {
 }   
 
 
-.mail a {
+.name a {
     margin-bottom: 0;
     color: inherit;
     font-size: 1.8em;
@@ -69,17 +69,6 @@ main {
     display: inline-block;
     user-select: none;
     transition: transform 0.3s ease, font-style 0.3s ease;
-}
-
-.expand-toggle:nth-of-type(4n+1) { transform: rotate(8deg); }
-.expand-toggle:nth-of-type(4n+2) { transform: rotate(-5deg); }
-.expand-toggle:nth-of-type(4n+3) { transform: rotate(6deg); }
-.expand-toggle:nth-of-type(4n+4) { transform: rotate(-7deg); }
-
-.expand-toggle:hover,
-.expand-toggle.active {
-    font-style: italic;
-    transform: rotate(0deg);
 }
 
 .expand-section-toggle:nth-of-type(odd) {
@@ -370,7 +359,7 @@ input:focus, select:focus {
     transform: scale(0.35);
     }
     
-        .mail a {
+        .name a {
         font-size: 2em;
     }
 }
