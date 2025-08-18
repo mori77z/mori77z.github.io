@@ -106,9 +106,10 @@ main {
     padding-left: 10px;
     display: inline-block;
     user-select: none;
-    margin-left: 10px;
-    transform-origin: center center;
-    transition: transform 0.3s ease, font-style 0.3s ease;
+}
+
+.expand-toggle:hover {
+  font-style: italic;
 }
 
 .info {
