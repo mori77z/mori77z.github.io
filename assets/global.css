@@ -16,12 +16,13 @@ body {
 }
 
 .opener-text h3 {
-    font-size: 2.4rem;
+    font-size: 2.4em;
     font-weight: 400;
-    letter-spacing: -0.05rem;
+    letter-spacing: -0.05em;
 }
 
 main {
+    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -310,7 +311,7 @@ input:focus, select:focus {
 
 @media (min-width: 768px) {
   body {
-    padding-top: 160px;
+    padding-top: 200px;
     }
     main {
         padding-left: 20px;
