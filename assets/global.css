@@ -1,5 +1,4 @@
 body {
-    width: 100%;
     background:  white;
     display: flex;
     flex-direction: column;
@@ -22,7 +21,6 @@ body {
 }
 
 main {
-    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
 }
