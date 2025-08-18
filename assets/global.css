@@ -107,10 +107,7 @@ main {
     display: inline-block;
     user-select: none;
     margin-left: 10px;
-
-    /* now rotation is around the actual center */
     transform-origin: center center;
-
     transition: transform 0.3s ease, font-style 0.3s ease;
 }
 
@@ -320,8 +317,9 @@ input:focus, select:focus {
     }
     .expand-toggle {
     padding-left: 20px;
+    margin-left: 20px;
      } 
-    
+
     .content {
         margin-left: 20px;
     }
