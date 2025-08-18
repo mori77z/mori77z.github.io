@@ -60,18 +60,6 @@ main {
   z-index: -1;
 }
 
-.expand-toggle {
-    all: unset;
-    cursor: pointer;
-    color: inherit;
-    letter-spacing: -0.05em;
-    font-weight: 600;
-    text-decoration: underline;
-    padding-left: 10px;
-    display: inline-block;
-    user-select: none;
-    transition: transform 0.3s ease, font-style 0.3s ease;
-}
 
 .expand-section-toggle:nth-of-type(odd) {
   transform: rotate(6deg);
@@ -106,6 +94,20 @@ main {
 .expand-section a{
     color: black;
     text-decoration: underline;
+}
+
+.expand-toggle {
+    all: unset;
+    cursor: pointer;
+    color: inherit;
+    letter-spacing: -0.05em;
+    font-weight: 600;
+    text-decoration: underline;
+    padding-left: 10px;
+    display: inline-block;
+    user-select: none;
+    transform-origin: center center;
+    transition: transform 0.3s ease, font-style 0.3s ease;
 }
 
 .info {
@@ -337,14 +339,6 @@ input:focus, select:focus {
     color: #ddd;
     }
 
-    .info h2 {
-        font-size: 1.6em;
-    }
-    
-    .info {
-        font-size: 1.1em;
-    }
-
     .zoomed-image {
         max-width: 70vw;
         max-height: 70vw;
@@ -357,9 +351,5 @@ input:focus, select:focus {
     
     .iframe-container iframe {
     transform: scale(0.35);
-    }
-    
-        .name a {
-        font-size: 2em;
     }
 }
