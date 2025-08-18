@@ -106,7 +106,11 @@ main {
     padding-left: 10px;
     display: inline-block;
     user-select: none;
+    margin-left: 10px;
+
+    /* now rotation is around the actual center */
     transform-origin: center center;
+
     transition: transform 0.3s ease, font-style 0.3s ease;
 }
 
