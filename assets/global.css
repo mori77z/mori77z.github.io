@@ -322,9 +322,7 @@ input:focus, select:focus {
     .arrows-wrapper {
         padding: 10px 20px 0;
     }
-    .discr-container {
-        padding-left: 20px;
-    }
+
      .iframe-container iframe {
     transform: scale(0.5);
     }
