@@ -269,19 +269,6 @@ function initHoverImage() {
 
 function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
-        // --- Random tilt on page load ---
-        const angle = (Math.random() * 10) - 5; // -10 to +10 degrees
-        btn.style.transform = `rotate(${angle}deg)`;
-        btn.style.transition = 'transform 0.3s ease, font-style 0.3s ease';
-
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transform = 'rotate(0deg)';
-            btn.style.fontStyle = 'italic';
-        });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = `rotate(${angle}deg)`;
-            btn.style.fontStyle = 'normal';
-        });
 
         // --- Click toggle logic ---
         btn.addEventListener("click", () => {
