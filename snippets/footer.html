@@ -18,6 +18,9 @@
   letter-spacing: -0.03em;
   cursor: pointer;
   list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
 }
 
 .custom-footer a:hover,
@@ -28,6 +31,16 @@
 
 .custom-footer details {
   max-width: 800px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.custom-footer details summary::-webkit-details-marker {
+  display: none;
+}
+
+.custom-footer details summary::marker {
+  display: none;
 }
 
 .custom-footer details[open] {
