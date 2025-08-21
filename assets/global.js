@@ -89,6 +89,7 @@ function includeFooter() {
 
 
 function initConfirmLinks() {
+    // --- für iframe-container wie gehabt ---
     document.querySelectorAll(".iframe-container").forEach(container => {
         container.addEventListener("click", function (e) {
             e.preventDefault();
@@ -96,6 +97,18 @@ function initConfirmLinks() {
             const confirmResult = confirm("Open in new tab?");
             if (confirmResult) {
                 window.open(url, "_blank");
+            }
+        });
+    });
+
+    // --- NEU: für mailto-Links ---
+    document.querySelectorAll("a.confirm-mail").forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const mailto = link.getAttribute("href");
+            const confirmResult = confirm("Email to " + mailto.replace("mailto:", "") + "?");
+            if (confirmResult) {
+                window.location.href = mailto; // öffnet das Mail-Programm
             }
         });
     });
