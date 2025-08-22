@@ -73,6 +73,18 @@
 
 <footer class="custom-footer">
   <a href="mailto:email@moritzgauss.com">Email me</a>
+  
+  <script>
+document.querySelectorAll('.confirm-link').forEach(link => {
+  link.addEventListener('click', e => {
+    const sicher = confirm("Möchtest du wirklich dein Mail-Programm öffnen?");
+    if (!sicher) {
+      e.preventDefault(); // Abbrechen, falls der User „Abbrechen“ klickt
+    }
+  });
+});
+</script>
+
   <details>
     <summary>Imprint</summary>
     <div>
