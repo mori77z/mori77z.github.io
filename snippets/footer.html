@@ -77,9 +77,9 @@
   <script>
 document.querySelectorAll('.confirm-link').forEach(link => {
   link.addEventListener('click', e => {
-    const sicher = confirm("Möchtest du wirklich dein Mail-Programm öffnen?");
+    const sicher = confirm("Email to Email@moritzgauss.com?");
     if (!sicher) {
-      e.preventDefault(); // Abbrechen, falls der User „Abbrechen“ klickt
+      e.preventDefault(); 
     }
   });
 });
