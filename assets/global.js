@@ -100,18 +100,6 @@ function initConfirmLinks() {
             }
         });
     });
-
-    // --- NEU: für mailto-Links ---
-    document.querySelectorAll("a.confirm-mail").forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const mailto = link.getAttribute("href");
-            const confirmResult = confirm("Email to " + mailto.replace("mailto:", "") + "?");
-            if (confirmResult) {
-                window.location.href = mailto; // öffnet das Mail-Programm
-            }
-        });
-    });
 }
 
 function initZoomImages() {
