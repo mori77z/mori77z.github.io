@@ -271,7 +271,6 @@ function initHoverImage() {
 function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
 
-        // --- Click toggle logic ---
         btn.addEventListener("click", () => {
             const container = btn.closest(".combined-container");
             if (!container) return;
@@ -283,37 +282,34 @@ function initExpandToggles() {
             const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
 
             if (!isOpen) {
-                // Open
+
                 content.style.maxHeight = content.scrollHeight + "px";
                 content.classList.add("active");
-                btn.textContent = "Show less..";
+                btn.classList.add("expanded"); // italic state
 
                 if (arrows) arrows.style.display = "flex";
 
-                // Lazy load
                 content.querySelectorAll("[data-src]").forEach(el => {
                     el.src = el.dataset.src;
                     el.removeAttribute("data-src");
                 });
             } else {
-                // Close
+
                 content.style.maxHeight = content.scrollHeight + "px"; // set current height
                 content.offsetHeight; // force reflow
                 content.style.maxHeight = "0px";
                 content.classList.remove("active");
-                btn.textContent = "Show more..";
+                btn.classList.remove("expanded"); // remove italic
 
                 if (arrows) arrows.style.display = "none";
             }
         });
 
-        // Initialize closed state
         const container = btn.closest(".combined-container");
         const content = container.querySelector(".content");
         const arrows = container.querySelector(".arrows-wrapper");
         if (content) content.style.maxHeight = "0px";
         if (arrows) arrows.style.display = "none";
-        btn.textContent = "Show more..";
     });
 }
 
