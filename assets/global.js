@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     initExpandToggles();
     initExpandSectionToggles();
     initTiltAndShake();
-}); 
+    initFooterScripts();
+  });
 
 function includeHeader() {
     fetch("/snippets/header.html")
@@ -359,4 +360,13 @@ function initExpandSectionToggles() {
             }
         });
     });
+}
+
+function initFooterScripts() {
+  document.querySelectorAll('.confirm-link').forEach(link => {
+    link.addEventListener('click', e => {
+      const sicher = confirm("Email to Email@moritzgauss.com?");
+      if (!sicher) e.preventDefault();
+    });
+  });
 }
