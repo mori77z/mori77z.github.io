@@ -1,17 +1,18 @@
 function initBodyExpandAnimation() {
+  const wrapper = document.getElementById("page-wrapper");
+  if (!wrapper) return;
 
-  document.body.classList.add("expanded");
+  // Trigger expand on load
+  wrapper.classList.add("expanded");
 
-
-  const logo = document.querySelector(".logo"); // adjust selector if needed
+  // Handle logo click
+  const logo = document.querySelector(".logo");
   if (logo) {
     logo.addEventListener("click", (e) => {
       e.preventDefault();
-
-
-      document.body.classList.remove("expanded");
-      void document.body.offsetWidth; // force reflow
-      document.body.classList.add("expanded");
+      wrapper.classList.remove("expanded");
+      void wrapper.offsetWidth; // force reflow
+      wrapper.classList.add("expanded");
     });
   }
 }
