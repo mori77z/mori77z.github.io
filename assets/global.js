@@ -1,22 +1,3 @@
-function initBodyExpandAnimation() {
-  const wrapper = document.getElementById("page-wrapper");
-  if (!wrapper) return;
-
-  // Trigger expand on load
-  wrapper.classList.add("expanded");
-
-  // Handle logo click
-  const logo = document.querySelector(".logo");
-  if (logo) {
-    logo.addEventListener("click", (e) => {
-      e.preventDefault();
-      wrapper.classList.remove("expanded");
-      void wrapper.offsetWidth; // force reflow
-      wrapper.classList.add("expanded");
-    });
-  }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     includeHeader();
     includeFooter();
