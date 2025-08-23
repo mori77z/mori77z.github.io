@@ -1,3 +1,21 @@
+function initBodyExpandAnimation() {
+
+  document.body.classList.add("expanded");
+
+
+  const logo = document.querySelector(".logo"); // adjust selector if needed
+  if (logo) {
+    logo.addEventListener("click", (e) => {
+      e.preventDefault();
+
+
+      document.body.classList.remove("expanded");
+      void document.body.offsetWidth; // force reflow
+      document.body.classList.add("expanded");
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     includeHeader();
     includeFooter();
