@@ -20,9 +20,10 @@ body {
 }
 
 .opener-text {
-font-size: 3.4rem;         
-  font-weight: 400;
-  letter-spacing: -0.08rem;
+font-size: 2.8rem;         
+  font-weight: 500;
+  letter-spacing: -0.8rem;
+  margin-top: -20px;
 }
 
 main {
