@@ -113,6 +113,10 @@ main {
   font-style: italic;
 }
 
+.expand-toggle.expanded {
+    font-style: italic;
+}
+
 .info {
     word-wrap: break-word;
     overflow-wrap: break-word;
