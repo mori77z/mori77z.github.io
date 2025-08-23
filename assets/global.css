@@ -1,5 +1,6 @@
 html {
   font-size: 16px;
+  height: 100%;
 }
 
 body {
@@ -17,6 +18,7 @@ body {
   transform: scaleY(0);
   transform-origin: top;
   opacity: 0;
+   min-height: 100vh;
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
@@ -39,6 +41,7 @@ font-size: 2rem;
 main {
     padding-left: 10px;
     padding-right: 10px;
+    flex: 1;
 }
 
 .projects-container {
