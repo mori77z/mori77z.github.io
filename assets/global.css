@@ -131,7 +131,6 @@ main {
     padding-right: 14px;
     padding-bottom: 10px;
     font-size: 0.875rem;
-    line-height: 1;
 }
 
 .info h2 {
@@ -139,14 +138,12 @@ main {
     font-weight: 400;
     letter-spacing: -0.03rem;
     text-decoration: underline;
-    line-height: 1;
     margin-top: 0;
 }
 
 .info p {
     word-wrap: break-word;
     overflow-wrap: break-word;
-    line-height: 1;
 }
 
 .info a {
