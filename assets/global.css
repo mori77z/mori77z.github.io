@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 body {
     background:  white;
     display: flex;
@@ -7,6 +11,15 @@ body {
     padding-top: 140px;
     overflow-x: hidden;
     margin: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+body.expanded {
+  transform: scaleY(1);
+  opacity: 1;
 }
 
 ::selection {
@@ -15,9 +28,9 @@ body {
 }
 
 .opener-text h3 {
-    font-size: 2.4em;
-    font-weight: 400;
-    letter-spacing: -0.1em;
+font-size: 2rem;         
+  font-weight: 400;
+  letter-spacing: -0.05rem;
 }
 
 main {
@@ -36,13 +49,20 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}   
+}
 
+.combined-container:nth-of-type(odd) {
+  transform: rotate(6deg);
+}
+
+.combined-container:nth-of-type(even) {
+  transform: rotate(-6deg);
+}
 
 .name a {
     margin-bottom: 0;
     color: inherit;
-    font-size: 1.8em;
+    font-size: 1.5rem;
 }
 
 .contact-details a {
@@ -77,7 +97,7 @@ main {
 
 .expand-section-toggle {
   all: unset;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.05rem;
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
@@ -123,14 +143,14 @@ main {
     padding-left: 10px;
     padding-right: 14px;
     padding-bottom: 10px;
-    font-size: 0.8em;
-    line-height: 0.9;
+    font-size: 0.875rem;
+    line-height: 1;
 }
 
 .info h2 {
-    font-size: 1.4em;
+    font-size: 1.2rem;
     font-weight: 600;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.03rem;
     line-height: 1;
     margin-top: 0;
 }
@@ -252,11 +272,13 @@ main {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.6);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 .zoomed-container.active {
@@ -264,11 +286,10 @@ main {
 }
 
 .zoomed-image {
-    max-width: 70vw;
-    max-height: 70vh;
+    max-width: 90vw;
+    max-height: 90vh;
     object-fit: contain;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
 }
 
 label {
@@ -281,11 +302,11 @@ label {
 input, select {
     width: 300px; 
     padding: 12px;
-    background: #ff0000;
+    background: #d6d6d6;
     color:white;
     font-size: 18px;
     margin-top: 10px;
-    border: 2px solid #000000;
+    border: 2px solid #f8f8f8;
     border-radius: 8px;
     box-sizing: border-box; 
 }
@@ -303,7 +324,7 @@ input:focus, select:focus {
     margin-top: 30px;
     background: #f8f8f8;
     color: black;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 500;
     padding: 12px 20px;
     border: 2px solid #d6d6d6;
