@@ -15,9 +15,9 @@
 .custom-footer a,
 .custom-footer summary {
   color: black;
-  font-size: 1em;
+  font-size: 0.9rem;
   text-decoration: underline;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.03rem;
   cursor: pointer;
   list-style: none;
   cursor: pointer;
@@ -51,19 +51,19 @@
 
 .custom-footer details p {
   margin: 0 0 10px 0;
-  font-size: 0.9em;
-  line-height: 1.5em;
+  font-size: 0.7rem;
+  line-height: 1.2;
 }
 
 .custom-footer details h4 {
   margin: 15px 0 5px 0;
-  font-size: 1em;
+  font-size: 0.9rem;
   text-decoration: underline;
 }
 
 @media (min-width: 768px) {
   .custom-footer {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding-left: 20px;
     padding-right: 30px;
     padding-top: 60px;
@@ -76,17 +76,6 @@
 <footer class="custom-footer">
   <a href="mailto:email@moritzgauss.com">Email me</a>
   
-  <script>
-document.querySelectorAll('.confirm-link').forEach(link => {
-  link.addEventListener('click', e => {
-    const sicher = confirm("Email to Email@moritzgauss.com?");
-    if (!sicher) {
-      e.preventDefault(); 
-    }
-  });
-});
-</script>
-
   <details>
     <summary>Imprint</summary>
     <div>
