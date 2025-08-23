@@ -11,13 +11,16 @@ body {
     padding-top: 140px;
     overflow-x: hidden;
     margin: 0;
+}
+
+#page-wrapper {
   transform: scaleY(0);
   transform-origin: top;
   opacity: 0;
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-body.expanded {
+#page-wrapper.expanded {
   transform: scaleY(1);
   opacity: 1;
 }
