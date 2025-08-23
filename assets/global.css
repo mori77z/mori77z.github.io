@@ -99,10 +99,12 @@ main {
     all: unset;
     cursor: pointer;
     color: inherit;
-    letter-spacing: -0.05em;
+    font-size: 1.4em;
     font-weight: 600;
-    text-decoration: underline;
-    padding-left: 10px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-top: 0;
+    text-decoration: none;
     display: inline-block;
     user-select: none;
 }
