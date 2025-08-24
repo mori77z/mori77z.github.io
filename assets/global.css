@@ -115,7 +115,6 @@ main {
     text-decoration: none;
     display: inline-block;
     user-select: none;
-    padding-right: 10px;
 }
 
 .expand-toggle:hover {
@@ -133,10 +132,11 @@ main {
     padding-right: 14px;
     padding-bottom: 10px;
     font-size: 0.875rem;
+    max-width: 600px;
 }
 
 .info h2 {
-    font-size: 2.3rem;
+    font-size: 1.9rem;
     font-weight: 400;
     letter-spacing: -0.03rem;
     text-decoration: underline;
@@ -349,7 +349,6 @@ input:focus, select:focus {
     }
     
     .info {
-    padding-left: 20px;
     padding-right: 30px;
     padding-bottom: 20px;
     }
