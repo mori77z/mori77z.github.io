@@ -20,24 +20,31 @@ body {
 }
 
 .opener-text {
-  font-size: 2.6rem;
+  font-size: 3.1rem;
   font-weight: 400;
   letter-spacing: -0.13rem;
   line-height: 1.2;
   margin-top: -10px;
+}
+
+.service-text {
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: -0.13rem;
+  line-height: 1.2;
   white-space: normal; 
   word-break: break-word;
 }
 
 
-.opener-text details {
+.service-text details {
   display: inline-block;
   vertical-align: baseline; 
   margin: 0;
   padding: 0;
 }
 
-.opener-text summary {
+.service-text summary {
   display: inline;
   list-style: none;
   margin: 0;
@@ -47,7 +54,7 @@ body {
   white-space: normal;
 }
 
-.media-wrapper {
+.service-wrapper {
   position: relative;
   width: 90%;
   aspect-ratio: 4 / 3;
