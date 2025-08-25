@@ -24,23 +24,21 @@ body {
   font-size: 3.1rem;         
   font-weight: 400;
   letter-spacing: -0.13rem;
-  margin-top: -10px;
   line-height: 1.2;
 }
 
 .opener-text details {
-  display: inline;       /* inline statt block */
+  display: inline !important;
   margin: 0;
   padding: 0;
 }
 
 .opener-text summary {
-  display: inline;       /* summary auch inline */
-  font: inherit;         /* übernimmt font-size etc. */
+  display: inline !important;
+  font: inherit;        
   cursor: pointer;
 }
 
-/* Pfeilchen/Marker komplett entfernen */
 .opener-text summary::-webkit-details-marker,
 .opener-text summary::marker {
   display: none;
