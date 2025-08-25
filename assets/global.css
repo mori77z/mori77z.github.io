@@ -26,31 +26,30 @@ body {
   margin-top: -10px;
 }
 
-details.opener {
-  cursor: pointer;
-  display: inline-block;
-}
 
-details.opener summary {
-  list-style: none;
+details.inline-opener {
   display: inline;
   cursor: pointer;
 }
 
-details.opener[open] summary {
+details.inline-opener summary {
+  display: inline;
+  list-style: none;
+  cursor: pointer;
+}
+
+details.inline-opener[open] summary {
   font-style: italic;
 }
 
-details.opener summary:hover {
+details.inline-opener summary:hover {
   text-decoration: underline;
   font-style: italic;
 }
 
-details.opener ul {
-  margin-top: 10px;
-  padding-left: 20px;
+details.inline-opener ul {
+  margin: 0;
 }
-<
 
 main {
     padding-left: 10px;
