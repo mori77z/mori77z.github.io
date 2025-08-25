@@ -23,31 +23,35 @@ body {
   font-size: 3.1rem;         
   font-weight: 400;
   letter-spacing: -0.13rem;
-  margin-top: -10px;
 }
 
 
-details.inline-opener {
+.opener-text details,
+.opener-text summary {
   display: inline;
+  font: inherit;          
   cursor: pointer;
 }
 
-details.inline-opener summary {
-  display: inline;
-  list-style: none;
-  cursor: pointer;
+
+.opener-text summary::-webkit-details-marker {
+  display: none;
+}
+.opener-text summary::marker {
+  content: "";
 }
 
-details.inline-opener[open] summary {
+ä
+.opener-text details[open] summary {
   font-style: italic;
 }
-
-details.inline-opener summary:hover {
+.opener-text summary:hover {
   text-decoration: underline;
   font-style: italic;
 }
 
-details.inline-opener ul {
+
+.opener-text details ul {
   margin: 0;
 }
 
