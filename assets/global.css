@@ -19,30 +19,33 @@ body {
     background: red;
 }
 
+
 .opener-text {
   font-size: 3.1rem;         
   font-weight: 400;
   letter-spacing: -0.13rem;
   margin-top: -10px;
+  line-height: 1.2;
 }
 
-/* Damit details/summary inline wie Text sind */
+/* make details/summary look like plain inline text */
 .opener-text details,
 .opener-text summary {
   display: inline;
-  font: inherit;           /* übernimmt font-size, weight, spacing */
+  margin: 0;
+  padding: 0;
+  font: inherit;
   cursor: pointer;
 }
 
-/* kein Marker-Pfeil */
-.opener-text summary::-webkit-details-marker {
-  display: none;
-}
+/* remove disclosure marker */
+.opener-text summary::-webkit-details-marker,
 .opener-text summary::marker {
+  display: none;
   content: "";
 }
 
-/* Verhalten */
+/* behavior */
 .opener-text details[open] summary {
   font-style: italic;
 }
@@ -51,7 +54,7 @@ body {
   font-style: italic;
 }
 
-/* falls du Listen oder Logos einblendest */
+/* content inside the details when opened */
 .opener-text details ul {
   margin: 0;
   padding-left: 20px;
