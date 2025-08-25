@@ -69,6 +69,7 @@ body {
   object-fit: cover;
   top: 0;
   left: 0;
+}
 
 .opener-text summary::-webkit-details-marker,
 .opener-text summary::marker {
