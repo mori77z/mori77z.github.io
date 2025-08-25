@@ -47,14 +47,6 @@ body {
   list-style: none;
 }
 
-.opener-text summary::-webkit-details-marker {
-  display: none;
-}
-
-.service-text details[open] summary {
-  font-style: italic;
-}
-
 .service-text summary:hover {
   text-decoration: underline;
   font-style: italic;
@@ -75,7 +67,13 @@ body {
   display: block;
 }
 
+.opener-text summary::-webkit-details-marker {
+  display: none;
+}
 
+.service-text details[open] summary {
+  font-style: italic;
+}
 
 main {
     padding-left: 10px;
