@@ -51,20 +51,6 @@ body {
   display: none;
 }
 
-.media-wrapper {
-  width: 90%;
-  aspect-ratio: 4 / 3;
-  margin: 10px auto;
-}
-
-.media-wrapper img,
-.media-wrapper video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 .service-text details[open] summary {
   font-style: italic;
 }
@@ -73,6 +59,23 @@ body {
   text-decoration: underline;
   font-style: italic;
 }
+
+.media-inline {
+  display: inline-block;
+  width: 90%;
+  aspect-ratio: 4 / 3;
+  vertical-align: middle;
+}
+
+.media-inline img,
+.media-inline video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
 
 main {
     padding-left: 10px;
