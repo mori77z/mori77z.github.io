@@ -26,6 +26,32 @@ body {
   margin-top: -10px;
 }
 
+details.opener {
+  cursor: pointer;
+  display: inline-block;
+}
+
+details.opener summary {
+  list-style: none;
+  display: inline;
+  cursor: pointer;
+}
+
+details.opener[open] summary {
+  font-style: italic;
+}
+
+details.opener summary:hover {
+  text-decoration: underline;
+  font-style: italic;
+}
+
+details.opener ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+<
+
 main {
     padding-left: 10px;
     padding-right: 10px;
