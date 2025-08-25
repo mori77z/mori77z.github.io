@@ -37,20 +37,16 @@ body {
 }
 
 
-.opener-text details {
+.service-text details {
   display: inline;
 }
 
-.opener-text summary {
+.service-text summary {
   display: inline;
   cursor: pointer;
   list-style: none;
 }
 
-.service-text summary:hover {
-  text-decoration: underline;
-  font-style: italic;
-}
 
 .media-inline {
   display: inline-block;
@@ -67,11 +63,16 @@ body {
   display: block;
 }
 
-.opener-text summary::-webkit-details-marker {
+.service-text summary::-webkit-details-marker {
   display: none;
 }
 
 .service-text details[open] summary {
+  font-style: italic;
+}
+
+.service-text summary:hover {
+  text-decoration: underline;
   font-style: italic;
 }
 
