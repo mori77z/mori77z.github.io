@@ -27,22 +27,47 @@ body {
   line-height: 1.2;
 }
 
+.opener-text {
+  font-size: 3.1rem;
+  font-weight: 400;
+  letter-spacing: -0.13rem;
+  line-height: 1.2;
+  margin-top: -10px;
+  white-space: normal; /* ganz normaler Zeilenumbruch */
+}
+
+/* Trick: details inline-block, summary inline */
 .opener-text details {
-  display: inline !important;
+  display: inline-block;
+  vertical-align: baseline;  /* bleibt auf Textlinie */
   margin: 0;
   padding: 0;
 }
 
 .opener-text summary {
-  display: inline !important;
-  font: inherit;        
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font: inherit;
   cursor: pointer;
+  white-space: normal;
 }
 
+/* Marker killen */
 .opener-text summary::-webkit-details-marker,
 .opener-text summary::marker {
   display: none;
   content: "";
+}
+
+/* Verhalten */
+.opener-text details[open] summary {
+  font-style: italic;
+}
+
+.opener-text summary:hover {
+  text-decoration: underline;
+  font-style: italic;
 }
 
 main {
