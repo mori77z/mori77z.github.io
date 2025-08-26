@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+  font-size: 15px;
   height: 100%;
 }
 
@@ -12,20 +12,6 @@ body {
     padding-top: 140px;
     overflow-x: hidden;
     margin: 0;
-} 
-
-@font-face {
-  font-family: 'Moritz Condensed';
-  src: url('/assets/moritz-condensed-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Moritz Neue Condensed Bold';
-  src: url('/assets/moritz-neue-condensed-bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
 }
 
 ::selection {
@@ -37,7 +23,7 @@ body {
   font-family: 'Moritz Neue Condensed Bold';
   font-size: 3.1rem;
   font-weight: 400;
-  letter-spacing: -0.3rem;
+  letter-spacing: -0.16rem;
   line-height: 1.2;
   margin-top: -10px;
 }
@@ -49,7 +35,9 @@ body {
   letter-spacing: -0.1rem;
   line-height: 1.2;
   white-space: normal; 
-  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto; 
+  margin-bottom: 3rem;
 }
 
 
@@ -389,7 +377,7 @@ input:focus, select:focus {
 
 @media (min-width: 768px) {
   html {
-  font-size: 16px;
+  font-size: 19px;
   }
   
   body {
