@@ -19,8 +19,22 @@
       box-sizing: border-box;
     }
 
+    @font-face {
+  font-family: 'Moritz Condensed';
+  src: url('/assets/moritz-condensed-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Moritz Neue Condensed Bold';
+  src: url('/assets/moritz-neue-condensed-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
 
     .logo {
+      font-family: 'Moritz Condensed';
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -35,6 +49,7 @@
     }
     
     .capital {
+      font-family: 'Moritz Neue Condensed Bold';
       font-weight: 600;
       }
       
