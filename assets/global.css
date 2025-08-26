@@ -54,7 +54,7 @@ body {
 
 .media-inline {
   display: inline-block;
-  width: 25%;
+  width: 14rem;
   aspect-ratio: 1 / 1;
   vertical-align: middle;
 }
