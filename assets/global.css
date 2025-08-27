@@ -33,40 +33,30 @@ body {
   letter-spacing: -0.13rem;
   line-height: 1.2;
   white-space: normal; 
-  word-break: break-word;
-  hyphens: auto;
   margin-bottom: 3rem;
 }
 
 
 .service-text details {
-  display: inline;
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
 }
 
 .service-text summary {
   display: inline;
+  margin: 0;
+  padding: 0;
+  font: inherit;
   cursor: pointer;
-  list-style: none;
+  white-space: normal;
 }
 
-
-.media-inline {
-  display: inline-block;
-  width: 90%;
-  aspect-ratio: 4 / 3;
-  vertical-align: middle;
-}
-
-.media-inline img,
-.media-inline video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.service-text summary::-webkit-details-marker {
+.service-text summary::-webkit-details-marker,
+.service-text summary::marker {
   display: none;
+  content: "";
 }
 
 .service-text details[open] summary {
@@ -77,7 +67,6 @@ body {
   text-decoration: underline;
   font-style: italic;
 }
-
 
 main {
     padding-left: 10px;
