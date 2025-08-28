@@ -33,6 +33,9 @@ body {
   letter-spacing: -0.13rem;
   line-height: 1.2;
   white-space: normal; 
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
   margin-bottom: 3rem;
 }
 
@@ -42,6 +45,10 @@ body {
   vertical-align: baseline;
   margin: 0;
   padding: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .service-text summary {
@@ -89,11 +96,10 @@ main {
 }
 
 .name {
-  font-size: 2.6rem;
+  font-size: 1.9rem;
   font-weight: 400;
-  letter-spacing: -0.13rem;
+  letter-spacing: -0.1rem;
   line-height: 1.2;
-  white-space: normal;
   padding-bottom: 3rem;
 }
     
@@ -162,8 +168,8 @@ main {
     all: unset;
     cursor: pointer;
     color: inherit;
-    font-size: 1.4em;
-    font-weight: 600;
+    font-size: 2.1rem;
+    font-weight: 400;
     letter-spacing: -0.03em;
     line-height: 1;
     margin-top: 0;
@@ -193,7 +199,7 @@ main {
 .info h2 {
     font-size: 1.9rem;
     font-weight: 400;
-    letter-spacing: -0.03rem;
+    letter-spacing: -0.1rem;
     text-decoration: underline;
     margin-top: 0;
 }
