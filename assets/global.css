@@ -100,7 +100,8 @@ main {
   font-weight: 400;
   letter-spacing: -0.1rem;
   line-height: 1.2;
-  padding-bottom: 3rem;
+  width: 100%;
+  margin-bottom: 3rem;
 }
     
 .name a {
