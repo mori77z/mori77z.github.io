@@ -60,6 +60,10 @@ body {
   content: "";
 }
 
+.service-text details[open] + details summary {
+  display: block;
+}
+
 .service-text details[open] summary {
   font-style: italic;
   text-decoration: underline;
