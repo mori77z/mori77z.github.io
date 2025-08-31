@@ -33,9 +33,6 @@ body {
   letter-spacing: -0.13rem;
   line-height: 1.2;
   white-space: normal; 
-  overflow-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
   margin-bottom: 3rem;
 }
 
@@ -46,9 +43,6 @@ body {
   margin: 0;
   padding: 0;
   white-space: normal;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
 }
 
 .service-text summary {
@@ -68,6 +62,7 @@ body {
 
 .service-text details[open] summary {
   font-style: italic;
+  text-decoration: underline;
 }
 
 .service-text summary:hover {
@@ -169,12 +164,6 @@ main {
     all: unset;
     cursor: pointer;
     color: inherit;
-    font-size: 2.1rem;
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-top: 0;
-    text-decoration: none;
     display: inline-block;
     user-select: none;
 }
@@ -201,6 +190,7 @@ main {
     font-size: 1.9rem;
     font-weight: 400;
     letter-spacing: -0.1rem;
+    line-height: 1.2;
     text-decoration: underline;
     margin-top: 0;
 }
@@ -395,9 +385,6 @@ input:focus, select:focus {
         padding-left: 20px;
         padding-right: 20px;
     }
-    .expand-toggle {
-    padding-left: 20px;
-     } 
 
     .content {
         margin-left: 20px;
@@ -410,11 +397,11 @@ input:focus, select:focus {
     transform: scale(0.5);
     }
     
-    .info {
-    padding-right: 30px;
-    padding-bottom: 20px;
-    }
-    
+.info {
+    padding-left: 20px;
+    padding-right: 24px;
+   }
+  
     .info a:hover {
     color: #ddd;
     }
