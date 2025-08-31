@@ -78,27 +78,17 @@ function includeFooter() {
             const footer = document.createElement("footer");
             footer.innerHTML = data;
             document.body.appendChild(footer);
-            updateLastEditedDate(); // Assuming this function exists elsewhere
+            updateLastEditedDate();
         })
         .catch(error => console.error("Fehler beim Laden des Footers:", error));
 }
 
 function initConfirmLinks() {
-    // Corrected logic for iframe-container
     document.querySelectorAll(".iframe-container").forEach(container => {
         container.addEventListener("click", function (e) {
             const url = container.dataset.href;
             if (confirm("Open in new tab?")) {
                 window.open(url, "_blank");
-            }
-        });
-    });
-
-    // The .confirm-link logic is already correct
-    document.querySelectorAll('.confirm-link').forEach(link => {
-        link.addEventListener('click', e => {
-            if (!confirm("Email to Email@moritzgauss.com?")) {
-                e.preventDefault();
             }
         });
     });
