@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background:  white;
+    background: white;
     display: flex;
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
@@ -32,7 +32,7 @@ body {
   font-weight: 400;
   letter-spacing: -0.13rem;
   line-height: 1.2;
-  white-space: normal; 
+  white-space: normal;  
   margin-bottom: 3rem;
 }
 
@@ -102,7 +102,7 @@ main {
   width: 100%;
   margin-bottom: 3rem;
 }
-    
+        
 .name a {
     margin-bottom: 0;
     color: inherit;
@@ -272,6 +272,10 @@ main {
     align-items: center;
 }
 
+/* This is the new rule to fix the click issue */
+.iframe-container iframe {
+  pointer-events: none;
+}
 
 .iframe-container iframe {
   width: 1200px; 
@@ -308,7 +312,7 @@ main {
 .arrow_left, .arrow_right {
     color: black;
 }
-    
+        
 .zoomed-container {
     position: fixed; 
     top: 0;
@@ -375,7 +379,7 @@ input:focus, select:focus {
     cursor: pointer;
     text-decoration: none;
 }
-  
+        
 
 @media (min-width: 768px) {
   html {
@@ -397,7 +401,7 @@ input:focus, select:focus {
         padding: 10px 20px 0;
     }
 
-     .iframe-container iframe {
+       .iframe-container iframe {
     transform: scale(0.5);
     }
     
