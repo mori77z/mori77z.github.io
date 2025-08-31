@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initExpandToggles();
     initExpandSectionToggles();
     initTiltAndShake();
-    initFooterScripts();
   });
 
 function includeHeader() {
@@ -90,17 +89,25 @@ function includeFooter() {
 
 
 function initConfirmLinks() {
-    // --- für iframe-container wie gehabt ---
-    document.querySelectorAll(".iframe-container").forEach(container => {
-        container.addEventListener("click", function (e) {
-            e.preventDefault();
-            const url = container.dataset.href;
-            const confirmResult = confirm("Open in new tab?");
-            if (confirmResult) {
-                window.open(url, "_blank");
-            }
-        });
+  // --- iframe-container ---
+  document.querySelectorAll(".iframe-container").forEach(container => {
+    container.addEventListener("click", function (e) {
+      e.preventDefault();
+      const url = container.dataset.href;
+      if (confirm("Open in new tab?")) {
+        window.open(url, "_blank");
+      }
     });
+  });
+
+  // --- .confirm-link ---
+  document.querySelectorAll('.confirm-link').forEach(link => {
+    link.addEventListener('click', e => {
+      if (!confirm("Email to Email@moritzgauss.com?")) {
+        e.preventDefault();
+      }
+    });
+  });
 }
 
 function initZoomImages() {
@@ -341,13 +348,4 @@ function initExpandSectionToggles() {
             }
         });
     });
-}
-
-function initFooterScripts() {
-  document.querySelectorAll('.confirm-link').forEach(link => {
-    link.addEventListener('click', e => {
-      const sicher = confirm("Email to Email@moritzgauss.com?");
-      if (!sicher) e.preventDefault();
-    });
-  });
 }
