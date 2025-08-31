@@ -84,7 +84,7 @@ function includeFooter() {
 }
 
 function initConfirmLinks() {
-    // --- iframe-container ---
+    // Corrected logic for iframe-container
     document.querySelectorAll(".iframe-container").forEach(container => {
         container.addEventListener("click", function (e) {
             const url = container.dataset.href;
@@ -94,7 +94,7 @@ function initConfirmLinks() {
         });
     });
 
-    // --- .confirm-link ---
+    // The .confirm-link logic is already correct
     document.querySelectorAll('.confirm-link').forEach(link => {
         link.addEventListener('click', e => {
             if (!confirm("Email to Email@moritzgauss.com?")) {
