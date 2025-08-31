@@ -140,4 +140,18 @@
       7.3. Moritz Gauss may publish representations of the design product created using its services as well as advertising materials referring to the same and use them for its own advertising.</p>
     </div>
   </details>
+
+      <script>
+        function initMailConfirmLinks() {
+            document.querySelectorAll('.confirm-link').forEach(link => {
+                link.addEventListener('click', e => {
+                    if (!confirm("Email to Email@moritzgauss.com?")) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        }
+        initMailConfirmLinks();
+    </script>
+  
 </footer>
