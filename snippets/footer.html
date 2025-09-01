@@ -141,17 +141,17 @@
     </div>
   </details>
 
-      <script>
-        function initMailConfirmLinks() {
-            document.querySelectorAll('.confirm-link').forEach(link => {
-                link.addEventListener('click', e => {
-                    if (!confirm("Email to Email@moritzgauss.com?")) {
-                        e.preventDefault();
-                    }
-                });
-            });
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.confirm-link').forEach(link => {
+      link.addEventListener('click', e => {
+        const email = link.getAttribute("href").replace("mailto:", "");
+        if (!confirm(`Email to ${email}?`)) {
+          e.preventDefault();
         }
-        initMailConfirmLinks();
-    </script>
+      });
+    });
+  });
+</script>
   
 </footer>
