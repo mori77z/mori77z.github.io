@@ -251,7 +251,7 @@ function initHoverPreview() {
     previewContainer.style.pointerEvents = 'none';
     previewContainer.style.opacity = '0';
     previewContainer.style.transition = 'opacity 0.3s ease';
-    previewContainer.style.zIndex = '-1';
+    previewContainer.style.zIndex = '100';
     previewContainer.style.backgroundColor = 'white';
     document.body.appendChild(previewContainer);
 
