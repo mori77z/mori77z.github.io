@@ -281,7 +281,6 @@ function initHoverPreview() {
         });
     });
 }
-}
 
 
 function initExpandToggles() {
