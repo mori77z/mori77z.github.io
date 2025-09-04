@@ -246,10 +246,13 @@ function initHoverPreview() {
     const previewContainer = document.createElement('div');
     previewContainer.id = 'hover-preview-container';
     previewContainer.style.position = 'absolute';
+    previewContainer.style.width = '600px';
+    previewContainer.style.height = '338px';
     previewContainer.style.pointerEvents = 'none';
     previewContainer.style.opacity = '0';
     previewContainer.style.transition = 'opacity 0.3s ease';
     previewContainer.style.zIndex = '-1';
+    previewContainer.style.backgroundColor = 'white';
     document.body.appendChild(previewContainer);
 
     const iframe = document.createElement('iframe');
@@ -266,8 +269,10 @@ function initHoverPreview() {
         });
 
         link.addEventListener('mousemove', e => {
-            previewContainer.style.left = e.pageX + 20 + 'px';
-            previewContainer.style.top = e.pageY + 20 + 'px';
+            const offsetX = 20;
+            const offsetY = 20;
+            previewContainer.style.left = e.pageX + offsetX + 'px';
+            previewContainer.style.top = e.pageY + offsetY + 'px';
         });
 
         link.addEventListener('mouseleave', () => {
@@ -275,6 +280,7 @@ function initHoverPreview() {
             iframe.src = '';
         });
     });
+}
 }
 
 
