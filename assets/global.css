@@ -346,10 +346,11 @@ label {
 }
 
 input, select {
-    width: 300px; 
+    width: 230px; 
+    height: 60px;
     padding: 12px;
     background: #d6d6d6;
-    color:white;
+    color: white;
     font-size: 18px;
     margin-top: 10px;
     border: 2px solid #f8f8f8;
@@ -367,13 +368,13 @@ input:focus, select:focus {
     align-items: center;
     justify-content: center;
     width: 230px;
-    max-height: 60px;
     margin-top: 30px;
     background: #f8f8f8;
     color: black;
     font-size: 1rem;
     font-weight: 500;
     padding: 12px 20px;
+    border: 2px solid #f8f8f8;
     border-radius: 12px;
     cursor: pointer;
     text-decoration: none;
