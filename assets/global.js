@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initDateTimePicker();
     initEmailButton();
     initHoverImage();
+    initHoverPreview(); 
     initExpandToggles();
     initExpandSectionToggles();
 });
@@ -234,6 +235,34 @@ function initHoverImage() {
     document.addEventListener('touchstart', e => {
         if (visible && !name.contains(e.target)) hideImage();
     });
+}
+
+function initHoverPreview() {
+  const links = document.querySelectorAll('.client-link');
+  const preview = document.getElementById('preview-container');
+  const iframe = document.getElementById('preview-frame');
+
+  if (!links.length || !preview || !iframe) return;
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      const url = link.dataset.url;
+      iframe.src = url;
+      preview.style.opacity = 1;
+    });
+
+    link.addEventListener('mousemove', (e) => {
+      const offsetX = 20;
+      const offsetY = 20;
+      preview.style.left = e.pageX + offsetX + 'px';
+      preview.style.top = e.pageY + offsetY + 'px';
+    });
+
+    link.addEventListener('mouseleave', () => {
+      preview.style.opacity = 0;
+      iframe.src = '';
+    });
+  });
 }
 
 function initExpandToggles() {
