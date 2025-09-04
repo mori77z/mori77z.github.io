@@ -238,32 +238,45 @@ function initHoverImage() {
 }
 
 function initHoverPreview() {
-  const links = document.querySelectorAll('.client-link');
-  const preview = document.getElementById('preview-container');
-  const iframe = document.getElementById('preview-frame');
+    if (window.innerWidth <= 1024) return;
 
-  if (!links.length || !preview || !iframe) return;
+    const links = document.querySelectorAll('.expand-section a');
+    if (!links.length) return;
 
-  links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      const url = link.dataset.url;
-      iframe.src = url;
-      preview.style.opacity = 1;
+    const previewContainer = document.createElement('div');
+    previewContainer.id = 'hover-preview-container';
+    previewContainer.style.position = 'absolute';
+    previewContainer.style.pointerEvents = 'none';
+    previewContainer.style.opacity = '0';
+    previewContainer.style.transition = 'opacity 0.3s ease';
+    previewContainer.style.zIndex = '-1';
+    document.body.appendChild(previewContainer);
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'hover-preview-frame';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    previewContainer.appendChild(iframe);
+
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            iframe.src = link.getAttribute('href');
+            previewContainer.style.opacity = '1';
+        });
+
+        link.addEventListener('mousemove', e => {
+            previewContainer.style.left = e.pageX + 20 + 'px';
+            previewContainer.style.top = e.pageY + 20 + 'px';
+        });
+
+        link.addEventListener('mouseleave', () => {
+            previewContainer.style.opacity = '0';
+            iframe.src = '';
+        });
     });
-
-    link.addEventListener('mousemove', (e) => {
-      const offsetX = 20;
-      const offsetY = 20;
-      preview.style.left = e.pageX + offsetX + 'px';
-      preview.style.top = e.pageY + offsetY + 'px';
-    });
-
-    link.addEventListener('mouseleave', () => {
-      preview.style.opacity = 0;
-      iframe.src = '';
-    });
-  });
 }
+
 
 function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
