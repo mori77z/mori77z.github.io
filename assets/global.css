@@ -158,72 +158,6 @@ main {
   overflow: hidden;
   transition: max-height 0.3s ease;
 }
-.clients-section {
-  display: grid;
-  gap: 3rem;
-}
-
-.client-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  align-items: start;
-}
-
-.client-name {
-  font-weight: 600;
-}
-
-.client-link a {
-  color: black;
-  text-decoration: underline;
-}
-
-.client-date {
-  text-align: right;
-  font-size: 0.9rem;
-}
-
-
-.client-preview {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-
-.phone-frame {
-  width: 160px;
-  aspect-ratio: 9 / 19.5;
-  border: 2px solid #000;
-  border-radius: 22px;
-  overflow: hidden;
-  transform: scale(0.9);
-  transform-origin: top left;
-}
-
-.phone-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.desktop-frame {
-  width: 280px;
-  aspect-ratio: 16 / 10;
-  border: 2px solid #000;
-  border-radius: 8px;
-  overflow: hidden;
-  transform: scale(0.85);
-  transform-origin: top left;
-}
-
-.desktop-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 
 .expand-section a{
     color: black;
@@ -245,6 +179,96 @@ main {
 .expand-toggle.expanded {
     font-style: italic;
 }
+
+.clients-section {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 3rem;
+  padding: 0 1rem;
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .5rem;
+  align-items: start;
+}
+
+.client-name {
+  font-weight: 600;
+}
+
+.client-link a {
+  color: black;
+  text-decoration: underline;
+}
+
+.client-date {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.client-preview {
+  display: flex;
+  gap: 1rem;
+  margin-top: .75rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.phone-frame {
+  order: 1;
+  width: 90px;
+  aspect-ratio: 9 / 19.5;
+  border: 2px solid #000;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.phone-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.desktop-frame {
+  order: 2;
+  flex: 1;
+  min-width: 200px;
+  max-width: 420px;
+  aspect-ratio: 16 / 10;
+  border: 2px solid #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.desktop-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 641px) {
+  .clients-section {
+    max-width: 600px;
+  }
+
+  .client-preview {
+    flex-direction: row;
+  }
+
+  .phone-frame {
+    width: 90px;
+  }
+
+  .desktop-frame {
+    max-width: 420px;
+  }
+}
+
 
 .info {
     word-wrap: break-word;
@@ -338,7 +362,6 @@ main {
     align-items: center;
 }
 
-/* This is the new rule to fix the click issue */
 .iframe-container iframe {
   pointer-events: none;
 }
@@ -470,6 +493,21 @@ input:focus, select:focus {
        .iframe-container iframe {
     transform: scale(0.5);
     }
+    
+      .client-preview {
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .phone-frame {
+    width: 90px;
+    margin: 0 auto;
+  }
+
+  .desktop-frame {
+    max-width: 100%;
+  }
+
     
 .info {
     padding-left: 20px;
