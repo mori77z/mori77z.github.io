@@ -145,29 +145,37 @@ function initArrowScroll() {
 function initDateTimePicker() {
     const dateInput = document.getElementById('date');
     const timeSelect = document.getElementById('time');
+
     if (dateInput) {
         function getNextValidDate() {
             let today = new Date();
             if (today.getHours() >= 16) today.setDate(today.getDate() + 1);
+            // überspringt Wochenenden
             while (today.getDay() === 0 || today.getDay() === 6) {
                 today.setDate(today.getDate() + 1);
             }
             return today.toISOString().split("T")[0];
         }
+
+        // Setzt min auf den nächsten gültigen Werktag
         dateInput.setAttribute("min", getNextValidDate());
-        dateInput.addEventListener('input', function () {
+
+        // Automatisch nach vorne springen, falls ein Wochenende gewählt wird
+        dateInput.addEventListener("change", function () {
             if (!this.value) return;
             const selectedDate = new Date(this.value);
             const day = selectedDate.getDay();
             if (day === 0 || day === 6) {
-                alert("Bitte wählen Sie einen Werktag (Montag - Freitag).");
-                this.value = "";
-                if (timeSelect) timeSelect.disabled = true;
-            } else {
-                if (timeSelect) timeSelect.disabled = false;
+                // direkt auf den nächsten Montag setzen
+                let newDate = selectedDate;
+                while (newDate.getDay() === 0 || newDate.getDay() === 6) {
+                    newDate.setDate(newDate.getDate() + 1);
+                }
+                this.value = newDate.toISOString().split("T")[0];
             }
         });
     }
+
     if (timeSelect) {
         timeSelect.innerHTML = "";
         for (let h = 10; h <= 16; h++) {
@@ -183,23 +191,41 @@ function initEmailButton() {
     const emailBtn = document.getElementById('whatsapp-btn');
     const dateInput = document.getElementById('date');
     const timeSelect = document.getElementById('time');
+
     if (!emailBtn) return;
+
     emailBtn.addEventListener('click', e => {
         e.preventDefault();
+
         if (!dateInput || !timeSelect) return;
+
         const selectedDate = dateInput.value;
         const selectedTime = timeSelect.value;
+
         if (!selectedDate || !selectedTime) {
             alert("Bitte wählen Sie Datum und Uhrzeit aus.");
             return;
         }
-        const [y, mo, d] = selectedDate.split("-");
-        const formattedDate = `${d}.${mo}.${y}`;
+
+        const dateObj = new Date(selectedDate);
         const lang = navigator.language || navigator.userLanguage;
         const isGerman = lang.startsWith("de");
-        const subject = isGerman ? "Anfrage für einen Call" : "Request for a first Call";
-        const body = isGerman ? `Hey Moritz,\n\nIch würde gerne ein Gespräch vereinbaren am ${formattedDate} um ${selectedTime}.\n\nLiebe Grüße,\n[Ihr Name / Firma / E-Mail-Adresse]` : `Hey Moritz,\n\nI would like to schedule a call with you on ${formattedDate} at ${selectedTime}.\n\nBest regards,\n[Your Name / Company / Email Address]`;
-        window.location.href = `mailto:email@moritzgauss.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        // Datum formatieren
+        const formattedDate = isGerman
+            ? dateObj.toLocaleDateString("de-DE")
+            : dateObj.toLocaleDateString("en-US");
+
+        const subject = isGerman
+            ? "Anfrage für einen Call"
+            : "Request for a first Call";
+
+        const body = isGerman
+            ? `Hey Moritz,\n\nIch würde gerne ein Gespräch vereinbaren am ${formattedDate} um ${selectedTime}.\n\nLiebe Grüße,\n[Ihr Name / Firma / E-Mail-Adresse]`
+            : `Hey Moritz,\n\nI would like to schedule a call with you on ${formattedDate} at ${selectedTime}.\n\nBest regards,\n[Your Name / Company / Email Address]`;
+
+        window.location.href =
+            `mailto:email@moritzgauss.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 }
 
