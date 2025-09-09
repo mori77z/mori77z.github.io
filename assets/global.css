@@ -74,13 +74,16 @@ body {
   font-style: italic;
 }
 
+.category {
+    font-size: 2.6rem;
+    }
+
 .category details {
   display: block;
   margin-left: 10px;
 }
 
 .category summary {
-  font-size: 2.6rem;
   display: block;
   font: inherit;
   cursor: pointer;
