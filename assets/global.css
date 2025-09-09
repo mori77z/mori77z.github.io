@@ -76,18 +76,13 @@ body {
 
 .category details {
   display: block;
-  margin: 0 0 1em 0;
-  padding: 0;
-  white-space: normal;
 }
 
 .category summary {
+  font-size: 2.6rem;
   display: block;
-  margin: 0;
-  padding: 0;
   font: inherit;
   cursor: pointer;
-  white-space: normal;
   text-decoration: underline;
 }
 
