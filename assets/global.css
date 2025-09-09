@@ -74,6 +74,39 @@ body {
   font-style: italic;
 }
 
+.category details {
+  display: block;
+  margin: 0 0 1em 0;
+  padding: 0;
+  white-space: normal;
+}
+
+.category summary {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  white-space: normal;
+  text-decoration: underline;
+}
+
+.category summary::-webkit-details-marker,
+.category summary::marker {
+  display: none;
+  content: "";
+}
+
+.category details[open] summary {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.category summary:hover {
+  font-style: italic;
+  text-decoration: underline;
+}
+
 main {
     padding-left: 10px;
     padding-right: 10px;
