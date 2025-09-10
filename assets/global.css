@@ -1,5 +1,5 @@
 html {
-  font-size: 15px;
+  font-size: 14px;
   height: 100%;
 }
 
@@ -416,9 +416,6 @@ input:focus, select:focus {
         
 
 @media (min-width: 768px) {
-  html {
-  font-size: 19px;
-  }
   
   body {
     padding-top: 200px;
