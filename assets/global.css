@@ -79,7 +79,6 @@ body {
     }
 
 .category details {
-  margin-top: 60px;
   display: block;
   margin-left: 10px;
 }
@@ -101,6 +100,14 @@ body {
 .category details[open] summary {
   font-style: italic;
   text-decoration: underline;
+}
+
+.category details[open] {
+  padding-top: 100px;
+}
+
+.category details:not([open]) summary {
+  margin-bottom: 10px;
 }
 
 .category summary:hover {
