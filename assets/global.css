@@ -75,34 +75,38 @@ body {
 }
 
 .category {
-  display: flex;          
-  gap: 20px;                
+  font-size: 1.9rem;           
 }
 
 .category details {
-  display: inline-block;    
+  display: block;
+  margin-left: 10px;
 }
 
 .category summary {
-  display: inline;            
-  font: inherit;
+  display: inline;
   cursor: pointer;
+  color: inherit;
+  margin-left: 10px;
   text-decoration: underline;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 .category summary::-webkit-details-marker,
 .category summary::marker {
-  display: none;             
+  display: none;
+  content: "";
 }
 
 .category details[open] summary {
   font-style: italic;
+  text-decoration: underline;
 }
 
-.category details > *:not(summary) {
-  display: block;
-  margin-top: 10px;
+
+.category summary:hover {
+  font-style: italic;
+  text-decoration: underline;
 }
 
 main {
