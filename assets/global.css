@@ -26,6 +26,52 @@ body {
   line-height: 1.1;
   margin-top: -10px;
 }
+.service-text {
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: -0.13rem;
+  line-height: 1.2;
+  white-space: normal;  
+  margin-bottom: 3rem;
+}
+
+
+.service-text details {
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  white-space: normal;
+}
+
+.service-text summary {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.service-text summary::-webkit-details-marker,
+.service-text summary::marker {
+  display: none;
+  content: "";
+}
+
+.service-text details[open] + details summary {
+  display: block;
+}
+
+.service-text details[open] summary {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.service-text summary:hover {
+  text-decoration: underline;
+  font-style: italic;
+}
 
 .category {
   font-size: 2.6rem;
@@ -40,7 +86,7 @@ body {
 .category details {
   display: inline-block;
   vertical-align: baseline;
-  margin: 0;
+  margin-left: 10px;
   padding: 0;
   white-space: normal;
 }
