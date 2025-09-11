@@ -27,17 +27,17 @@ body {
   margin-top: -10px;
 }
 
-.service-text {
+.category {
   font-size: 2.6rem;
   font-weight: 400;
   letter-spacing: -0.13rem;
   line-height: 1.2;
   white-space: normal;  
   margin-bottom: 3rem;
+  text-decoration: underline;
 }
 
-
-.service-text details {
+.category details {
   display: inline-block;
   vertical-align: baseline;
   margin: 0;
@@ -45,51 +45,14 @@ body {
   white-space: normal;
 }
 
-.service-text summary {
+.category summary {
   display: inline;
   margin: 0;
   padding: 0;
   font: inherit;
   cursor: pointer;
   white-space: normal;
-}
-
-.service-text summary::-webkit-details-marker,
-.service-text summary::marker {
-  display: none;
-  content: "";
-}
-
-.service-text details[open] + details summary {
-  display: block;
-}
-
-.service-text details[open] summary {
-  font-style: italic;
   text-decoration: underline;
-}
-
-.service-text summary:hover {
-  text-decoration: underline;
-  font-style: italic;
-}
-
-.category {
-  font-size: 1.9rem;           
-}
-
-.category details {
-  display: inline;
-  margin-left: 10px;
-}
-
-.category summary {
-  display: inline;
-  cursor: pointer;
-  color: inherit;
-  margin-left: 10px;
-  text-decoration: underline;
-  margin-bottom: 20px;
 }
 
 .category summary::-webkit-details-marker,
@@ -102,7 +65,6 @@ body {
   font-style: italic;
   text-decoration: underline;
 }
-
 
 .category summary:hover {
   font-style: italic;
