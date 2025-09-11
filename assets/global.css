@@ -79,7 +79,7 @@ body {
 }
 
 .category details {
-  display: block;
+  display: inline;
   margin-left: 10px;
 }
 
