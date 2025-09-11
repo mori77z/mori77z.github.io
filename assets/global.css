@@ -75,39 +75,42 @@ body {
 }
 
 .category {
-    font-size: 1.9rem;
-    min-height: 40px;
-    }
+  display: flex;
+  gap: 20px; /* Abstand zwischen den Summary-Buttons */
+}
 
 .category details {
-  display: block;
-  margin-left: 10px;
+  position: relative;
 }
 
 .category summary {
-  display: block;
+  display: inline-block;
   font: inherit;
   cursor: pointer;
-  margin-left: 10px;
   text-decoration: underline;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .category summary::-webkit-details-marker,
 .category summary::marker {
   display: none;
-  content: "";
 }
 
 .category details[open] summary {
   font-style: italic;
-  text-decoration: underline;
 }
-
 
 .category summary:hover {
   font-style: italic;
-  text-decoration: underline;
+}
+
+.category details > *:not(summary) {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  min-width: 150px;
+  z-index: 10;
 }
 
 main {
