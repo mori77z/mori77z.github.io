@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initEmailButton();
     initHoverImage();
     initHoverPreview(); 
+    initCategoryAccordion();
     initExpandToggles();
     initExpandSectionToggles();
 });
@@ -308,6 +309,23 @@ function initHoverPreview() {
     });
 }
 
+
+// === Init Accordion for .category ===
+function initCategoryAccordion() {
+  const detailsElements = document.querySelectorAll(".category details");
+
+  detailsElements.forEach((detail) => {
+    detail.addEventListener("toggle", () => {
+      if (detail.open) {
+        detailsElements.forEach((other) => {
+          if (other !== detail) {
+            other.removeAttribute("open");
+          }
+        });
+      }
+    });
+  });
+}
 
 function initExpandToggles() {
     document.querySelectorAll(".combined-container .expand-toggle").forEach(btn => {
