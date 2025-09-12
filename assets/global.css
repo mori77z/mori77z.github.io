@@ -44,7 +44,7 @@ main {
   font-weight: 400;
   letter-spacing: -0.1rem;
   line-height: 1.1;
-  margin-top: -30px;
+  margin-top: 30px;
 }
 
 .service-text {
@@ -395,14 +395,17 @@ input:focus, select:focus {
         padding-right: 20px;
     }
     
-    .opener-text {
-  font-size: 6rem;
-  font-weight: 600;
+.opener-text {
+  font-size: 4rem;
+  font-weight: 500;
+  letter-spacing: -0.15rem;
+  margin-top: 50px;
 }
 
 .service-text {
   font-size: 4rem;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: -0.15rem;
 }
     
     .category details {
