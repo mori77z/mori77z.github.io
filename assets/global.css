@@ -19,6 +19,26 @@ body {
     background: red;
 }
 
+main {
+    padding-left: 10px;
+    padding-right: 10px;
+    flex: 1;
+    min-height: 100vh
+}
+
+.projects-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.combined-container {
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+}
+
 .opener-text {
   font-size: 2rem;
   font-weight: 400;
@@ -72,26 +92,6 @@ body {
 .service-text summary:hover {
   text-decoration: underline;
   font-style: italic;
-}
-
-main {
-    padding-left: 10px;
-    padding-right: 10px;
-    flex: 1;
-    min-height: 100vh
-}
-
-.projects-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-}
-
-.combined-container {
-    display: flex; 
-    flex-direction: column;
-    gap: 10px;
 }
 
 .name {
