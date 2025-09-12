@@ -382,10 +382,15 @@ input:focus, select:focus {
 
 @media (min-width: 768px) {
   
+  html {
+  font-size: 18px;
+  }
+  
   body {
     padding-top: 200px;
     }
-    main {
+    
+  main {
         padding-left: 20px;
         padding-right: 20px;
     }
