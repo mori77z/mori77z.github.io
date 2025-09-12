@@ -20,7 +20,7 @@ body {
 }
 
 .opener-text {
-  font-size: 3.1rem;
+  font-size: 2rem;
   font-weight: 400;
   letter-spacing: -0.16rem;
   line-height: 1.1;
@@ -28,7 +28,7 @@ body {
 }
 
 .service-text {
-  font-size: 2.6rem;
+  font-size: 2rem;
   font-weight: 400;
   letter-spacing: -0.13rem;
   line-height: 1.2;
@@ -74,47 +74,6 @@ body {
   font-style: italic;
 }
 
-.category {
-  font-size: 2.6rem;
-  white-space: normal;  
-  margin-bottom: 3rem;
-  text-decoration: underline;
-}
-
-.category details {
-  display: inline-block;
-  vertical-align: baseline;
-  margin-left: 10px;
-  padding: 0;
-  white-space: normal;
-}
-
-.category summary {
-  display: inline;
-  margin-left: 10px;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  white-space: normal;
-  text-decoration: underline;
-}
-
-.category summary::-webkit-details-marker,
-.category summary::marker {
-  display: none;
-  content: "";
-}
-
-.category details[open] summary {
-  font-style: italic;
-  text-decoration: underline;
-}
-
-.category summary:hover {
-  font-style: italic;
-  text-decoration: underline;
-}
-
 main {
     padding-left: 10px;
     padding-right: 10px;
@@ -136,7 +95,7 @@ main {
 }
 
 .name {
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 400;
   letter-spacing: -0.1rem;
   line-height: 1.2;
@@ -232,7 +191,7 @@ main {
 }
 
 .info h2 {
-    font-size: 1.9rem;
+    font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: -0.1rem;
     line-height: 1.2;
