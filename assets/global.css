@@ -44,14 +44,13 @@ main {
   font-weight: 400;
   letter-spacing: -0.1rem;
   line-height: 1.1;
-  margin-top: -10px;
 }
 
 .service-text {
   font-size: 2rem;
   font-weight: 400;
   letter-spacing: -0.1rem;
-  line-height: 1.2;
+  line-height: 1.1;
   white-space: normal;  
   margin-bottom: 3rem;
 }
