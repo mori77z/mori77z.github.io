@@ -380,7 +380,7 @@ input:focus, select:focus {
 }
         
 
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   
   html {
   font-size: 18px;
@@ -394,6 +394,16 @@ input:focus, select:focus {
         padding-left: 20px;
         padding-right: 20px;
     }
+    
+    .opener-text {
+  font-size: 6rem;
+  font-weight: 600;
+}
+
+.service-text {
+  font-size: 4rem;
+  font-weight: 600;
+}
     
     .category details {
   margin-left: 20px;
