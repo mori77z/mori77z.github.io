@@ -42,7 +42,7 @@ main {
 .opener-text {
   font-size: 2rem;
   font-weight: 400;
-  letter-spacing: -0.16rem;
+  letter-spacing: -0.1rem;
   line-height: 1.1;
   margin-top: -10px;
 }
@@ -50,7 +50,7 @@ main {
 .service-text {
   font-size: 2rem;
   font-weight: 400;
-  letter-spacing: -0.13rem;
+  letter-spacing: -0.1rem;
   line-height: 1.2;
   white-space: normal;  
   margin-bottom: 3rem;
