@@ -4,15 +4,19 @@ html {
 }
 
 body {
-    background: white;
-    display: flex;
-    flex-direction: column;
-    font-family: Helvetica, Arial, sans-serif;
-    color: black;
-    -webkit-text-size-adjust: 100%;
-    padding-top: 150px;
-    overflow-x: hidden;
-    margin: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica, Arial, sans-serif;
+  color: black;
+  -webkit-text-size-adjust: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 150px;
+  overflow-x: hidden;
+  margin: 0;
+  cursor: default;
 }
 
 ::selection {
