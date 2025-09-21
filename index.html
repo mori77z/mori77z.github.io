@@ -27,9 +27,11 @@
 I collaborate with clients to design visual, interactive and physical projects.
 </h3>
         </main>
-         <script src="/assets/global.js"></script>
+
+ <script src="/assets/global.js"></script>
+
  <script>
-document.addEventListener("DOMContentLoaded", () => {
+function initAfterPopup() {
   const images = [
     "/material/IMG_1928.jpeg",
     "/material/IMG_1938.jpeg",
@@ -57,32 +59,45 @@ document.addEventListener("DOMContentLoaded", () => {
     "/material/anguilla12-copyright-moritzgauss.JPG"
   ];
 
-  let loaded = false;
-  let preloaded = [];
   let index = 0;
+  let interval = null;
+  let scrollTimeout = null;
 
-  function preloadImages() {
-    images.forEach(src => {
-      const img = new Image();
-      img.src = src;
-      preloaded.push(img);
+  function startBackgroundRotation() {
+    if (interval) return;
+    interval = setInterval(() => {
+      index = (index + 1) % images.length;
+      document.body.style.backgroundImage = `url('${images[index]}')`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundRepeat = "no-repeat";
+    }, 80); // Geschwindigkeit
+  }
+
+  function stopBackgroundRotation() {
+    clearInterval(interval);
+    interval = null;
+  }
+
+  //-- Desktop: Scroll
+  if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+    document.addEventListener('scroll', () => {
+      startBackgroundRotation();
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => { stopBackgroundRotation(); }, 50);
     });
-    loaded = true;
-    console.log("Alle Bilder vorgeladen.");
   }
 
-  function nextBackground() {
-    if (!loaded) preloadImages();
-
-    index = (index + 1) % images.length;
-    document.body.style.backgroundImage = `url('${images[index]}')`;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
+  //-- Mobile: Touch / Wischen
+  if (('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+    document.addEventListener('touchstart', () => {
+      startBackgroundRotation();
+    });
+    document.addEventListener('touchend', () => {
+      stopBackgroundRotation();
+    });
   }
-
-  document.body.addEventListener("mousedown", nextBackground);
-  document.body.addEventListener("touchstart", nextBackground);
-});
+}
 </script>
 
      </body>
