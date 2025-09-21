@@ -339,6 +339,24 @@ main {
     cursor: pointer;
 }
 
+#scroll-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  max-width: 90%;
+  height: auto;
+  max-height: 90%;
+  transform: translate(-50%, -50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none; 
+}
+
+
 label {
     margin-top: 18px;
     margin-bottom: 18px;
