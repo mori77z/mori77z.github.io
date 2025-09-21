@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "https://raw.githubusercontent.com/mori77z/material/main/anguilla12-copyright-moritzgauss.JPG"
   ];
 
-  const bgDiv = document.getElementById("scroll-bg");
+const bgDiv = document.getElementById("scroll-bg");
   let index = 0;
   let interval = null;
   let scrollTimeout = null;
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     interval = setInterval(() => {
       index = (index + 1) % images.length;
       bgDiv.style.backgroundImage = `url('${images[index]}')`;
-    }, 80); // speed
+    }, 80);
   }
 
   function stopBackgroundRotation() {
@@ -81,18 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
     bgDiv.style.opacity = 0;
   }
 
-  // Desktop scroll
-  if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-    document.addEventListener('scroll', () => {
-      startBackgroundRotation();
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(stopBackgroundRotation, 100);
-    });
-  }
+  const handleScroll = () => {
+    startBackgroundRotation();
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(stopBackgroundRotation, 200); // hide 200ms after scroll stops
+  };
 
-  // Mobile touch
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    document.addEventListener('touchstart', startBackgroundRotation);
+  if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+    document.addEventListener('scroll', handleScroll);
+  } else {
+    document.addEventListener('touchstart', handleScroll);
     document.addEventListener('touchend', stopBackgroundRotation);
   }
 });
