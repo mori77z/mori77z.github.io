@@ -28,6 +28,8 @@ I collaborate with clients to design visual, interactive and physical projects.
 </h3>
         </main>
 
+ <div id="scroll-bg"></div>
+
  <script src="/assets/global.js"></script>
 
 <script>
@@ -59,54 +61,42 @@ document.addEventListener("DOMContentLoaded", () => {
     "https://raw.githubusercontent.com/mori77z/material/main/anguilla12-copyright-moritzgauss.JPG"
   ];
 
+  const bgDiv = document.getElementById("scroll-bg");
   let index = 0;
   let interval = null;
   let scrollTimeout = null;
 
-  const imgEl = document.createElement("img");
-  imgEl.src = images[0];
-  imgEl.style.position = "fixed";
-  imgEl.style.top = "50%";
-  imgEl.style.left = "50%";
-  imgEl.style.transform = "translate(-50%, -50%)";
-  imgEl.style.maxWidth = "300px";
-  imgEl.style.height = "auto";
-  imgEl.style.zIndex = "0";
-  imgEl.style.pointerEvents = "none";
-  document.body.appendChild(imgEl);
-
   function startBackgroundRotation() {
     if (interval) return;
+    bgDiv.style.opacity = 1;
     interval = setInterval(() => {
       index = (index + 1) % images.length;
-      imgEl.src = images[index];
-    }, 200)
+      bgDiv.style.backgroundImage = `url('${images[index]}')`;
+    }, 80); // speed
   }
 
   function stopBackgroundRotation() {
     clearInterval(interval);
     interval = null;
+    bgDiv.style.opacity = 0;
   }
 
-  function handleScroll() {
-    startBackgroundRotation();
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(stopBackgroundRotation, 300);
-  }
-
-  // Desktop
+  // Desktop scroll
   if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-    document.addEventListener('scroll', handleScroll);
+    document.addEventListener('scroll', () => {
+      startBackgroundRotation();
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(stopBackgroundRotation, 100);
+    });
   }
 
-  // Mobile
+  // Mobile touch
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.addEventListener('touchstart', startBackgroundRotation);
     document.addEventListener('touchend', stopBackgroundRotation);
   }
 });
 </script>
-
 
      </body>
      </html>
