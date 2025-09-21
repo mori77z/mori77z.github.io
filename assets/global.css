@@ -10,9 +10,6 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   color: black;
   -webkit-text-size-adjust: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   padding-top: 150px;
   overflow-x: hidden;
   margin: 0;
