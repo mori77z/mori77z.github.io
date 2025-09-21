@@ -21,11 +21,25 @@ body {
     background: red;
 }
 
+#scroll-bg {
+  position: relative;   
+  display: block;
+  width: 300px;          
+  max-width: 90%;
+  height: auto;
+  margin: 50px auto;     
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;           
+}
+
 main {
     padding-left: 10px;
     padding-right: 10px;
     flex: 1;
     min-height: 100vh
+    z-index: 1;
 }
 
 .projects-container {
@@ -338,24 +352,6 @@ main {
     object-fit: contain;
     cursor: pointer;
 }
-
-#scroll-bg {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  max-width: 90%;
-  height: auto;
-  max-height: 90%;
-  transform: translate(-50%, -50%);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: -1;
-  opacity: 0;
-  pointer-events: none; 
-}
-
 
 label {
     margin-top: 18px;
