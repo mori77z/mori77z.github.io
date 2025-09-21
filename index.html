@@ -30,8 +30,8 @@ I collaborate with clients to design visual, interactive and physical projects.
 
  <script src="/assets/global.js"></script>
 
- <script>
-function initAfterPopup() {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
   const images = [
     "/material/IMG_1928.jpeg",
     "/material/IMG_1938.jpeg",
@@ -71,7 +71,7 @@ function initAfterPopup() {
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundPosition = "center";
       document.body.style.backgroundRepeat = "no-repeat";
-    }, 80); // Geschwindigkeit
+    }, 80);
   }
 
   function stopBackgroundRotation() {
@@ -79,25 +79,21 @@ function initAfterPopup() {
     interval = null;
   }
 
-  //-- Desktop: Scroll
+  // Desktop: Scroll
   if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
     document.addEventListener('scroll', () => {
       startBackgroundRotation();
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => { stopBackgroundRotation(); }, 50);
+      scrollTimeout = setTimeout(stopBackgroundRotation, 50);
     });
   }
 
-  //-- Mobile: Touch / Wischen
-  if (('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-    document.addEventListener('touchstart', () => {
-      startBackgroundRotation();
-    });
-    document.addEventListener('touchend', () => {
-      stopBackgroundRotation();
-    });
+  // Mobile: Touch
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.addEventListener('touchstart', startBackgroundRotation);
+    document.addEventListener('touchend', stopBackgroundRotation);
   }
-}
+});
 </script>
 
      </body>
